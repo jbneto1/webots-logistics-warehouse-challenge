@@ -1,11 +1,11 @@
 ## Author
 **João Afonso Braun Neto © 2026**
 - GitHub: [@jbneto1](https://github.com/jbneto1)
-- Project created for: Robotics / Polytechnic Institute of Bragança / Webots logistics warehouse project-based learning
+- Project created for: Robotics class / Polytechnic Institute of Bragança
 
 # Webots Logistics PBL Warehouse Challenge
 
-Beginner-friendly Webots R2025a project inspired by **RobotAtFactory Lite**. The environment lets students practise mobile-robot navigation, sequencing, warehouse logistics and state machines without writing low-level Webots motor code.
+Beginner-friendly Webots R2025a project inspired by [RobotAtFactory Lite](https://github.com/P33a/RobotAtFactoryLite). The environment lets students practise mobile-robot navigation, sequencing, warehouse logistics and state machines without writing low-level Webots motor code.
 
 The student-facing controller uses a high-level C API. The supervisor handles the warehouse order, virtual magnet, machine processing, ready messages, scoring, box colours and box placement.
 
