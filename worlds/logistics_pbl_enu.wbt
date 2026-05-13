@@ -1,0 +1,1629 @@
+#VRML_SIM R2025a utf8
+
+WorldInfo {
+  coordinateSystem "ENU"
+}
+Viewpoint {
+  orientation -0.37326161164752886 0.3721529080745859 0.8498105567018559 1.7173686513093103
+  position -0.03372236293714413 -1.7649508006829455 1.9267815262179502
+  description "Perspective overview"
+}
+Background {
+  skyColor [
+    0.78 0.84 0.92
+  ]
+}
+DirectionalLight {
+  ambientIntensity 0.55
+  direction -0.45 -0.35 -1
+  intensity 1.2
+}
+DEF SHOP_FLOOR Solid {
+  translation 0 0 -0.011
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.96 0.96 0.93
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 1.682 1.190 0.02
+      }
+    }
+  ]
+  name "shop floor 1.682m x 1.190m, ENU, official XML-inspired RobotAtFactory Lite layout"
+  boundingObject Box {
+    size 1.682 1.190 0.02
+  }
+}
+DEF START_AREA_ZONE Pose {
+  translation -0.475 -0.425 0.003
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.75 0.2
+        transparency 0.38
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.75 0.35 0.004
+      }
+    }
+  ]
+}
+# Straight, low-contrast guide overlay.  These boxes are visual only; collisions
+# still come from the warehouse, machine, robot, and part solids.
+
+DEF GRAPH_SEG_00_P0_P1 Pose {
+  translation -0.62000 0.24400 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.15000 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_01_P1_P2 Pose {
+  translation -0.47250 0.24400 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.14500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_02_P2_P3 Pose {
+  translation -0.32250 0.24400 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.15500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_03_P3_P4 Pose {
+  translation -0.12250 0.24400 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.24500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_04_P0_BOX0 Pose {
+  translation -0.69500 0.34450 0.006
+  rotation 0 0 1 1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.21100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_05_P1_BOX1 Pose {
+  translation -0.54500 0.34450 0.006
+  rotation 0 0 1 1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.21100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_06_P2_BOX2 Pose {
+  translation -0.40000 0.34450 0.006
+  rotation 0 0 1 1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.21100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_07_P3_BOX3 Pose {
+  translation -0.24500 0.34450 0.006
+  rotation 0 0 1 1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.21100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_08_P4V_P4 Pose {
+  translation 0.00000 0.33450 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.18100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_09_P4V_P5 Pose {
+  translation 0.34750 0.42500 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.69500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_10_P5_P16 Pose {
+  translation 0.69500 0.20750 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.43500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_11_P0_P10 Pose {
+  translation -0.69500 0.12200 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.24400 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_12_P10_P21 Pose {
+  translation -0.69500 -0.21250 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.42500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_13_P21_P22V Pose {
+  translation -0.34750 -0.42500 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.69500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_14_P22V_P22 Pose {
+  translation 0.00000 -0.33450 0.006
+  rotation 0 0 1 1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.18100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_15_P22_P23 Pose {
+  translation 0.12250 -0.24400 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.24500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_16_P10_PA_IN Pose {
+  translation -0.60750 0.00000 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.17500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_17_PA_OUT_P13 Pose {
+  translation -0.07750 0.00000 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.15500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_18_P13_PB_IN Pose {
+  translation 0.08750 0.00000 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.17500 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_19_PB_OUT_P16 Pose {
+  translation 0.61500 -0.01000 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.16000 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_20_P13_P4 Pose {
+  translation 0.00000 0.12200 0.006
+  rotation 0 0 1 1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.24400 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_21_P13_P22 Pose {
+  translation 0.00000 -0.12200 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.24400 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_22_P16_P26 Pose {
+  translation 0.69500 -0.12700 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.23400 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_23_P23_P24 Pose {
+  translation 0.32000 -0.24400 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.15000 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_24_P24_P25 Pose {
+  translation 0.47000 -0.24400 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.15000 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_25_P25_P26 Pose {
+  translation 0.62000 -0.24400 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.15000 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_26_P23_P23B Pose {
+  translation 0.24500 -0.34950 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.20100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_27_P24_P24B Pose {
+  translation 0.39500 -0.34950 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.20100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_28_P25_P25B Pose {
+  translation 0.54500 -0.34950 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.20100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_29_P26_P26B Pose {
+  translation 0.69500 -0.34950 0.006
+  rotation 0 0 1 -1.570796
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.20100 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_30_A2_IN_A2_OUT Pose {
+  translation -0.34900 -0.15000 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.42200 0.01800 0.003
+      }
+    }
+  ]
+}
+
+DEF GRAPH_SEG_31_B2_IN_B2_OUT Pose {
+  translation 0.34250 0.15000 0.006
+  rotation 0 0 1 0.000000
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.62 0.62 0.62
+        transparency 0.76
+        roughness 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.41500 0.01800 0.003
+      }
+    }
+  ]
+}
+DEF INCOMING_PICKUP_ZONE Pose {
+  translation -0.470 0.535 0.004
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.7 0.05
+        transparency 0.42
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.62 0.12 0.004
+      }
+    }
+  ]
+}
+DEF MACHINE_A_INPUT_ZONE Pose {
+  translation -0.435 0.000 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.85 0
+        transparency 0.4
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.11 0.004
+      }
+    }
+  ]
+}
+DEF MACHINE_A_OUTPUT_ZONE Pose {
+  translation -0.260 0.000 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.9 1
+        transparency 0.42
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.11 0.004
+      }
+    }
+  ]
+}
+DEF MACHINE_A_INPUT_ZONE_2 Pose {
+  translation -0.435 -0.150 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.85 0
+        transparency 0.4
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.11 0.004
+      }
+    }
+  ]
+}
+DEF MACHINE_A_OUTPUT_ZONE_2 Pose {
+  translation -0.260 -0.150 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.9 1
+        transparency 0.42
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.11 0.004
+      }
+    }
+  ]
+}
+DEF MACHINE_B_INPUT_ZONE Pose {
+  translation 0.260 0.000 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.85 0
+        transparency 0.4
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.11 0.004
+      }
+    }
+  ]
+}
+DEF MACHINE_B_OUTPUT_ZONE Pose {
+  translation 0.430 -0.010 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.9 1
+        transparency 0.42
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.11 0.004
+      }
+    }
+  ]
+}
+DEF MACHINE_B_INPUT_ZONE_2 Pose {
+  translation 0.260 0.150 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0.85 0
+        transparency 0.4
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.11 0.004
+      }
+    }
+  ]
+}
+DEF MACHINE_B_OUTPUT_ZONE_2 Pose {
+  translation 0.430 0.150 0.005
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.9 1
+        transparency 0.42
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.12 0.11 0.004
+      }
+    }
+  ]
+}
+DEF OUTGOING_DROP_ZONE Pose {
+  translation 0.470 -0.535 0.004
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.9 1
+        transparency 0.42
+        roughness 0.6
+        metalness 0
+      }
+      geometry Box {
+        size 0.62 0.12 0.004
+      }
+    }
+  ]
+}
+DEF NORTH_SAFETY_RAIL Solid {
+  translation 0 0.595 0.04
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 1.682 0.018 0.08
+      }
+    }
+  ]
+  name "north safety rail"
+  boundingObject Box {
+    size 1.682 0.018 0.08
+  }
+}
+DEF SOUTH_SAFETY_RAIL Solid {
+  translation 0 -0.595 0.04
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 1.682 0.018 0.08
+      }
+    }
+  ]
+  name "south safety rail"
+  boundingObject Box {
+    size 1.682 0.018 0.08
+  }
+}
+DEF WEST_SAFETY_RAIL Solid {
+  translation -0.841 0 0.04
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.018 1.190 0.08
+      }
+    }
+  ]
+  name "west safety rail"
+  boundingObject Box {
+    size 0.018 1.190 0.08
+  }
+}
+DEF EAST_SAFETY_RAIL Solid {
+  translation 0.841 0 0.04
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.018 1.190 0.08
+      }
+    }
+  ]
+  name "east safety rail"
+  boundingObject Box {
+    size 0.018 1.190 0.08
+  }
+}
+DEF INCOMING_SIDE_WEST Solid {
+  translation -0.77000 0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "incoming side west"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF INCOMING_DIV_1 Solid {
+  translation -0.62000 0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "incoming div 1"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF INCOMING_DIV_2 Solid {
+  translation -0.47000 0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "incoming div 2"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF INCOMING_DIV_3 Solid {
+  translation -0.32000 0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "incoming div 3"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF INCOMING_SIDE_EAST Solid {
+  translation -0.17000 0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "incoming side east"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF INCOMING_BACK_RAIL Solid {
+  translation -0.47000 0.58000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.62000 0.02000 0.06500
+      }
+    }
+  ]
+  name "incoming warehouse back"
+  boundingObject Box {
+    size 0.62000 0.02000 0.06500
+  }
+}
+DEF OUTGOING_SIDE_WEST Solid {
+  translation 0.17000 -0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "outgoing side west"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF OUTGOING_DIV_1 Solid {
+  translation 0.32000 -0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "outgoing div 1"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF OUTGOING_DIV_2 Solid {
+  translation 0.47000 -0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "outgoing div 2"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF OUTGOING_DIV_3 Solid {
+  translation 0.62000 -0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "outgoing div 3"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF OUTGOING_SIDE_EAST Solid {
+  translation 0.77000 -0.54000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.08000 0.06500
+      }
+    }
+  ]
+  name "outgoing side east"
+  boundingObject Box {
+    size 0.02000 0.08000 0.06500
+  }
+}
+DEF OUTGOING_BACK_RAIL Solid {
+  translation 0.47000 -0.58000 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.13 0.13 0.13
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.62000 0.02000 0.06500
+      }
+    }
+  ]
+  name "outgoing warehouse back"
+  boundingObject Box {
+    size 0.62000 0.02000 0.06500
+  }
+}
+DEF MACHINE_A_LOWER_WALL Solid {
+  translation -0.34750 -0.22500 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.22 0.25
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.18000 0.02000 0.06500
+      }
+    }
+  ]
+  name "machine A lower wall"
+  boundingObject Box {
+    size 0.18000 0.02000 0.06500
+  }
+}
+DEF MACHINE_A_MIDDLE_WALL Solid {
+  translation -0.34750 -0.07500 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.22 0.25
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.18000 0.02000 0.06500
+      }
+    }
+  ]
+  name "machine A middle wall"
+  boundingObject Box {
+    size 0.18000 0.02000 0.06500
+  }
+}
+DEF MACHINE_A_UPPER_WALL Solid {
+  translation -0.34750 0.07500 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.22 0.25
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.18000 0.02000 0.06500
+      }
+    }
+  ]
+  name "machine A upper wall"
+  boundingObject Box {
+    size 0.18000 0.02000 0.06500
+  }
+}
+DEF MACHINE_A_BACK_WALL Solid {
+  translation -0.34750 -0.07500 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.22 0.25
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.30000 0.06500
+      }
+    }
+  ]
+  name "machine A vertical machine wall"
+  boundingObject Box {
+    size 0.02000 0.30000 0.06500
+  }
+}
+DEF MACHINE_B_LOWER_WALL Solid {
+  translation 0.34750 -0.07500 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.22 0.25
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.18000 0.02000 0.06500
+      }
+    }
+  ]
+  name "machine B lower wall"
+  boundingObject Box {
+    size 0.18000 0.02000 0.06500
+  }
+}
+DEF MACHINE_B_MIDDLE_WALL Solid {
+  translation 0.34750 0.07500 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.22 0.25
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.18000 0.02000 0.06500
+      }
+    }
+  ]
+  name "machine B middle wall"
+  boundingObject Box {
+    size 0.18000 0.02000 0.06500
+  }
+}
+DEF MACHINE_B_UPPER_WALL Solid {
+  translation 0.34750 0.22500 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.22 0.25
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.18000 0.02000 0.06500
+      }
+    }
+  ]
+  name "machine B upper wall"
+  boundingObject Box {
+    size 0.18000 0.02000 0.06500
+  }
+}
+DEF MACHINE_B_BACK_WALL Solid {
+  translation 0.34750 0.07500 0.03250
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.22 0.25
+        roughness 0.55
+        metalness 0
+      }
+      geometry Box {
+        size 0.02000 0.30000 0.06500
+      }
+    }
+  ]
+  name "machine B vertical machine wall"
+  boundingObject Box {
+    size 0.02000 0.30000 0.06500
+  }
+}
+DEF BOX_0 Solid {
+  translation -0.695 0.535 0.0325
+  children [
+    DEF BOX_0_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0.85 0.05 0.05
+        roughness 0.45
+        metalness 0
+      }
+      geometry Box {
+        size 0.09 0.06 0.065
+      }
+    }
+    Pose {
+      translation 0 -0.0325 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.82 0.78
+            roughness 0.18
+          }
+          geometry Box {
+            size 0.06 0.004 0.03
+          }
+        }
+      ]
+    }
+  ]
+  name "BOX_0"
+  boundingObject Box {
+    size 0.09 0.06 0.065
+  }
+  physics Physics {
+    density -1
+    mass 0.04
+  }
+}
+DEF BOX_1 Solid {
+  translation -0.545 0.535 0.0325
+  children [
+    DEF BOX_1_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0.05 0.75 0.12
+        roughness 0.45
+        metalness 0
+      }
+      geometry Box {
+        size 0.09 0.06 0.065
+      }
+    }
+    Pose {
+      translation 0 -0.0325 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.82 0.78
+            roughness 0.18
+          }
+          geometry Box {
+            size 0.06 0.004 0.03
+          }
+        }
+      ]
+    }
+  ]
+  name "BOX_1"
+  boundingObject Box {
+    size 0.09 0.06 0.065
+  }
+  physics Physics {
+    density -1
+    mass 0.04
+  }
+}
+DEF BOX_2 Solid {
+  translation -0.400 0.535 0.0325
+  children [
+    DEF BOX_2_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0.05 0.2 0.9
+        roughness 0.45
+        metalness 0
+      }
+      geometry Box {
+        size 0.09 0.06 0.065
+      }
+    }
+    Pose {
+      translation 0 -0.0325 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.82 0.78
+            roughness 0.18
+          }
+          geometry Box {
+            size 0.06 0.004 0.03
+          }
+        }
+      ]
+    }
+  ]
+  name "BOX_2"
+  boundingObject Box {
+    size 0.09 0.06 0.065
+  }
+  physics Physics {
+    density -1
+    mass 0.04
+  }
+}
+DEF BOX_3 Solid {
+  translation -0.245 0.535 0.0325
+  children [
+    DEF BOX_3_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0.85 0.05 0.05
+        roughness 0.45
+        metalness 0
+      }
+      geometry Box {
+        size 0.09 0.06 0.065
+      }
+    }
+    Pose {
+      translation 0 -0.0325 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.82 0.82 0.78
+            roughness 0.18
+          }
+          geometry Box {
+            size 0.06 0.004 0.03
+          }
+        }
+      ]
+    }
+  ]
+  name "BOX_3"
+  boundingObject Box {
+    size 0.09 0.06 0.065
+  }
+  physics Physics {
+    density -1
+    mass 0.04
+  }
+}
+DEF MOBILE_ROBOT Robot {
+  # The robot starts in the lower-left green area, facing north (+Y).
+  translation -0.725 -0.400 0.0
+  rotation 0 0 1 1.5708
+  children [
+    Pose {
+      translation 0 0 0.05
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.12 0.28 0.95
+            roughness 0.45
+            metalness 0
+          }
+          geometry Box {
+            size 0.15 0.105 0.045
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.044 0 0.08
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.96 0.96 0.96
+            roughness 0.4
+            metalness 0
+          }
+          geometry Box {
+            size 0.055 0.07 0.012
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.087 0 0.04
+      rotation 0 1 0 1.5708
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.12 0.08
+            roughness 0.2
+          }
+          geometry Cylinder {
+            height 0.012
+            radius 0.014
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -8.698428839425077e-12
+        axis 0 1 0
+        anchor 0 0.064 0.022
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+          maxVelocity 16
+          maxTorque 3
+        }
+        PositionSensor {
+          name "left wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.064 0.022
+        rotation 1 -4.349198444185277e-12 4.349214419712539e-12 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.03 0.03 0.03
+              roughness 0.5
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.014
+              radius 0.022
+            }
+          }
+        ]
+        name "left_wheel_solid"
+        boundingObject Cylinder {
+          height 0.014
+          radius 0.022
+        }
+        physics Physics {
+          density -1
+          mass 0.05
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -8.694378550444526e-12
+        axis 0 1 0
+        anchor 0 -0.064 0.022
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+          maxVelocity 16
+          maxTorque 3
+        }
+        PositionSensor {
+          name "right wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.064 0.022
+        rotation 1 -4.347173307133759e-12 4.347189275222263e-12 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.03 0.03 0.03
+              roughness 0.5
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.014
+              radius 0.022
+            }
+          }
+        ]
+        name "right_wheel_solid"
+        boundingObject Cylinder {
+          height 0.014
+          radius 0.022
+        }
+        physics Physics {
+          density -1
+          mass 0.05
+        }
+      }
+    }
+    # Rear passive support: keeps the chassis from dropping behind the wheel axle.
+    Pose {
+      translation -0.055 0 0.013
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.06 0.06 0.06
+            roughness 0.35
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.013
+          }
+        }
+      ]
+    }
+    # Front passive support: fixes the previous nose-down/tilted motion.
+    Pose {
+      translation 0.065 0 0.013
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.06 0.06 0.06
+            roughness 0.35
+            metalness 0
+          }
+          geometry Sphere {
+            radius 0.013
+          }
+        }
+      ]
+    }
+    Emitter {
+      name "magnet_emitter"
+      channel 1
+    }
+    Receiver {
+      name "task_receiver"
+      channel 2
+    }
+  ]
+  name "mobile_robot"
+  boundingObject Group {
+    children [
+      Pose {
+        translation 0 0 0.05
+        children [
+          Box {
+            size 0.15 0.105 0.045
+          }
+        ]
+      }
+      Pose {
+        translation -0.055 0 0.013
+        children [
+          Sphere {
+            radius 0.013
+          }
+        ]
+      }
+      Pose {
+        translation 0.065 0 0.013
+        children [
+          Sphere {
+            radius 0.013
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 0.7
+    # Fixed center of mass near the chassis center to reduce pitching/tilting.
+    centerOfMass [
+      0 0 0.040
+    ]
+  }
+  controller "student_controller"
+}
+DEF CHALLENGE_SUPERVISOR Robot {
+  children [
+    Receiver {
+      name "magnet_rx"
+      channel 1
+    }
+    Emitter {
+      name "task_tx"
+      channel 2
+    }
+  ]
+  name "challenge_supervisor"
+  controller "logistics_supervisor_c"
+  supervisor TRUE
+}
