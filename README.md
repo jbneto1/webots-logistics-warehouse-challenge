@@ -1,8 +1,8 @@
 # Webots Logistics PBL Warehouse Challenge
 
-A Webots R2025a warehouse logistics project for teaching mobile robot navigation, finite-state control, and task sequencing in C.
+A Webots R2025a warehouse logistics project for teaching mobile robot navigation, finite-state control, and task sequencing in C. The project is inspired by inspired by [RobotAtFactory Lite](https://github.com/P33a/RobotAtFactoryLite).
 
-The project provides a complete simulated logistics cell with an incoming warehouse, two processing machines, an outgoing warehouse, a mobile robot, four boxes, and a C supervisor that manages orders, scoring, machine processing, and a virtual magnet. Students work primarily in a high-level robot controller instead of writing low-level Webots motor code.
+The project provides a complete simulated logistics cell with an incoming warehouse, two processing machines, an outgoing warehouse, a mobile robot, four boxes, and a C supervisor that manages orders, scoring, machine processing, and a virtual magnet. Students work primarily in a high-level robot controller instead of writing low-level Webots motor code. However, the challenge-based learning project can be adjusted for different difficulty levels where the professor/teacher can omit the navigation API so that the students need to develop everything from scratch.
 
 ## Contents
 
