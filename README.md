@@ -1,383 +1,110 @@
-## Author
-**João Afonso Braun Neto © 2026**
-- GitHub: [@jbneto1](https://github.com/jbneto1)
-- Project created for: Robotics / Polytechnic Institute of Bragança / Webots logistics warehouse project-based learning
-
 # Webots Logistics PBL Warehouse Challenge
 
-Beginner-friendly Webots R2025a project inspired by **RobotAtFactory Lite**. The environment lets students practise mobile-robot navigation, sequencing, warehouse logistics and state machines without writing low-level Webots motor code.
+A Webots R2025a warehouse logistics project for teaching mobile robot navigation, finite-state control, and task sequencing in C.
 
-The student-facing controller uses a high-level C API. The supervisor handles the warehouse order, virtual magnet, machine processing, ready messages, scoring, box colours and box placement.
+The project provides a complete simulated logistics cell with an incoming warehouse, two processing machines, an outgoing warehouse, a mobile robot, four boxes, and a C supervisor that manages orders, scoring, machine processing, and a virtual magnet. Students work primarily in a high-level robot controller instead of writing low-level Webots motor code.
 
----
+## Contents
 
-## 1. Project structure
+- [Requirements](#requirements)
+- [Quick Start](#quick-start)
+- [Repository Layout](#repository-layout)
+- [How the Challenge Works](#how-the-challenge-works)
+- [Architecture](#architecture)
+- [Student Controller API](#student-controller-api)
+- [Configuration](#configuration)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
 
-```text
-webots_logistics_pbl_v10_4/
-├── worlds/
-│   └── logistics_pbl_enu.wbt
-└── controllers/
-    ├── logistics_supervisor_c/
-    │   ├── logistics_supervisor_c.c
-    │   └── Makefile
-    └── student_controller/
-        ├── student_controller.c
-        ├── warehouse_map.h
-        ├── robot_navigation.c
-        ├── robot_navigation.h
-        └── Makefile
-```
+## Requirements
 
-### Main files
+- Webots R2025a
+- C compiler and GNU Make supported by Webots
+- Windows, Linux, or macOS with a working Webots C controller toolchain
 
-| File | Purpose | Who normally edits it? |
-|---|---|---|
-| `worlds/logistics_pbl_enu.wbt` | Webots world: robot, warehouses, machines, boxes, floor guides. | Teacher / project maintainer |
-| `controllers/logistics_supervisor_c/logistics_supervisor_c.c` | C supervisor: order generation, machine logic, scoring, magnet messages. | Teacher / project maintainer |
-| `controllers/student_controller/student_controller.c` | Student state machine. The included example solves `BOX_0` dynamically. | Students |
-| `controllers/student_controller/warehouse_map.h` | Named robot poses and map constants. | Students may read; teacher may tune |
-| `controllers/student_controller/robot_navigation.h` | High-level API available to students. | Usually read-only |
-| `controllers/student_controller/robot_navigation.c` | Navigation implementation and speed tuning. | Advanced students / teacher |
+The controller Makefiles include Webots' standard `resources/Makefile.include`. On Windows, they default `WEBOTS_HOME` to `C:/PROGRA~1/Webots` when the variable is not already set.
 
----
+## Quick Start
 
-## 2. How to run
+1. Open Webots R2025a.
+2. Open `worlds/logistics_pbl_enu.wbt`.
+3. Build the controllers if Webots does not build them automatically:
 
-1. Open **Webots R2025a**.
-2. Open:
+   ```bash
+   cd controllers/logistics_supervisor_c
+   make
+   cd ../student_controller
+   make
+   ```
 
-```text
-worlds/logistics_pbl_enu.wbt
-```
-
-3. Build the two C controllers if Webots does not build them automatically:
-
-```bash
-cd controllers/logistics_supervisor_c
-make
-cd ../student_controller
-make
-```
-
-4. Press **Play** in Webots.
+4. Press Play in Webots.
 5. Watch the simulation overlay and the controller console output.
 
----
-
-## 3. Educational objective
-
-Students should learn to:
-
-- read a warehouse order;
-- represent a logistics task as a finite-state machine;
-- use named map poses instead of raw motor commands;
-- pick, transport, process and deliver boxes;
-- react to asynchronous machine-ready messages;
-- reason about robot orientation before entering and leaving narrow garages;
-- improve a route without needing to implement a full low-level controller.
-
-The starter controller solves only `BOX_0`. A typical practical assignment is to extend it to `BOX_1`, `BOX_2`, and `BOX_3`.
-
----
-
-## 4. Coordinate system
-
-The world uses an ENU-style floor plane:
+## Repository Layout
 
 ```text
-X = east / right on the floor
-Y = north / up on the floor
-Z = height
-theta = robot yaw around +Z
+webots_logistics_pbl/
+├── controllers/
+│   ├── logistics_supervisor_c/
+│   │   ├── logistics_supervisor_c.c
+│   │   └── Makefile
+│   └── student_controller/
+│       ├── student_controller.c
+│       ├── robot_navigation.c
+│       ├── robot_navigation.h
+│       ├── warehouse_map.h
+│       └── Makefile
+├── worlds/
+│   └── logistics_pbl_enu.wbt
+├── LICENSE
+└── README.md
 ```
 
-Heading constants in `warehouse_map.h`:
+| Path | Purpose |
+| --- | --- |
+| `worlds/logistics_pbl_enu.wbt` | Main Webots world with the robot, boxes, warehouses, machines, and floor guide map. |
+| `controllers/logistics_supervisor_c/` | C supervisor that owns task generation, box state, machine logic, scoring, and messaging. |
+| `controllers/student_controller/student_controller.c` | Starter finite-state controller. This is the main file students extend. |
+| `controllers/student_controller/robot_navigation.*` | High-level navigation, magnet, and supervisor-message API. |
+| `controllers/student_controller/warehouse_map.h` | Named robot-center poses for warehouses, machines, clear points, and route nodes. |
 
-```c
-#define FACE_EAST   0.0
-#define FACE_NORTH  (M_PI / 2.0)
-#define FACE_WEST   M_PI
-#define FACE_SOUTH  (-M_PI / 2.0)
-```
+## How the Challenge Works
 
-`Pose2D` always describes the **robot centre**, not the box centre:
+The supervisor creates a four-box order. Each box starts in the incoming warehouse as one of three part types:
 
-```c
-typedef struct {
-  double x;
-  double y;
-  double theta;
-} Pose2D;
-```
+| Box type | Meaning | Required route |
+| --- | --- | --- |
+| `R` | Raw part | Machine A, then Machine B, then outgoing warehouse |
+| `G` | Intermediate part | Machine B, then outgoing warehouse |
+| `B` | Final part | Outgoing warehouse |
 
----
-
-## 5. Logistics rules implemented by the supervisor
-
-There are four boxes in the incoming warehouse. Each box has a colour/type:
-
-| Colour | Meaning | Required destination |
-|---|---|---|
-| Blue (`B`) | Final part | Outgoing warehouse |
-| Green (`G`) | Intermediate part | Machine B, then outgoing warehouse |
-| Red (`R`) | Raw part | Machine A, then Machine B, then outgoing warehouse |
-
-Processing sequence:
+Processing changes the box state:
 
 ```text
-Red box   -> Machine A -> becomes Green -> Machine B -> becomes Blue -> Outgoing
-Green box -> Machine B -> becomes Blue  -> Outgoing
-Blue box  -> Outgoing
+R -> Machine A -> G -> Machine B -> B -> Outgoing
+G -> Machine B -> B -> Outgoing
+B -> Outgoing
 ```
 
-Scoring is handled by the supervisor. A point is awarded when a box is accepted by a valid machine input or delivered to the outgoing warehouse.
+The supervisor awards one point when a box is accepted by a valid machine input or delivered to the outgoing warehouse. It also controls:
 
----
+- randomized or manually configured orders;
+- virtual magnet attachment and release;
+- machine processing delays;
+- machine-ready events;
+- output bay occupancy;
+- box colors, placement, collision, and physics reset;
+- simulation overlay status.
 
-## 6. Version 10.4 feature summary
+The starter controller solves only `BOX_0`. A typical assignment is to generalize the same state-machine pattern to `BOX_1`, `BOX_2`, and `BOX_3`.
 
-This version includes:
+## Architecture
 
-- deeper incoming pickup and outgoing drop poses;
-- explicit clear poses so the robot can reverse out before turning;
-- box collision and physics in the Webots world;
-- two active garages/bays for Machine A and two for Machine B;
-- random machine processing time from `0` to `5` seconds per box;
-- event-based machine-ready messages with box index, bay index and pickup pose;
-- ready masks that reset when the processed box is removed from the output;
-- `nav_go_through()` for intermediate waypoints so the robot does not stop and rotate at every graph node;
-- `nav_back_to()` for faster reverse clearance from garages;
-- optional arc movement through `nav_move_arc()` / `nav_move_circle()`.
+### Supervisor
 
----
+`controllers/logistics_supervisor_c/logistics_supervisor_c.c` is a C-only Webots supervisor. It sends task information to the robot controller and receives magnet commands from it.
 
-## 7. Student high-level API
-
-Include only `warehouse_map.h` in the student controller:
-
-```c
-#include "warehouse_map.h"
-```
-
-The map header includes `robot_navigation.h`, so the API is available automatically.
-
-### 7.1 Controller lifecycle and task status
-
-| Function | Meaning |
-|---|---|
-| `nav_init()` | Initialise Webots devices and the navigation helper. |
-| `nav_step()` | Advance one Webots time step and read supervisor messages. Use it in the main loop. |
-| `nav_stop()` | Stop both wheels immediately. |
-| `nav_reset_actions()` | Reset timers/arcs when changing state. |
-| `nav_pose_valid()` | True after the first valid `POSE` message. |
-| `nav_pose()` | Latest robot pose as `Pose2D`. |
-| `nav_last_order()` | Latest order string, e.g. `"RRGB"`. |
-| `nav_score()` | Latest score reported by the supervisor. |
-| `nav_attached_box()` | Name of the attached box, or `"none"`. |
-| `nav_normalize_angle(angle)` | Normalise an angle to `[-pi, +pi]`. |
-
-### 7.2 Movement actions
-
-All movement actions are **non-blocking**: call them repeatedly from the current state until they return `true`.
-
-| Function | Use |
-|---|---|
-| `nav_go_to(x, y)` | Drive accurately to an `(x, y)` point and stop. |
-| `nav_go_through(x, y)` | Drive through an intermediate waypoint without stopping. Useful for smoother paths. |
-| `nav_go_to_pose(x, y, theta)` | Drive to `(x, y)`, stop, then rotate to `theta`. Use for pickup/drop/service poses. |
-| `nav_rotate_to(theta)` | Rotate in place to a target heading. |
-| `nav_wait(seconds)` | Wait while stopped. |
-| `nav_back_up(seconds)` | Reverse for a fixed time. |
-| `nav_back_to(x, y)` | Reverse to a clear point while keeping the robot front facing the garage/output. |
-| `nav_move_arc(radius_m, angle_rad, clockwise)` | Drive a circular arc. Optional for advanced route smoothing. |
-| `nav_move_circle(radius_m, angle_rad, clockwise)` | Alias of `nav_move_arc()`. |
-
-Example state:
-
-```c
-case GO_TO_BOX:
-  if (nav_go_to_pose(MAP_IN_PICK[0].x, MAP_IN_PICK[0].y, MAP_IN_PICK[0].theta))
-    change_state(PICK_BOX);
-  break;
-```
-
-### 7.3 Magnet API
-
-| Function | Meaning |
-|---|---|
-| `magnet_pick()` | Request virtual magnet ON. The supervisor attaches the nearest valid box. |
-| `magnet_drop()` | Request virtual magnet OFF. The supervisor evaluates the drop location. |
-| `magnet_is_on()` | Local magnet state. |
-
-The magnet does not directly move physics bodies. The supervisor keeps the attached box in front of the robot while the magnet is on.
-
-### 7.4 Machine-ready API
-
-When a machine finishes processing, the supervisor sends the machine, box index, output bay and robot pickup pose. The navigation API stores this information.
-
-| Function | Meaning |
-|---|---|
-| `nav_machine_a_ready(box_index)` | True if that box is ready at a Machine A output. |
-| `nav_machine_b_ready(box_index)` | True if that box is ready at a Machine B output. |
-| `nav_machine_a_ready_garage(box_index)` | Output bay for that box at Machine A, or `-1` if not ready. |
-| `nav_machine_b_ready_garage(box_index)` | Output bay for that box at Machine B, or `-1` if not ready. |
-| `nav_machine_a_ready_pose(box_index, &pose)` | Copies the robot-centre pickup pose for Machine A if ready. |
-| `nav_machine_b_ready_pose(box_index, &pose)` | Copies the robot-centre pickup pose for Machine B if ready. |
-
-Example:
-
-```c
-Pose2D pick_pose;
-
-if (nav_machine_a_ready_pose(2, &pick_pose)) {
-  int bay = nav_machine_a_ready_garage(2);
-  printf("BOX_2 ready at Machine A bay %d\n", bay);
-  // Drive to pick_pose to collect the processed box.
-}
-```
-
----
-
-## 8. Map constants in `warehouse_map.h`
-
-### 8.1 General constants
-
-```c
-#define MAP_BOX_COUNT 4
-#define MAP_MACHINE_BAY_COUNT 2
-```
-
-### 8.2 Incoming warehouse
-
-```c
-MAP_IN_PICK[0..3]   // deeper pickup poses inside the incoming garages
-MAP_IN_FRONT[0..3]  // approach/clear poses outside the incoming garages
-```
-
-### 8.3 Outgoing warehouse
-
-```c
-MAP_OUT_FRONT[0..3] // approach/clear poses outside the outgoing garages
-MAP_OUT_DROP[0..3]  // deeper drop poses inside the outgoing garages
-```
-
-### 8.4 Machine A poses
-
-Machine A has two active bays:
-
-```c
-MAP_MACHINE_A_INPUT_BAY[0..1]
-MAP_MACHINE_A_INPUT_CLEAR_BAY[0..1]
-MAP_MACHINE_A_OUTPUT_APPROACH_BAY[0..1]
-MAP_MACHINE_A_OUTPUT_BAY[0..1]
-MAP_MACHINE_A_OUTPUT_CLEAR_BAY[0..1]
-```
-
-Bay `0` is the original/main bay. Bay `1` is the second parallel bay.
-
-Backward-compatible bay-0 aliases also exist:
-
-```c
-MAP_MACHINE_A_INPUT
-MAP_MACHINE_A_INPUT_CLEAR
-MAP_MACHINE_A_OUTPUT_APPROACH
-MAP_MACHINE_A_OUTPUT
-MAP_MACHINE_A_OUTPUT_CLEAR
-```
-
-### 8.5 Machine B poses
-
-```c
-MAP_MACHINE_B_INPUT_BAY[0..1]
-MAP_MACHINE_B_INPUT_CLEAR_BAY[0..1]
-MAP_MACHINE_B_OUTPUT_APPROACH_BAY[0..1]
-MAP_MACHINE_B_OUTPUT_BAY[0..1]
-MAP_MACHINE_B_OUTPUT_CLEAR_BAY[0..1]
-```
-
-Backward-compatible bay-0 aliases:
-
-```c
-MAP_MACHINE_B_INPUT
-MAP_MACHINE_B_INPUT_CLEAR
-MAP_MACHINE_B_OUTPUT_APPROACH
-MAP_MACHINE_B_OUTPUT
-MAP_MACHINE_B_OUTPUT_CLEAR
-```
-
-### 8.6 Main graph nodes
-
-These are intermediate navigation nodes used to form routes:
-
-```c
-MAP_P4_TOP_CENTER
-MAP_P4V_NORTH_CENTER
-MAP_P5_NORTH_EAST
-MAP_P10_WEST_CENTER
-MAP_P13_CENTER
-MAP_P16_EAST_CENTER
-MAP_P21_WEST_SOUTH
-MAP_P22V_SOUTH_CENTER
-MAP_P22_CENTER_SOUTH
-```
-
-Use `nav_go_through()` for intermediate graph nodes and `nav_go_to_pose()` for final service poses.
-
----
-
-## 9. Navigation tuning constants
-
-The main tuning values are in `controllers/student_controller/robot_navigation.c`:
-
-```c
-#define MAX_WHEEL_SPEED_RAD_S 18.5
-#define POSITION_TOLERANCE_M 0.025
-#define BACK_POSITION_TOLERANCE_M 0.055
-#define THROUGH_TOLERANCE_M 0.100
-#define ANGLE_TOLERANCE_RAD 0.055
-#define FINAL_SLOWDOWN_RADIUS_M 0.045
-#define FINAL_MIN_LINEAR_M_S 0.035
-#define FINAL_MAX_LINEAR_M_S 0.170
-#define THROUGH_MIN_LINEAR_M_S 0.085
-#define THROUGH_MAX_LINEAR_M_S 0.225
-#define ARC_LINEAR_SPEED_M_S 0.110
-```
-
-Most useful values to tune:
-
-| Constant | Effect |
-|---|---|
-| `MAX_WHEEL_SPEED_RAD_S` | Global wheel speed ceiling. |
-| `THROUGH_TOLERANCE_M` | Radius used to switch to the next intermediate waypoint. Larger values make routes smoother but less exact. |
-| `FINAL_SLOWDOWN_RADIUS_M` | Distance from final targets where the robot begins to slow down. Smaller values keep speed higher for longer. |
-| `THROUGH_MAX_LINEAR_M_S` | Maximum speed through intermediate waypoints. |
-| `FINAL_MAX_LINEAR_M_S` | Maximum speed for final approach movements. |
-| `BACK_POSITION_TOLERANCE_M` | Reverse clearance tolerance used by `nav_back_to()`. |
-| `ARC_LINEAR_SPEED_M_S` | Speed used by `nav_move_arc()`. |
-
----
-
-## 10. Supervisor behaviour
-
-The supervisor is a C-only Webots supervisor. It replaces a Python supervisor to avoid Python-related Webots crashes on some installations.
-
-### 10.1 Order modes
-
-At the top of `logistics_supervisor_c.c`:
-
-```c
-#define ORDER_MODE_RANDOM 0
-#define ORDER_MODE_MANUAL 1
-#define TASK_ORDER_MODE ORDER_MODE_RANDOM
-#define MANUAL_ORDER "RRGB"
-```
-
-Use random mode for normal exercises. Use manual mode when testing a specific case.
-
-### 10.2 Supervisor messages
-
-The supervisor sends these messages to the student controller:
+Messages sent by the supervisor include:
 
 ```text
 START
@@ -389,174 +116,197 @@ CLEAR A box_index
 CLEAR B box_index
 ```
 
-Students normally do not parse these messages manually. `robot_navigation.c` converts them into API functions.
+Students normally do not parse these messages directly. `robot_navigation.c` converts them into API functions.
 
-### 10.3 Ready masks
+### Student Controller
 
-The overlay line:
+`controllers/student_controller/student_controller.c` is a beginner-friendly finite-state machine. It demonstrates how to:
 
-```text
-ready A=0 B=0
-```
+- wait for the robot pose and order;
+- pick a box from the incoming warehouse;
+- branch based on the box type;
+- use machine input, output, approach, and clear poses;
+- wait for machine-ready events;
+- deliver the processed box to the outgoing warehouse.
 
-means no processed boxes are currently waiting at Machine A or Machine B outputs.
-
-Ready masks are bitmasks:
-
-| Mask value | Meaning |
-|---|---|
-| `0` | no box ready |
-| `1` | `BOX_0` ready |
-| `2` | `BOX_1` ready |
-| `4` | `BOX_2` ready |
-| `8` | `BOX_3` ready |
-| `3` | `BOX_0` and `BOX_1` ready |
-| `5` | `BOX_0` and `BOX_2` ready |
-
-The mask tells **which box** is ready. The `READY` message tells **which bay** and **which pickup pose**.
-
-### 10.4 Bay status in the overlay
-
-The overlay also shows bay input/output status, for example:
-
-```text
-A bays in/out: -1/-1 0/-1
-```
-
-Meaning:
-
-```text
-Machine A bay 0: input empty, output empty
-Machine A bay 1: input has BOX_0, output empty
-```
-
-Bay values:
-
-| Value | Meaning |
-|---|---|
-| `-1` | empty |
-| `0` | contains `BOX_0` |
-| `1` | contains `BOX_1` |
-| `2` | contains `BOX_2` |
-| `3` | contains `BOX_3` |
-
-Important: `0` does not mean false/empty. It means box index `0`.
-
-### 10.5 Machine processing logic
-
-- A red box dropped in a valid Machine A input bay is accepted and scores `+1`.
-- A green box dropped in a valid Machine B input bay is accepted and scores `+1`.
-- Processing time is random from `0` to `5` seconds.
-- If the input bay is empty, a box may be placed there.
-- If the output of the same bay is occupied, the box waits in the input.
-- Processing starts only when the input has a box, the bay is not already processing, and the output is empty.
-- When processing finishes, the supervisor moves the box to the output, changes its colour, and sends a `READY` message.
-- When the robot attaches a ready output box, the supervisor sends `CLEAR` and frees that output bay.
-
-### 10.6 Magnet logic
-
-- `MAGNET_ON` attaches the nearest valid box near the robot magnet point.
-- Boxes already processing, delivered, or waiting inside a machine input are not attachable.
-- While attached, the supervisor keeps the box in front of the robot.
-- `MAGNET_OFF` drops the box and evaluates whether it is in a valid destination zone.
-
-### 10.7 Box collision and physics
-
-Boxes have Webots collision and physics. The supervisor resets box physics after supervised pose changes to avoid stale velocities and jitter.
-
----
-
-## 11. Student controller design
-
-The included `student_controller.c` is intentionally a beginner example:
-
-- it waits for a valid pose;
-- it waits for the order string;
-- it solves only `BOX_0`;
-- it dynamically chooses the route based on whether `BOX_0` is `R`, `G`, or `B`;
-- it drops parts at machine inputs and drives to the output approach soon after;
-- it waits at the output approach only until the supervisor reports that the box is ready;
-- it then enters the correct output bay using the ready pickup pose.
-
-The key state-machine pattern is:
+Movement functions are non-blocking. Call them every simulation tick until they return `true`, then transition to the next state.
 
 ```c
-case SOME_STATE:
-  if (some_non_blocking_action())
-    change_state(NEXT_STATE);
+case ROUTE_TO_OUTGOING:
+  if (nav_go_to_pose(MAP_OUT_DROP[0].x, MAP_OUT_DROP[0].y, MAP_OUT_DROP[0].theta))
+    change_state(DROP_AT_OUTGOING);
   break;
 ```
 
-The helper `follow_route_with_final_alignment()` drives through intermediate graph nodes, stops at the aligned approach pose, and then enters the final garage straight.
+### Coordinate System
 
----
-
-## 12. Suggested student extensions
-
-1. Repeat the `BOX_0` logic for `BOX_1`, `BOX_2`, and `BOX_3`.
-2. Replace hard-coded `BOX_0` constants with `current_box_index`.
-3. Use `MAP_IN_PICK[current_box_index]` and `MAP_OUT_DROP[current_box_index]`.
-4. Use `nav_machine_a_ready_pose(current_box_index, &pose)` and `nav_machine_b_ready_pose(current_box_index, &pose)`.
-5. Select machine bays intelligently instead of always using bay 0.
-6. Use `nav_go_through()` for all intermediate route nodes.
-7. Optionally use `nav_move_arc()` for smoother transitions between perpendicular corridors.
-8. Tune speed constants while checking that collisions do not increase.
-
----
-
-## 13. Troubleshooting
-
-| Symptom | Likely cause | Fix |
-|---|---|---|
-| Robot stops at every waypoint | Using `nav_go_to_pose()` for intermediate nodes. | Use `nav_go_through()` for intermediate route points. |
-| Robot hits a box at machine output | Entering the output diagonally or too close. | Use the machine output approach pose, then enter straight. |
-| Robot turns inside a garage | Missing clear/reverse state. | Use `nav_back_to(clear_pose.x, clear_pose.y)` before rotating. |
-| `ready A=0 B=0` | No processed boxes are ready. | Wait at the output approach or check whether processing started. |
-| Bay display shows `0` | The bay contains `BOX_0`. | Remember: `-1` is empty; `0..3` are box indices. |
-| Box is dropped but not accepted | Wrong colour or outside valid input/output zone. | Check the box type and target pose. |
-| Robot cannot attach a box in a machine input | Boxes waiting in machine inputs are intentionally not attachable. | Wait for the processed box at the output. |
-
----
-
-## 14. Minimal full-task pseudocode
+The world uses an ENU-style floor plane:
 
 ```text
-wait until pose is valid
-wait until order is received
-
-for each box index from 0 to 3:
-  go to incoming pickup pose for that box
-  pick the box
-  reverse to the incoming clear pose
-
-  if box is red:
-    go to a Machine A input bay
-    drop the box
-    reverse to the input clear pose
-    go to the Machine A output approach
-    wait until that same box is ready
-    enter the reported output bay and pick it
-    reverse to the output clear pose
-
-  if box is green or was processed by Machine A:
-    go to a Machine B input bay
-    drop the box
-    reverse to the input clear pose
-    go to the Machine B output approach
-    wait until that same box is ready
-    enter the reported output bay and pick it
-    reverse to the output clear pose
-
-  go to outgoing warehouse drop pose
-  drop the blue box
-  reverse to the outgoing clear pose
-
-stop
+X     east / right on the floor
+Y     north / up on the floor
+Z     height
+theta robot yaw around +Z
 ```
 
----
+`Pose2D` represents the robot center:
 
-## 15. Design note
+```c
+typedef struct {
+  double x;
+  double y;
+  double theta;
+} Pose2D;
+```
 
-The grey floor paths are visual guides for the intended graph. They are not sensors and they do not provide obstacle avoidance. The controller drives between named poses. If a route cuts across a wall or enters a garage at a bad angle, the robot can collide.
+Heading constants are defined in `warehouse_map.h`:
 
+```c
+#define FACE_EAST   0.0
+#define FACE_NORTH  (M_PI / 2.0)
+#define FACE_WEST   M_PI
+#define FACE_SOUTH  (-M_PI / 2.0)
+```
+
+## Student Controller API
+
+Student code should include `warehouse_map.h`, which also exposes `robot_navigation.h`.
+
+```c
+#include "warehouse_map.h"
+```
+
+### Lifecycle and Status
+
+| Function | Description |
+| --- | --- |
+| `nav_init()` | Initializes Webots devices and navigation state. |
+| `nav_step()` | Advances one simulation step and reads supervisor messages. |
+| `nav_stop()` | Stops both wheels. |
+| `nav_reset_actions()` | Resets timers and action state after a state transition. |
+| `nav_pose_valid()` | Returns `true` after the first valid `POSE` message. |
+| `nav_pose()` | Returns the latest robot pose. |
+| `nav_last_order()` | Returns the latest order string, for example `"RRGB"`. |
+| `nav_score()` | Returns the latest score. |
+| `nav_attached_box()` | Returns the attached box name, or `"none"`. |
+| `nav_normalize_angle(angle)` | Normalizes an angle to `[-pi, +pi]`. |
+
+### Movement
+
+| Function | Description |
+| --- | --- |
+| `nav_go_to(x, y)` | Drives to an `(x, y)` point and stops. |
+| `nav_go_through(x, y)` | Drives through an intermediate waypoint without stopping. |
+| `nav_go_to_pose(x, y, theta)` | Drives to a point, then rotates to the final heading. |
+| `nav_rotate_to(theta)` | Rotates in place to a heading. |
+| `nav_wait(seconds)` | Waits while stopped. |
+| `nav_back_up(seconds)` | Reverses for a fixed time. |
+| `nav_back_to(x, y)` | Reverses to a clear point while keeping the current front direction. |
+| `nav_move_arc(radius_m, angle_rad, clockwise)` | Drives a circular arc. |
+| `nav_move_circle(radius_m, angle_rad, clockwise)` | Alias for `nav_move_arc()`. |
+
+### Magnet
+
+| Function | Description |
+| --- | --- |
+| `magnet_pick()` | Requests virtual magnet attachment. |
+| `magnet_drop()` | Requests virtual magnet release and drop evaluation. |
+| `magnet_is_on()` | Returns the local magnet state. |
+
+### Machine Readiness
+
+When processing finishes, the supervisor reports the machine, box index, output bay, and robot-center pickup pose.
+
+| Function | Description |
+| --- | --- |
+| `nav_machine_a_ready(box_index)` | Returns `true` if the box is ready at Machine A output. |
+| `nav_machine_b_ready(box_index)` | Returns `true` if the box is ready at Machine B output. |
+| `nav_machine_a_ready_bay(box_index)` | Returns the Machine A output bay, or `-1`. |
+| `nav_machine_b_ready_bay(box_index)` | Returns the Machine B output bay, or `-1`. |
+| `nav_machine_a_ready_pose(box_index, &pose)` | Copies the Machine A pickup pose when available. |
+| `nav_machine_b_ready_pose(box_index, &pose)` | Copies the Machine B pickup pose when available. |
+
+## Map Constants
+
+`warehouse_map.h` provides named robot-center poses for all important locations:
+
+| Constant | Description |
+| --- | --- |
+| `MAP_IN_PICK[0..3]` | Incoming warehouse pickup poses. |
+| `MAP_IN_FRONT[0..3]` | Incoming approach and clear poses. |
+| `MAP_OUT_FRONT[0..3]` | Outgoing approach and clear poses. |
+| `MAP_OUT_DROP[0..3]` | Outgoing drop poses. |
+| `MAP_MACHINE_A_INPUT_BAY[0..1]` | Machine A input service poses. |
+| `MAP_MACHINE_A_INPUT_CLEAR_BAY[0..1]` | Machine A input clear poses. |
+| `MAP_MACHINE_A_OUTPUT_APPROACH_BAY[0..1]` | Machine A output approach poses. |
+| `MAP_MACHINE_A_OUTPUT_BAY[0..1]` | Machine A output pickup poses. |
+| `MAP_MACHINE_A_OUTPUT_CLEAR_BAY[0..1]` | Machine A output clear poses. |
+| `MAP_MACHINE_B_INPUT_BAY[0..1]` | Machine B input service poses. |
+| `MAP_MACHINE_B_INPUT_CLEAR_BAY[0..1]` | Machine B input clear poses. |
+| `MAP_MACHINE_B_OUTPUT_APPROACH_BAY[0..1]` | Machine B output approach poses. |
+| `MAP_MACHINE_B_OUTPUT_BAY[0..1]` | Machine B output pickup poses. |
+| `MAP_MACHINE_B_OUTPUT_CLEAR_BAY[0..1]` | Machine B output clear poses. |
+
+Use `nav_go_through()` for intermediate graph nodes and `nav_go_to_pose()` for final pickup, drop, input, and output poses.
+
+## Configuration
+
+### Order Mode
+
+The order mode is configured near the top of `logistics_supervisor_c.c`:
+
+```c
+#define ORDER_MODE_RANDOM 0
+#define ORDER_MODE_MANUAL 1
+#define TASK_ORDER_MODE ORDER_MODE_RANDOM
+#define MANUAL_ORDER "RRGB"
+```
+
+Use random mode for normal exercises. Use manual mode when testing a specific order.
+
+### Navigation Tuning
+
+Main movement tuning constants are in `controllers/student_controller/robot_navigation.c`, including:
+
+- `MAX_WHEEL_SPEED_RAD_S`
+- `POSITION_TOLERANCE_M`
+- `BACK_POSITION_TOLERANCE_M`
+- `THROUGH_TOLERANCE_M`
+- `ANGLE_TOLERANCE_RAD`
+- `FINAL_SLOWDOWN_RADIUS_M`
+- `FINAL_MAX_LINEAR_M_S`
+- `THROUGH_MAX_LINEAR_M_S`
+- `ARC_LINEAR_SPEED_M_S`
+
+Tune these values conservatively and verify that higher speeds do not cause collisions at machine inputs, machine outputs, or warehouse pockets.
+
+## Troubleshooting
+
+| Symptom | Likely Cause | Fix |
+| --- | --- | --- |
+| Robot stops at every route point | Intermediate nodes use stop-and-align movement. | Use `nav_go_through()` for route waypoints and reserve `nav_go_to_pose()` for final service poses. |
+| Robot turns inside a garage or bay | The route is missing a clear/reverse step. | Use `nav_back_to()` before turning away from narrow pockets. |
+| Box is dropped but not accepted | Wrong box type or invalid drop location. | Check the current box state and target pose. |
+| Machine-ready mask stays at `0` | No processed box is waiting at that output. | Confirm that the box was accepted by the correct machine and wait for the ready event. |
+| Overlay bay value shows `0` | Bay contains `BOX_0`. | Remember that `-1` means empty and `0..3` are box indexes. |
+| Robot cannot attach a box in a machine input | Input boxes are intentionally not attachable. | Wait for processing to finish and pick the box from the output bay. |
+| Robot clips a machine output box | The approach is too diagonal or too close. | Enter outputs through the approach pose, then drive straight into the reported pickup pose. |
+
+## Educational Use
+
+This repository is designed for project-based learning in robotics and logistics automation. Good extensions include:
+
+- generalizing the starter controller from one box to all four boxes;
+- replacing hard-coded demo constants with `current_box_index`;
+- choosing machine bays dynamically;
+- improving route planning with intermediate graph nodes;
+- smoothing selected turns with `nav_move_arc()`;
+- comparing strategies by final score and execution time.
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE).
+
+## Author
+
+Created by [@jbneto1](https://github.com/jbneto1) for a Robotics / Polytechnic Institute of Braganca Webots logistics warehouse project-based learning activity.
