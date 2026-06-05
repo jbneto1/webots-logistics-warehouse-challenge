@@ -218,4 +218,4 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE).
 
 ## Author
 
-Created by [@jbneto1](https://github.com/jbneto1) for a robotics project-based learning activity at the Polytechnic Institute of Braganca.
+Created by [@jbneto1](https://github.com/jbneto1), José Lima, and Paulo Costa for a robotics project-based learning activity at the Polytechnic Institute of Braganca.
