@@ -1,0 +1,208 @@
+#ifndef WAREHOUSE_MAP_HPP
+#define WAREHOUSE_MAP_HPP
+
+#include "robot_navigation.hpp"
+
+#include <cmath>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+// Common headings in the ENU world. X increases east/right, Y increases
+// north/up, and theta is yaw in radians around +Z.
+constexpr double FACE_EAST = 0.0;
+constexpr double FACE_NORTH = M_PI / 2.0;
+constexpr double FACE_WEST = M_PI;
+constexpr double FACE_SOUTH = -M_PI / 2.0;
+
+constexpr int MAP_BOX_COUNT = 4;
+constexpr int MAP_MACHINE_BAY_COUNT = 2;
+
+// Robot starts with its center near the lower-left aisle, facing the incoming
+// warehouse. All poses below are robot-center targets, not box positions.
+constexpr Pose2D MAP_START = {-0.725, -0.400, FACE_NORTH};
+
+// Incoming warehouse service poses. FRONT is the safe clear pose before turning;
+// PICK is deeper in the pocket and should normally be reached slowly.
+constexpr Pose2D MAP_IN_PICK[MAP_BOX_COUNT] = {
+  {-0.695, 0.445, FACE_NORTH},
+  {-0.545, 0.445, FACE_NORTH},
+  {-0.400, 0.445, FACE_NORTH},
+  {-0.245, 0.445, FACE_NORTH}
+};
+
+constexpr Pose2D MAP_IN_FRONT[MAP_BOX_COUNT] = {
+  {-0.695, 0.244, FACE_NORTH},
+  {-0.545, 0.244, FACE_NORTH},
+  {-0.400, 0.244, FACE_NORTH},
+  {-0.245, 0.244, FACE_NORTH}
+};
+
+// Aisle graph and turn setup poses used to build routes between service areas.
+constexpr Pose2D MAP_P4_TOP_CENTER = {0.000, 0.244, FACE_SOUTH};
+constexpr Pose2D MAP_P4V_NORTH_CENTER = {0.000, 0.425, FACE_EAST};
+constexpr Pose2D MAP_P5_NORTH_EAST = {0.695, 0.425, FACE_SOUTH};
+constexpr Pose2D MAP_P10_WEST_CENTER = {-0.695, 0.000, FACE_NORTH};
+constexpr Pose2D MAP_P10_WEST_CENTER_SOUTH = {-0.695, 0.000, FACE_SOUTH};
+constexpr Pose2D MAP_P13_CENTER = {0.000, 0.000, FACE_EAST};
+constexpr Pose2D MAP_P13_CENTER_NORTH = {0.000, 0.000, FACE_NORTH};
+constexpr Pose2D MAP_P16_EAST_CENTER = {0.695, -0.010, FACE_SOUTH};
+constexpr Pose2D MAP_P21_WEST_SOUTH = {-0.695, -0.425, FACE_EAST};
+constexpr Pose2D MAP_P21_WEST_SOUTH_ARC_START = {-0.695, -0.305, FACE_SOUTH};
+constexpr Pose2D MAP_P22V_SOUTH_CENTER = {0.000, -0.425, FACE_NORTH};
+constexpr Pose2D MAP_P22_CENTER_SOUTH = {0.000, -0.244, FACE_EAST};
+
+constexpr Pose2D MAP_TOP_TO_CENTER_ARC_START = {-0.120, 0.244, FACE_EAST};
+constexpr Pose2D MAP_NORTH_EAST_ARC_START = {0.575, 0.425, FACE_EAST};
+
+// Machine A changes red parts to green. INPUT_BAY is the drop pose; CLEAR_BAY
+// is where the robot backs out before turning; OUTPUT_* poses pick processed
+// parts after the supervisor reports the bay ready.
+constexpr Pose2D MAP_MACHINE_A_INPUT_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {-0.520,  0.000, FACE_EAST},
+  {-0.520, -0.150, FACE_EAST}
+};
+
+constexpr Pose2D MAP_MACHINE_A_INPUT_ARC_START_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {-0.670,  0.075, FACE_SOUTH},
+  {-0.670, -0.075, FACE_SOUTH}
+};
+
+constexpr Pose2D MAP_MACHINE_A_INPUT_CLEAR_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {-0.695,  0.000, FACE_EAST},
+  {-0.695, -0.150, FACE_EAST}
+};
+
+constexpr Pose2D MAP_MACHINE_A_OUTPUT_APPROACH_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {0.000,  0.000, FACE_WEST},
+  {0.000, -0.150, FACE_WEST}
+};
+
+constexpr Pose2D MAP_MACHINE_A_OUTPUT_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {-0.155,  0.000, FACE_WEST},
+  {-0.155, -0.150, FACE_WEST}
+};
+
+constexpr Pose2D MAP_MACHINE_A_OUTPUT_CLEAR_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {0.000,  0.000, FACE_WEST},
+  {0.000, -0.150, FACE_WEST}
+};
+
+// Machine B changes green parts to blue. The same input/clear/output pattern as
+// Machine A is used so routes can stay symmetric and easy to inspect.
+constexpr Pose2D MAP_MACHINE_B_INPUT_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {0.175,  0.000, FACE_EAST},
+  {0.175,  0.150, FACE_EAST}
+};
+
+constexpr Pose2D MAP_MACHINE_B_INPUT_CLEAR_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {0.000,  0.000, FACE_EAST},
+  {0.000,  0.150, FACE_EAST}
+};
+
+constexpr Pose2D MAP_MACHINE_B_OUTPUT_APPROACH_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {0.695, -0.010, FACE_WEST},
+  {0.695,  0.150, FACE_WEST}
+};
+
+constexpr Pose2D MAP_MACHINE_B_OUTPUT_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {0.535, -0.010, FACE_WEST},
+  {0.535,  0.150, FACE_WEST}
+};
+
+constexpr Pose2D MAP_MACHINE_B_OUTPUT_CLEAR_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {0.695, -0.010, FACE_WEST},
+  {0.695,  0.150, FACE_WEST}
+};
+
+constexpr Pose2D MAP_MACHINE_B_OUTPUT_CLEAR_SOUTH_BAY[MAP_MACHINE_BAY_COUNT] = {
+  {0.695, -0.010, FACE_SOUTH},
+  {0.695,  0.150, FACE_SOUTH}
+};
+
+// Outgoing warehouse service poses. FRONT is the clear aisle pose; DROP is the
+// final placement pose inside each outgoing pocket.
+constexpr Pose2D MAP_OUT_FRONT[MAP_BOX_COUNT] = {
+  {0.245, -0.244, FACE_SOUTH},
+  {0.395, -0.244, FACE_SOUTH},
+  {0.545, -0.244, FACE_SOUTH},
+  {0.695, -0.244, FACE_SOUTH}
+};
+
+constexpr Pose2D MAP_OUT_DROP[MAP_BOX_COUNT] = {
+  {0.245, -0.455, FACE_SOUTH},
+  {0.395, -0.455, FACE_SOUTH},
+  {0.545, -0.455, FACE_SOUTH},
+  {0.695, -0.455, FACE_SOUTH}
+};
+
+struct MapPointMarker {
+  const char *defName;
+  Pose2D pose;
+};
+
+// Floor markers drawn by the supervisor. When adding a new named Pose2D above,
+// add it here too so the point appears as a circle in the Webots world.
+constexpr MapPointMarker MAP_VISUAL_POINTS[] = {
+  {"MAP_START", MAP_START},
+  {"MAP_IN_PICK_0", MAP_IN_PICK[0]},
+  {"MAP_IN_PICK_1", MAP_IN_PICK[1]},
+  {"MAP_IN_PICK_2", MAP_IN_PICK[2]},
+  {"MAP_IN_PICK_3", MAP_IN_PICK[3]},
+  {"MAP_IN_FRONT_0", MAP_IN_FRONT[0]},
+  {"MAP_IN_FRONT_1", MAP_IN_FRONT[1]},
+  {"MAP_IN_FRONT_2", MAP_IN_FRONT[2]},
+  {"MAP_IN_FRONT_3", MAP_IN_FRONT[3]},
+  {"MAP_P4_TOP_CENTER", MAP_P4_TOP_CENTER},
+  {"MAP_P4V_NORTH_CENTER", MAP_P4V_NORTH_CENTER},
+  {"MAP_P5_NORTH_EAST", MAP_P5_NORTH_EAST},
+  {"MAP_P10_WEST_CENTER", MAP_P10_WEST_CENTER},
+  {"MAP_P10_WEST_CENTER_SOUTH", MAP_P10_WEST_CENTER_SOUTH},
+  {"MAP_P13_CENTER", MAP_P13_CENTER},
+  {"MAP_P13_CENTER_NORTH", MAP_P13_CENTER_NORTH},
+  {"MAP_P16_EAST_CENTER", MAP_P16_EAST_CENTER},
+  {"MAP_P21_WEST_SOUTH", MAP_P21_WEST_SOUTH},
+  {"MAP_P21_WEST_SOUTH_ARC_START", MAP_P21_WEST_SOUTH_ARC_START},
+  {"MAP_P22V_SOUTH_CENTER", MAP_P22V_SOUTH_CENTER},
+  {"MAP_P22_CENTER_SOUTH", MAP_P22_CENTER_SOUTH},
+  {"MAP_TOP_TO_CENTER_ARC_START", MAP_TOP_TO_CENTER_ARC_START},
+  {"MAP_NORTH_EAST_ARC_START", MAP_NORTH_EAST_ARC_START},
+  {"MAP_MACHINE_A_INPUT_BAY_0", MAP_MACHINE_A_INPUT_BAY[0]},
+  {"MAP_MACHINE_A_INPUT_BAY_1", MAP_MACHINE_A_INPUT_BAY[1]},
+  {"MAP_MACHINE_A_INPUT_ARC_START_BAY_0", MAP_MACHINE_A_INPUT_ARC_START_BAY[0]},
+  {"MAP_MACHINE_A_INPUT_ARC_START_BAY_1", MAP_MACHINE_A_INPUT_ARC_START_BAY[1]},
+  {"MAP_MACHINE_A_INPUT_CLEAR_BAY_0", MAP_MACHINE_A_INPUT_CLEAR_BAY[0]},
+  {"MAP_MACHINE_A_INPUT_CLEAR_BAY_1", MAP_MACHINE_A_INPUT_CLEAR_BAY[1]},
+  {"MAP_MACHINE_A_OUTPUT_APPROACH_BAY_0", MAP_MACHINE_A_OUTPUT_APPROACH_BAY[0]},
+  {"MAP_MACHINE_A_OUTPUT_APPROACH_BAY_1", MAP_MACHINE_A_OUTPUT_APPROACH_BAY[1]},
+  {"MAP_MACHINE_A_OUTPUT_BAY_0", MAP_MACHINE_A_OUTPUT_BAY[0]},
+  {"MAP_MACHINE_A_OUTPUT_BAY_1", MAP_MACHINE_A_OUTPUT_BAY[1]},
+  {"MAP_MACHINE_A_OUTPUT_CLEAR_BAY_0", MAP_MACHINE_A_OUTPUT_CLEAR_BAY[0]},
+  {"MAP_MACHINE_A_OUTPUT_CLEAR_BAY_1", MAP_MACHINE_A_OUTPUT_CLEAR_BAY[1]},
+  {"MAP_MACHINE_B_INPUT_BAY_0", MAP_MACHINE_B_INPUT_BAY[0]},
+  {"MAP_MACHINE_B_INPUT_BAY_1", MAP_MACHINE_B_INPUT_BAY[1]},
+  {"MAP_MACHINE_B_INPUT_CLEAR_BAY_0", MAP_MACHINE_B_INPUT_CLEAR_BAY[0]},
+  {"MAP_MACHINE_B_INPUT_CLEAR_BAY_1", MAP_MACHINE_B_INPUT_CLEAR_BAY[1]},
+  {"MAP_MACHINE_B_OUTPUT_APPROACH_BAY_0", MAP_MACHINE_B_OUTPUT_APPROACH_BAY[0]},
+  {"MAP_MACHINE_B_OUTPUT_APPROACH_BAY_1", MAP_MACHINE_B_OUTPUT_APPROACH_BAY[1]},
+  {"MAP_MACHINE_B_OUTPUT_BAY_0", MAP_MACHINE_B_OUTPUT_BAY[0]},
+  {"MAP_MACHINE_B_OUTPUT_BAY_1", MAP_MACHINE_B_OUTPUT_BAY[1]},
+  {"MAP_MACHINE_B_OUTPUT_CLEAR_BAY_0", MAP_MACHINE_B_OUTPUT_CLEAR_BAY[0]},
+  {"MAP_MACHINE_B_OUTPUT_CLEAR_BAY_1", MAP_MACHINE_B_OUTPUT_CLEAR_BAY[1]},
+  {"MAP_MACHINE_B_OUTPUT_CLEAR_SOUTH_BAY_0", MAP_MACHINE_B_OUTPUT_CLEAR_SOUTH_BAY[0]},
+  {"MAP_MACHINE_B_OUTPUT_CLEAR_SOUTH_BAY_1", MAP_MACHINE_B_OUTPUT_CLEAR_SOUTH_BAY[1]},
+  {"MAP_OUT_FRONT_0", MAP_OUT_FRONT[0]},
+  {"MAP_OUT_FRONT_1", MAP_OUT_FRONT[1]},
+  {"MAP_OUT_FRONT_2", MAP_OUT_FRONT[2]},
+  {"MAP_OUT_FRONT_3", MAP_OUT_FRONT[3]},
+  {"MAP_OUT_DROP_0", MAP_OUT_DROP[0]},
+  {"MAP_OUT_DROP_1", MAP_OUT_DROP[1]},
+  {"MAP_OUT_DROP_2", MAP_OUT_DROP[2]},
+  {"MAP_OUT_DROP_3", MAP_OUT_DROP[3]}
+};
+
+constexpr int MAP_VISUAL_POINT_COUNT =
+  static_cast<int>(sizeof(MAP_VISUAL_POINTS) / sizeof(MAP_VISUAL_POINTS[0]));
+
+#endif

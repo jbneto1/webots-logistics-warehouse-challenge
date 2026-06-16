@@ -2,6 +2,29 @@
 
 WorldInfo {
   coordinateSystem "ENU"
+  contactProperties [
+    ContactProperties {
+      material1 "floor"
+      material2 "wheel"
+      coulombFriction [
+        1.6
+      ]
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "support"
+      coulombFriction [
+        0.05
+      ]
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "box"
+      coulombFriction [
+        0.4
+      ]
+    }
+  ]
 }
 Viewpoint {
   orientation -0.37326161164752886 0.3721529080745859 0.8498105567018559 1.7173686513093103
@@ -33,6 +56,7 @@ DEF SHOP_FLOOR Solid {
     }
   ]
   name "shop floor 1.682m x 1.190m, ENU, official XML-inspired RobotAtFactory Lite layout"
+  contactMaterial "floor"
   boundingObject Box {
     size 1.682 1.190 0.02
   }
@@ -53,584 +77,8 @@ DEF START_AREA_ZONE Pose {
     }
   ]
 }
-# Straight, low-contrast guide overlay.  These boxes are visual only; collisions
-# still come from the warehouse, machine, robot, and part solids.
-
-DEF GRAPH_SEG_00_P0_P1 Pose {
-  translation -0.62000 0.24400 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.15000 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_01_P1_P2 Pose {
-  translation -0.47250 0.24400 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.14500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_02_P2_P3 Pose {
-  translation -0.32250 0.24400 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.15500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_03_P3_P4 Pose {
-  translation -0.12250 0.24400 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.24500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_04_P0_BOX0 Pose {
-  translation -0.69500 0.34450 0.006
-  rotation 0 0 1 1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.21100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_05_P1_BOX1 Pose {
-  translation -0.54500 0.34450 0.006
-  rotation 0 0 1 1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.21100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_06_P2_BOX2 Pose {
-  translation -0.40000 0.34450 0.006
-  rotation 0 0 1 1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.21100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_07_P3_BOX3 Pose {
-  translation -0.24500 0.34450 0.006
-  rotation 0 0 1 1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.21100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_08_P4V_P4 Pose {
-  translation 0.00000 0.33450 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.18100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_09_P4V_P5 Pose {
-  translation 0.34750 0.42500 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.69500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_10_P5_P16 Pose {
-  translation 0.69500 0.20750 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.43500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_11_P0_P10 Pose {
-  translation -0.69500 0.12200 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.24400 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_12_P10_P21 Pose {
-  translation -0.69500 -0.21250 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.42500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_13_P21_P22V Pose {
-  translation -0.34750 -0.42500 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.69500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_14_P22V_P22 Pose {
-  translation 0.00000 -0.33450 0.006
-  rotation 0 0 1 1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.18100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_15_P22_P23 Pose {
-  translation 0.12250 -0.24400 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.24500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_16_P10_PA_IN Pose {
-  translation -0.60750 0.00000 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.17500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_17_PA_OUT_P13 Pose {
-  translation -0.07750 0.00000 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.15500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_18_P13_PB_IN Pose {
-  translation 0.08750 0.00000 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.17500 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_19_PB_OUT_P16 Pose {
-  translation 0.61500 -0.01000 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.16000 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_20_P13_P4 Pose {
-  translation 0.00000 0.12200 0.006
-  rotation 0 0 1 1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.24400 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_21_P13_P22 Pose {
-  translation 0.00000 -0.12200 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.24400 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_22_P16_P26 Pose {
-  translation 0.69500 -0.12700 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.23400 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_23_P23_P24 Pose {
-  translation 0.32000 -0.24400 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.15000 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_24_P24_P25 Pose {
-  translation 0.47000 -0.24400 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.15000 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_25_P25_P26 Pose {
-  translation 0.62000 -0.24400 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.15000 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_26_P23_P23B Pose {
-  translation 0.24500 -0.34950 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.20100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_27_P24_P24B Pose {
-  translation 0.39500 -0.34950 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.20100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_28_P25_P25B Pose {
-  translation 0.54500 -0.34950 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.20100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_29_P26_P26B Pose {
-  translation 0.69500 -0.34950 0.006
-  rotation 0 0 1 -1.570796
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.20100 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_30_A2_IN_A2_OUT Pose {
-  translation -0.34900 -0.15000 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.42200 0.01800 0.003
-      }
-    }
-  ]
-}
-
-DEF GRAPH_SEG_31_B2_IN_B2_OUT Pose {
-  translation 0.34250 0.15000 0.006
-  rotation 0 0 1 0.000000
-  children [
-    Shape {
-      appearance PBRAppearance {
-        baseColor 0.62 0.62 0.62
-        transparency 0.76
-        roughness 0.7
-        metalness 0
-      }
-      geometry Box {
-        size 0.41500 0.01800 0.003
-      }
-    }
-  ]
-}
+# Map point circles are imported by logistics_supervisor_cpp from warehouse_map.hpp.
+# They are visual only; collision geometry remains in the solids below.
 DEF INCOMING_PICKUP_ZONE Pose {
   translation -0.470 0.535 0.004
   children [
@@ -1274,10 +722,22 @@ DEF BOX_0 Solid {
         }
       ]
     }
+    Connector {
+      translation 0 -0.0325 0
+      rotation 1 0 0 1.570796
+      name "box_connector_0"
+      model "box_magnet"
+      type "passive"
+      distanceTolerance 0.03
+      axisTolerance 3.14159
+      rotationTolerance 3.14
+      numberOfRotations 0
+    }
   ]
   name "BOX_0"
+  contactMaterial "box"
   boundingObject Box {
-    size 0.09 0.06 0.065
+    size 0.085 0.055 0.055
   }
   physics Physics {
     density -1
@@ -1311,10 +771,22 @@ DEF BOX_1 Solid {
         }
       ]
     }
+    Connector {
+      translation 0 -0.0325 0
+      rotation 1 0 0 1.570796
+      name "box_connector_1"
+      model "box_magnet"
+      type "passive"
+      distanceTolerance 0.03
+      axisTolerance 3.14159
+      rotationTolerance 3.14
+      numberOfRotations 0
+    }
   ]
   name "BOX_1"
+  contactMaterial "box"
   boundingObject Box {
-    size 0.09 0.06 0.065
+    size 0.085 0.055 0.055
   }
   physics Physics {
     density -1
@@ -1348,10 +820,22 @@ DEF BOX_2 Solid {
         }
       ]
     }
+    Connector {
+      translation 0 -0.0325 0
+      rotation 1 0 0 1.570796
+      name "box_connector_2"
+      model "box_magnet"
+      type "passive"
+      distanceTolerance 0.03
+      axisTolerance 3.14159
+      rotationTolerance 3.14
+      numberOfRotations 0
+    }
   ]
   name "BOX_2"
+  contactMaterial "box"
   boundingObject Box {
-    size 0.09 0.06 0.065
+    size 0.085 0.055 0.055
   }
   physics Physics {
     density -1
@@ -1385,10 +869,22 @@ DEF BOX_3 Solid {
         }
       ]
     }
+    Connector {
+      translation 0 -0.0325 0
+      rotation 1 0 0 1.570796
+      name "box_connector_3"
+      model "box_magnet"
+      type "passive"
+      distanceTolerance 0.03
+      axisTolerance 3.14159
+      rotationTolerance 3.14
+      numberOfRotations 0
+    }
   ]
   name "BOX_3"
+  contactMaterial "box"
   boundingObject Box {
-    size 0.09 0.06 0.065
+    size 0.085 0.055 0.055
   }
   physics Physics {
     density -1
@@ -1431,7 +927,7 @@ DEF MOBILE_ROBOT Robot {
       ]
     }
     Pose {
-      translation 0.087 0 0.04
+      translation 0.085 0 0.04
       rotation 0 1 0 1.5708
       children [
         Shape {
@@ -1445,6 +941,20 @@ DEF MOBILE_ROBOT Robot {
           }
         }
       ]
+    }
+    Connector {
+      translation 0.085 0 0.04
+      rotation 0.577350 0.577350 0.577350 2.094395
+      name "electromagnet_connector"
+      model "box_magnet"
+      type "active"
+      distanceTolerance 0.03
+      axisTolerance 3.14159
+      rotationTolerance 3.14
+      numberOfRotations 0
+      snap TRUE
+      tensileStrength -1
+      shearStrength -1
     }
     HingeJoint {
       jointParameters HingeJointParameters {
@@ -1479,6 +989,7 @@ DEF MOBILE_ROBOT Robot {
           }
         ]
         name "left_wheel_solid"
+        contactMaterial "wheel"
         boundingObject Cylinder {
           height 0.014
           radius 0.022
@@ -1522,6 +1033,7 @@ DEF MOBILE_ROBOT Robot {
           }
         ]
         name "right_wheel_solid"
+        contactMaterial "wheel"
         boundingObject Cylinder {
           height 0.014
           radius 0.022
@@ -1574,6 +1086,7 @@ DEF MOBILE_ROBOT Robot {
     }
   ]
   name "mobile_robot"
+  contactMaterial "support"
   boundingObject Group {
     children [
       Pose {
@@ -1610,7 +1123,7 @@ DEF MOBILE_ROBOT Robot {
       0 0 0.040
     ]
   }
-  controller "student_controller"
+  controller "student_controller_cpp"
 }
 DEF CHALLENGE_SUPERVISOR Robot {
   children [
@@ -1624,6 +1137,6 @@ DEF CHALLENGE_SUPERVISOR Robot {
     }
   ]
   name "challenge_supervisor"
-  controller "logistics_supervisor_c"
+  controller "logistics_supervisor_cpp"
   supervisor TRUE
 }
