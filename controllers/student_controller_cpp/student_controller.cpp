@@ -1,5 +1,6 @@
 #include "warehouse_map.hpp"
 #include "debug_config.hpp"
+#include "route_planner.hpp"
 
 #include <cstdio>
 
@@ -53,6 +54,8 @@ static int activeBBay = DEMO_B_BAY;
 static Pose2D aReadyPickPose;
 static Pose2D bReadyPickPose;
 static Navigation *nav = nullptr;
+static std::vector<RouteStep> plannedRoute;
+static bool routePlanned = false;
 
 struct DebugMotionTarget {
   const char *action = "idle";
@@ -150,51 +153,67 @@ static void printDetailedDebugIfDue() {
 static void changeState(State nextState) {
   state = nextState;
   routeIndex = 0;
+  plannedRoute.clear();
+  routePlanned = false;
   clearDebugTarget();
   nav->resetActions();
   if (debugEnabled(DEBUG_STATE)) {
-    std::printf("State: %s\n", STATE_NAME[state]);
+    const Pose2D pose = nav->pose();
+    std::printf("State: %s t=%.3f pose=(%.4f,%.4f,%.4f)\n",
+                STATE_NAME[state], nav->time(), pose.x, pose.y, pose.theta);
     std::fflush(stdout);
   }
 }
 
-static int followRouteWithFinalAlignment(const Pose2D route[], int count) {
-  if (count <= 0)
-    return 1;
-
-  // Open aisle points use goThrough() so the robot does not stop at every node.
-  // The approach and final poses use goToPose() for accurate alignment before
-  // entering tight warehouse or machine service areas.
-  if (count == 1) {
-    Pose2D goal = route[0];
-    setDebugTarget("goToPose", goal, 0, count);
-    return nav->goToPose(goal.x, goal.y, goal.theta);
+static int followRouteWithFinalAlignment(const Pose2D route[], int count,
+                                         bool docking = false, bool clockwiseDeparture = false) {
+  if (!routePlanned) {
+    plannedRoute = planRoute(nav->pose(), route, count, docking, clockwiseDeparture, nav->magnetIsOn());
+    routePlanned = true;
+    if (debugEnabled(DEBUG_DETAIL)) {
+      for (size_t i = 0; i < plannedRoute.size(); ++i) {
+        const auto &step = plannedRoute[i];
+        const char *motionNames[] = {"goToLine", "goToArc", "rotateTo", "rotateClockwiseTo"};
+        std::printf("PLAN state=%s step=%d/%d motion=%s radius=%.3f sweep=%.3f goal=(%.3f,%.3f,%.3f)\n",
+                    STATE_NAME[state], static_cast<int>(i + 1), static_cast<int>(plannedRoute.size()),
+                    motionNames[static_cast<int>(step.motion)], step.radius, step.sweep, step.goal.x, step.goal.y, step.goal.theta);
+      }
+    }
   }
-
-  if (routeIndex < count - 2) {
-    Pose2D waypoint = route[routeIndex];
-    setDebugTarget("goThrough", waypoint, routeIndex, count);
-    if (nav->goThrough(waypoint.x, waypoint.y))
-      ++routeIndex;
-    return 0;
+  // Consume completed tangent segments in the same tick, so there is no stale
+  // steering command or artificial stop at a line/arc transition.
+  while (routeIndex < static_cast<int>(plannedRoute.size())) {
+    const RouteStep &step = plannedRoute[routeIndex];
+    bool done = false;
+    switch (step.motion) {
+      case RouteMotion::Line:
+        setDebugTarget("goToLine", step.goal, routeIndex, static_cast<int>(plannedRoute.size()));
+        done = nav->goToLine(step.goal.x, step.goal.y, step.goal.theta, step.stopAtGoal);
+        break;
+      case RouteMotion::Arc:
+        setDebugTarget("goToArc", step.goal, routeIndex, static_cast<int>(plannedRoute.size()));
+        done = nav->goToArc(step.start, step.radius, step.sweep, step.clockwise, step.stopAtGoal);
+        break;
+      case RouteMotion::Rotate:
+      case RouteMotion::RotateClockwise:
+        setDebugTarget("rotateTo", step.goal, routeIndex, static_cast<int>(plannedRoute.size()));
+        done = step.motion == RouteMotion::RotateClockwise ? nav->rotateClockwiseTo(step.goal.theta)
+                                                          : nav->rotateTo(step.goal.theta);
+        break;
+    }
+    if (!done)
+      return 0;
+    ++routeIndex;
+    nav->resetActions();
   }
-
-  if (routeIndex == count - 2) {
-    Pose2D approach = route[routeIndex];
-    setDebugTarget("goToPose", approach, routeIndex, count);
-    if (nav->goToPose(approach.x, approach.y, approach.theta))
-      ++routeIndex;
-    return 0;
-  }
-
-  Pose2D goal = route[count - 1];
-  setDebugTarget("goToPose", goal, routeIndex, count);
-  return nav->goToPose(goal.x, goal.y, goal.theta);
+  return 1;
 }
 
-static int goToPose(Pose2D pose) {
-  setDebugTarget("goToPose", pose, 0, 1);
-  return nav->goToPose(pose.x, pose.y, pose.theta);
+static int enterOutput(Pose2D pose) {
+  // READY poses use the same aisle approach and straight pickup as map poses,
+  // including when the supervisor reports a different output bay.
+  const Pose2D path[] = {{nav->pose().x, pose.y, pose.theta}, pose};
+  return followRouteWithFinalAlignment(path, ARRAY_COUNT(path), true);
 }
 
 static int backToPose(Pose2D pose) {
@@ -244,12 +263,11 @@ int main() {
 
       case ROUTE_TO_BOX_0: {
         const Pose2D path[] = {
-          MAP_P21_WEST_SOUTH,
           MAP_P10_WEST_CENTER,
           MAP_IN_FRONT[DEMO_BOX],
           MAP_IN_PICK[DEMO_BOX]
         };
-        if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path)))
+        if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path), true))
           changeState(PICK_BOX_0);
         break;
       }
@@ -279,7 +297,8 @@ int main() {
           MAP_MACHINE_A_INPUT_CLEAR_BAY[DEMO_A_BAY],
           MAP_MACHINE_A_INPUT_BAY[DEMO_A_BAY]
         };
-        if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path)))
+        // Turn toward the field, keeping the carried box away from the west rail.
+        if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path), true, true))
           changeState(DROP_AT_MACHINE_A);
         break;
       }
@@ -297,7 +316,6 @@ int main() {
 
       case ROUTE_TO_A_OUTPUT_APPROACH: {
         const Pose2D path[] = {
-          MAP_P10_WEST_CENTER,
           MAP_IN_FRONT[DEMO_BOX],
           MAP_P4_TOP_CENTER,
           MAP_MACHINE_A_OUTPUT_APPROACH_BAY[DEMO_A_BAY]
@@ -318,7 +336,7 @@ int main() {
         break;
 
       case ENTER_A_OUTPUT:
-        if (goToPose(aReadyPickPose))
+        if (enterOutput(aReadyPickPose))
           changeState(PICK_FROM_MACHINE_A);
         break;
 
@@ -340,17 +358,18 @@ int main() {
             MAP_MACHINE_B_INPUT_CLEAR_BAY[DEMO_B_BAY],
             MAP_MACHINE_B_INPUT_BAY[DEMO_B_BAY]
           };
-          if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path)))
+          if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path), true))
             changeState(DROP_AT_MACHINE_B);
         } else {
           const Pose2D path[] = {
             MAP_IN_FRONT[DEMO_BOX],
-            MAP_P4_TOP_CENTER,
-            MAP_P13_CENTER,
+            // The upper input needs a higher turn entry so the two fillets
+            // fit; visiting CENTER first would create an unnecessary U-turn.
+            DEMO_B_BAY == 0 ? MAP_P4_TOP_CENTER : MAP_P4V_NORTH_CENTER,
             MAP_MACHINE_B_INPUT_CLEAR_BAY[DEMO_B_BAY],
             MAP_MACHINE_B_INPUT_BAY[DEMO_B_BAY]
           };
-          if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path)))
+          if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path), true, true))
             changeState(DROP_AT_MACHINE_B);
         }
         break;
@@ -368,7 +387,6 @@ int main() {
 
       case ROUTE_TO_B_OUTPUT_APPROACH: {
         const Pose2D path[] = {
-          MAP_P13_CENTER,
           MAP_P4V_NORTH_CENTER,
           MAP_P5_NORTH_EAST,
           MAP_MACHINE_B_OUTPUT_APPROACH_BAY[DEMO_B_BAY]
@@ -389,7 +407,7 @@ int main() {
         break;
 
       case ENTER_B_OUTPUT:
-        if (goToPose(bReadyPickPose))
+        if (enterOutput(bReadyPickPose))
           changeState(PICK_FROM_MACHINE_B);
         break;
 
@@ -410,11 +428,14 @@ int main() {
             MAP_IN_FRONT[DEMO_BOX],
             MAP_P10_WEST_CENTER,
             MAP_P21_WEST_SOUTH,
+            // Stay below A until reaching the center aisle. The old diagonal
+            // from WEST_SOUTH to CENTER_SOUTH skimmed A's lower wall.
+            MAP_P22V_SOUTH_CENTER,
             MAP_P22_CENTER_SOUTH,
             MAP_OUT_FRONT[DEMO_BOX],
             MAP_OUT_DROP[DEMO_BOX]
           };
-          if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path)))
+          if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path), true, true))
             changeState(DROP_AT_OUTGOING);
         } else {
           const Pose2D path[] = {
@@ -423,7 +444,7 @@ int main() {
             MAP_OUT_FRONT[DEMO_BOX],
             MAP_OUT_DROP[DEMO_BOX]
           };
-          if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path)))
+          if (followRouteWithFinalAlignment(path, ARRAY_COUNT(path), true))
             changeState(DROP_AT_OUTGOING);
         }
         break;

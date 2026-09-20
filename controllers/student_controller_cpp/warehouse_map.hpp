@@ -25,11 +25,14 @@ constexpr Pose2D MAP_START = {-0.725, -0.400, FACE_NORTH};
 
 // Incoming warehouse service poses. FRONT is the safe clear pose before turning;
 // PICK is deeper in the pocket and should normally be reached slowly.
+// The connector places the box center 0.1175 m ahead of the robot. Stop near
+// y=0.4175 (the line controller's tolerance before 0.425), so locking does not
+// push the box into the back rail as the former 0.445 target did.
 constexpr Pose2D MAP_IN_PICK[MAP_BOX_COUNT] = {
-  {-0.695, 0.445, FACE_NORTH},
-  {-0.545, 0.445, FACE_NORTH},
-  {-0.400, 0.445, FACE_NORTH},
-  {-0.245, 0.445, FACE_NORTH}
+  {-0.695, 0.425, FACE_NORTH},
+  {-0.545, 0.425, FACE_NORTH},
+  {-0.400, 0.425, FACE_NORTH},
+  {-0.245, 0.425, FACE_NORTH}
 };
 
 constexpr Pose2D MAP_IN_FRONT[MAP_BOX_COUNT] = {
@@ -122,7 +125,11 @@ constexpr Pose2D MAP_MACHINE_B_OUTPUT_CLEAR_SOUTH_BAY[MAP_MACHINE_BAY_COUNT] = {
 };
 
 // Outgoing warehouse service poses. FRONT is the clear aisle pose; DROP is the
-// final placement pose inside each outgoing pocket.
+// final placement pose inside each outgoing pocket. With the connector locked,
+// the box center is about 0.1175 m ahead of the robot (0.085 m magnet offset +
+// 0.0325 m plate offset). At y=-0.410 its rear edge clears the back rail's inner
+// face at y=-0.570. The old y=-0.455 target pushed the box into that rail before
+// goToPose could finish, so the controller never reached magnetDrop().
 constexpr Pose2D MAP_OUT_FRONT[MAP_BOX_COUNT] = {
   {0.245, -0.244, FACE_SOUTH},
   {0.395, -0.244, FACE_SOUTH},
@@ -131,10 +138,10 @@ constexpr Pose2D MAP_OUT_FRONT[MAP_BOX_COUNT] = {
 };
 
 constexpr Pose2D MAP_OUT_DROP[MAP_BOX_COUNT] = {
-  {0.245, -0.455, FACE_SOUTH},
-  {0.395, -0.455, FACE_SOUTH},
-  {0.545, -0.455, FACE_SOUTH},
-  {0.695, -0.455, FACE_SOUTH}
+  {0.245, -0.410, FACE_SOUTH},
+  {0.395, -0.410, FACE_SOUTH},
+  {0.545, -0.410, FACE_SOUTH},
+  {0.695, -0.410, FACE_SOUTH}
 };
 
 struct MapPointMarker {
@@ -162,16 +169,16 @@ constexpr MapPointMarker MAP_VISUAL_POINTS[] = {
   {"MAP_P13_CENTER", MAP_P13_CENTER},
   {"MAP_P13_CENTER_NORTH", MAP_P13_CENTER_NORTH},
   {"MAP_P16_EAST_CENTER", MAP_P16_EAST_CENTER},
-  {"MAP_P21_WEST_SOUTH", MAP_P21_WEST_SOUTH},
-  {"MAP_P21_WEST_SOUTH_ARC_START", MAP_P21_WEST_SOUTH_ARC_START},
+  //{"MAP_P21_WEST_SOUTH", MAP_P21_WEST_SOUTH},
+  //{"MAP_P21_WEST_SOUTH_ARC_START", MAP_P21_WEST_SOUTH_ARC_START},
   {"MAP_P22V_SOUTH_CENTER", MAP_P22V_SOUTH_CENTER},
   {"MAP_P22_CENTER_SOUTH", MAP_P22_CENTER_SOUTH},
   {"MAP_TOP_TO_CENTER_ARC_START", MAP_TOP_TO_CENTER_ARC_START},
   {"MAP_NORTH_EAST_ARC_START", MAP_NORTH_EAST_ARC_START},
   {"MAP_MACHINE_A_INPUT_BAY_0", MAP_MACHINE_A_INPUT_BAY[0]},
   {"MAP_MACHINE_A_INPUT_BAY_1", MAP_MACHINE_A_INPUT_BAY[1]},
-  {"MAP_MACHINE_A_INPUT_ARC_START_BAY_0", MAP_MACHINE_A_INPUT_ARC_START_BAY[0]},
-  {"MAP_MACHINE_A_INPUT_ARC_START_BAY_1", MAP_MACHINE_A_INPUT_ARC_START_BAY[1]},
+  //{"MAP_MACHINE_A_INPUT_ARC_START_BAY_0", MAP_MACHINE_A_INPUT_ARC_START_BAY[0]},
+  //{"MAP_MACHINE_A_INPUT_ARC_START_BAY_1", MAP_MACHINE_A_INPUT_ARC_START_BAY[1]},
   {"MAP_MACHINE_A_INPUT_CLEAR_BAY_0", MAP_MACHINE_A_INPUT_CLEAR_BAY[0]},
   {"MAP_MACHINE_A_INPUT_CLEAR_BAY_1", MAP_MACHINE_A_INPUT_CLEAR_BAY[1]},
   {"MAP_MACHINE_A_OUTPUT_APPROACH_BAY_0", MAP_MACHINE_A_OUTPUT_APPROACH_BAY[0]},
