@@ -8,6 +8,7 @@
  */
 
 #include "../student_controller_cpp/warehouse_map.hpp"
+#include "warehouse_overlay.hpp"
 
 #include <webots/Emitter.hpp>
 #include <webots/Field.hpp>
@@ -219,6 +220,9 @@ public:
       return false;
     }
     receiver_->enable(kTimeStep);
+    overlayDisplay_ = robot_.getDisplay("warehouse_status");
+    if (!overlayDisplay_)
+      std::fprintf(stderr, "Missing warehouse_status Display. Reload the updated world to show the task panel.\n");
 
     mobile_ = robot_.getFromDef("MOBILE_ROBOT");
     if (!mobile_) {
@@ -274,6 +278,13 @@ public:
   }
 
 private:
+  void recordOverlayEvent(const std::string &message, bool warning = false) {
+    overlayEvent_ = message;
+    overlayEventTime_ = robot_.getTime();
+    overlayEventWarning_ = warning;
+    nextOverlayUpdate_ = 0.0;
+  }
+
   void drawMapPointMarkers() {
     if (robot_.getFromDef("MAP_POINT_MARKERS"))
       return;
@@ -414,6 +425,7 @@ private:
 
     std::printf("%s started processing in Machine %c bay %d; delay %.2f s.\n",
                 box.boxDef.c_str(), bay.machine, bay.bayIndex, delay);
+    recordOverlayEvent(box.boxDef + " processing at Machine " + bay.machine + ", bay " + std::to_string(bay.bayIndex) + ".");
     std::fflush(stdout);
   }
 
@@ -450,6 +462,7 @@ private:
       std::printf("Machine %c bay %d output occupied; %s waits in the input.\n",
                   machine, bay.bayIndex, box.boxDef.c_str());
       std::fflush(stdout);
+      recordOverlayEvent(box.boxDef + " accepted (+1). Waiting for " + boxes_[bay.outputBox].boxDef + " to be collected.");
     }
 
     tryStartProcessing(bay);
@@ -516,6 +529,7 @@ private:
     if (best >= 0) {
       clearReadyOutputIfNeeded(best);
       attachedIndex_ = best;
+      recordOverlayEvent(boxes_[best].boxDef + " picked up (" + stateName(boxes_[best].state) + ").");
       std::printf("Attached %s as %s.\n", boxes_[best].boxDef.c_str(), stateName(boxes_[best].state));
       std::fflush(stdout);
     }
@@ -524,18 +538,26 @@ private:
   void evaluateDrop(int index) {
     BoxInfo &box = boxes_[index];
     const double *position = box.translation->getSFVec3f();
+    std::string rejection = "wrong destination for a " + std::string(stateName(box.state)) + " part.";
 
     if (box.state == PartState::Red) {
       MachineBay *bay = findInputBay('A', position);
       if (bay && acceptBoxAtMachine(index, 'A', *bay))
         return;
+      if (bay)
+        rejection = bay->inputBox >= 0 ? "Machine A bay " + std::to_string(bay->bayIndex) + " input is occupied." :
+          "Machine A placement was already credited.";
     } else if (box.state == PartState::Green) {
       MachineBay *bay = findInputBay('B', position);
       if (bay && acceptBoxAtMachine(index, 'B', *bay))
         return;
+      if (bay)
+        rejection = bay->inputBox >= 0 ? "Machine B bay " + std::to_string(bay->bayIndex) + " input is occupied." :
+          "Machine B placement was already credited.";
     } else if (box.state == PartState::Blue && kOutgoingZone.contains(position) && !box.delivered) {
       box.delivered = true;
       ++score_;
+      recordOverlayEvent(box.boxDef + " delivered to outgoing warehouse (+1).");
       std::printf("%s delivered to outgoing warehouse. +1.\n", box.boxDef.c_str());
       std::fflush(stdout);
       return;
@@ -546,6 +568,7 @@ private:
                 box.boxDef.c_str(), stateName(box.state), position[0], position[1],
                 robotPose.translation[0], robotPose.translation[1], robotPose.theta);
     std::fflush(stdout);
+    recordOverlayEvent(box.boxDef + " drop rejected: " + rejection, true);
   }
 
   void finishProcessingIfNeeded() {
@@ -583,6 +606,8 @@ private:
 
       std::printf("%s ready as %s at Machine %c bay %d output.\n",
                   box.boxDef.c_str(), stateName(box.state), bay->machine, bay->bayIndex);
+      recordOverlayEvent(box.boxDef + " is " + stateName(box.state) + ". Ready to collect at Machine " +
+                         bay->machine + ", bay " + std::to_string(bay->bayIndex) + ".");
       std::fflush(stdout);
     }
   }
@@ -633,30 +658,36 @@ private:
   }
 
   void updateOverlay() {
-    const std::string attached = (attachedIndex_ >= 0) ? boxes_[attachedIndex_].boxDef : "none";
-    const char *mode = (kTaskOrderMode == kOrderModeRandom) ? "random" : "manual";
-
-    char line0[180];
-    char line1[180];
-    char line2[180];
-
-    std::snprintf(line0, sizeof(line0), "ORDER %s   mode=%s   score=%d   magnet=%s",
-                  order_.c_str(), mode, score_, magnetOn_ ? "ON" : "OFF");
-    std::snprintf(line1, sizeof(line1), "attached=%s   boxes: 0:%c  1:%c  2:%c  3:%c",
-                  attached.c_str(),
-                  letterForState(boxes_[0].state), letterForState(boxes_[1].state),
-                  letterForState(boxes_[2].state), letterForState(boxes_[3].state));
-    std::snprintf(line2, sizeof(line2),
-                  "readyMask A=%d B=%d   bay values are box index; -1=empty\nA in/out: %d/%d %d/%d   B in/out: %d/%d %d/%d",
-                  machineReadyMask('A'), machineReadyMask('B'),
-                  machineABays_[0].inputBox, machineABays_[0].outputBox,
-                  machineABays_[1].inputBox, machineABays_[1].outputBox,
-                  machineBBays_[0].inputBox, machineBBays_[0].outputBox,
-                  machineBBays_[1].inputBox, machineBBays_[1].outputBox);
-
-    robot_.setLabel(0, line0, 0.015, 0.015, 0.07, 0x000000, 0.0, "Verdana");
-    robot_.setLabel(1, line1, 0.015, 0.055, 0.07, 0x000000, 0.0, "Verdana");
-    robot_.setLabel(2, line2, 0.015, 0.095, 0.055, 0x000000, 0.0, "Verdana");
+    const double now = robot_.getTime();
+    if (!overlayDisplay_ || now < nextOverlayUpdate_)
+      return;
+    nextOverlayUpdate_ = now + 0.2;
+    warehouse_overlay::Snapshot state;
+    state.time = now;
+    state.score = score_;
+    state.initialOrder = order_;
+    state.randomOrder = kTaskOrderMode == kOrderModeRandom;
+    state.magnetOn = magnetOn_;
+    state.attachedBox = attachedIndex_ >= 0 ? boxes_[attachedIndex_].boxDef : "none";
+    state.event = overlayEvent_;
+    state.eventTime = overlayEventTime_;
+    state.eventWarning = overlayEventWarning_;
+    for (int i = 0; i < kBoxCount; ++i) {
+      state.boxes[i].type = letterForState(boxes_[i].state);
+      state.boxes[i].delivered = boxes_[i].delivered;
+    }
+    for (int machine = 0; machine < 2; ++machine) {
+      const auto &bays = machine == 0 ? machineABays_ : machineBBays_;
+      for (int i = 0; i < kMachineBayCount; ++i) {
+        auto &view = state.bays[2 * machine + i];
+        view.inputBox = bays[i].inputBox;
+        view.outputBox = bays[i].outputBox;
+        view.processing = bays[i].processing;
+        if (view.processing && view.inputBox >= 0)
+          view.remainingSeconds = boxes_[view.inputBox].processingUntil - now;
+      }
+    }
+    warehouse_overlay::Renderer(overlayDisplay_).draw(state);
   }
 
   std::array<char, kBoxCount> makeRandomOrder() {
@@ -699,6 +730,7 @@ private:
     attachedIndex_ = -1;
     sentStartOrder_ = false;
     order_.assign(letters.begin(), letters.end());
+    recordOverlayEvent("Collect the boxes from the incoming warehouse. Red needs A then B; green needs B; blue goes out.");
 
     for (int i = 0; i < kBoxCount; ++i) {
       BoxInfo &box = boxes_[i];
@@ -729,6 +761,11 @@ private:
 
   webots::Supervisor robot_;
   webots::Receiver *receiver_ = nullptr;
+  webots::Display *overlayDisplay_ = nullptr;
+  std::string overlayEvent_;
+  double overlayEventTime_ = 0.0;
+  bool overlayEventWarning_ = false;
+  double nextOverlayUpdate_ = 0.0;
   webots::Emitter *emitter_ = nullptr;
   webots::Node *mobile_ = nullptr;
   webots::Field *mobileTranslation_ = nullptr;

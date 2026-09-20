@@ -21,13 +21,13 @@ namespace {
 // Webots world; wrong values make every controller gain feel misleading.
 constexpr double kWheelRadiusM = 0.022;
 constexpr double kAxleLengthM = 0.128;
-constexpr double kMaxWheelSpeedRadS = 18.5;
+constexpr double kMaxWheelSpeedRadS = 16.0;
 
 // Navigation tuning. If the robot slows down too much at intermediate route
 // points, first check whether that point is being reached with goThrough()
 // (uses kThrough*) or goToPose() (uses final slowdown and angle alignment).
 constexpr double kPositionToleranceM = 0.015;      // Final stop radius; smaller is more precise but can creep.
-constexpr double kBackPositionToleranceM = 0.055;  // Reverse-clear radius; larger exits pockets sooner.
+constexpr double kBackPositionToleranceM = 0.010;  // Reach the clear point before any bay departure turn.
 constexpr double kThroughToleranceM = 0.100;       // Pass-through waypoint radius; larger reduces intermediate slowdowns.
 constexpr double kAngleToleranceRad = 0.055;       // Final heading tolerance; smaller aligns longer.
 constexpr double kFinalSlowdownRadiusM = 0.045;    // Final approach slowdown starts inside this distance.
@@ -35,7 +35,9 @@ constexpr double kFinalMinLinearMS = 0.035;        // Minimum forward speed duri
 constexpr double kFinalMaxLinearMS = 0.170;        // Maximum forward speed for stop-at-goal moves.
 constexpr double kThroughMinLinearMS = 0.085;      // Minimum speed through non-stopping waypoints.
 constexpr double kThroughMaxLinearMS = 0.225;      // Maximum speed through non-stopping waypoints.
-constexpr double kArcLinearSpeedMS = 0.110;        // Constant open-loop arc speed.
+constexpr double kArcLinearSpeedMS = 0.150;
+constexpr double kLineToleranceM = 0.008;
+constexpr double kTransitToleranceM = 0.004;
 constexpr double kMovingInnerWheelRatio = 0.25;    // Keep both wheels driving during translated turns.
 constexpr double kTightTurnDistanceM = 0.110;      // Near service poses, pivot before the short final drive.
 constexpr double kTightTurnHeadingErrorRad = 0.20;
@@ -96,8 +98,14 @@ public:
   double arcRadius = 0.0;
   double arcTargetAngle = 0.0;
   bool arcClockwise = false;
-  double arcPreviousTheta = 0.0;
+  Pose2D arcStart = {0.0, 0.0, 0.0};
+  double arcCenterX = 0.0;
+  double arcCenterY = 0.0;
+  double arcPreviousBearing = 0.0;
   double arcProgress = 0.0;
+
+  bool reverseLineActive = false;
+  Pose2D reverseLineGoal = {0.0, 0.0, 0.0};
 
   Impl() {
     machineAReadyBay.fill(-1);
@@ -125,11 +133,13 @@ void Navigation::setWheelSpeeds(double linearMS, double angularRadS) {
   double left = (linearMS - angularRadS * kAxleLengthM * 0.5) / kWheelRadiusM;
   double right = (linearMS + angularRadS * kAxleLengthM * 0.5) / kWheelRadiusM;
 
-  left = clamp(left, -kMaxWheelSpeedRadS, kMaxWheelSpeedRadS);
-  right = clamp(right, -kMaxWheelSpeedRadS, kMaxWheelSpeedRadS);
+  // Scale both wheels together: independently clipping changes the arc radius.
+  const double scale = std::max(1.0, std::max(std::fabs(left), std::fabs(right)) / kMaxWheelSpeedRadS);
+  left /= scale;
+  right /= scale;
 
-  impl_->commandedLinearMS = linearMS;
-  impl_->commandedAngularRadS = angularRadS;
+  impl_->commandedLinearMS = linearMS / scale;
+  impl_->commandedAngularRadS = angularRadS / scale;
   impl_->leftWheelRadS = left;
   impl_->rightWheelRadS = right;
 
@@ -145,6 +155,7 @@ void Navigation::resetActions() {
   impl_->waitActive = false;
   impl_->backUpActive = false;
   impl_->arcActive = false;
+  impl_->reverseLineActive = false;
   impl_->pickupDockingActive = false;
 }
 
@@ -470,6 +481,39 @@ bool Navigation::goToPose(double x, double y, double theta) {
   return rotateTo(theta);
 }
 
+bool Navigation::goToLine(double x, double y, double theta, bool stopAtGoal, bool reverse) {
+  if (!impl_->havePose) {
+    stop();
+    return false;
+  }
+
+  const double direction = reverse ? -1.0 : 1.0;
+  const double dx = x - impl_->currentPose.x;
+  const double dy = y - impl_->currentPose.y;
+  const double remaining = direction * (dx * std::cos(theta) + dy * std::sin(theta));
+  const double crossTrack = dx * std::sin(theta) - dy * std::cos(theta);
+  const double tolerance = stopAtGoal ? (reverse ? kBackPositionToleranceM : kLineToleranceM) : kTransitToleranceM;
+  if (remaining <= tolerance && std::fabs(crossTrack) < kLineToleranceM) {
+    if (stopAtGoal)
+      stop();
+    return true;
+  }
+
+  const double lookAhead = stopAtGoal ? clamp(std::fabs(remaining), 0.035, 0.100) : 0.100;
+  const double correction = clamp(std::atan2(-direction * crossTrack, lookAhead), -0.30, 0.30);
+  const double headingError = normalizeAngle(theta + correction - impl_->currentPose.theta);
+  double speed = reverse ? 0.140 : (stopAtGoal ? kFinalMaxLinearMS : kThroughMaxLinearMS);
+  if (stopAtGoal)
+    speed = std::min(speed, clamp(1.8 * std::fabs(remaining), 0.025, speed));
+  // The route aligns before entering a bay; large errors at an aisle departure
+  // must also be resolved before translating, rather than cutting a corner.
+  if (std::fabs(headingError) > 0.35)
+    speed = 0.0;
+  const double angular = clamp(4.0 * headingError, -1.25, 1.25);
+  setWheelSpeeds(direction * speed, angular);
+  return false;
+}
+
 bool Navigation::wait(double seconds) {
   if (!impl_->waitActive) {
     impl_->waitActive = true;
@@ -508,70 +552,74 @@ bool Navigation::backTo(double x, double y) {
     return false;
   }
 
-  const double dx = x - impl_->currentPose.x;
-  const double dy = y - impl_->currentPose.y;
-  const double distance = std::sqrt(dx * dx + dy * dy);
-
-  if (distance < kBackPositionToleranceM) {
-    stop();
-    return true;
+  if (!impl_->reverseLineActive || std::hypot(x - impl_->reverseLineGoal.x, y - impl_->reverseLineGoal.y) > 1e-6) {
+    impl_->reverseLineActive = true;
+    impl_->reverseLineGoal = {x, y, normalizeAngle(std::atan2(y - impl_->currentPose.y, x - impl_->currentPose.x) + M_PI)};
   }
-
-  const double desiredFrontHeading = normalizeAngle(std::atan2(dy, dx) + M_PI);
-  const double headingError = normalizeAngle(desiredFrontHeading - impl_->currentPose.theta);
-
-  double linear = -clamp(1.85 * distance, 0.090, 0.220);
-  if (distance < 0.090)
-    linear = -clamp(1.55 * distance, 0.075, 0.140);
-
-  if (std::fabs(headingError) > 1.05)
-    linear = 0.0;
-  else
-    linear *= clamp(1.0 - std::fabs(headingError) / 1.20, 0.55, 1.0);
-
-  double angular = clamp(3.4 * headingError, -1.75, 1.75);
-  angular = limitAngularWhileMoving(linear, angular);
-  setWheelSpeeds(linear, angular);
-  return false;
+  if (!goToLine(x, y, impl_->reverseLineGoal.theta, true, true))
+    return false;
+  impl_->reverseLineActive = false;
+  return true;
 }
 
-bool Navigation::moveArc(double radiusM, double angleRad, bool clockwise) {
+bool Navigation::goToArc(Pose2D start, double radiusM, double angleRad, bool clockwise, bool stopAtGoal) {
   if (!impl_->havePose) {
     stop();
     return false;
   }
 
-  if (radiusM < 0.06)
-    radiusM = 0.06;
-
+  radiusM = std::max(radiusM, 0.06);
   const double targetAngle = std::fabs(angleRad);
+  const double direction = clockwise ? -1.0 : 1.0;
 
   if (!impl_->arcActive || std::fabs(impl_->arcRadius - radiusM) > 1e-6 ||
-      std::fabs(impl_->arcTargetAngle - targetAngle) > 1e-6 || impl_->arcClockwise != clockwise) {
+      std::fabs(impl_->arcTargetAngle - targetAngle) > 1e-6 || impl_->arcClockwise != clockwise ||
+      std::hypot(start.x - impl_->arcStart.x, start.y - impl_->arcStart.y) > 1e-6 ||
+      std::fabs(normalizeAngle(start.theta - impl_->arcStart.theta)) > 1e-6) {
     impl_->arcActive = true;
     impl_->arcRadius = radiusM;
     impl_->arcTargetAngle = targetAngle;
     impl_->arcClockwise = clockwise;
-    impl_->arcPreviousTheta = impl_->currentPose.theta;
-    impl_->arcProgress = 0.0;
+    impl_->arcStart = start;
+    impl_->arcCenterX = start.x - direction * radiusM * std::sin(start.theta);
+    impl_->arcCenterY = start.y + direction * radiusM * std::cos(start.theta);
+    impl_->arcPreviousBearing = std::atan2(impl_->currentPose.y - impl_->arcCenterY,
+                                           impl_->currentPose.x - impl_->arcCenterX);
+    const double startBearing = start.theta - direction * M_PI / 2.0;
+    impl_->arcProgress = direction * normalizeAngle(impl_->arcPreviousBearing - startBearing);
   }
 
-  const double delta = normalizeAngle(impl_->currentPose.theta - impl_->arcPreviousTheta);
-  impl_->arcProgress += std::fabs(delta);
-  impl_->arcPreviousTheta = impl_->currentPose.theta;
+  const double dx = impl_->currentPose.x - impl_->arcCenterX;
+  const double dy = impl_->currentPose.y - impl_->arcCenterY;
+  const double bearing = std::atan2(dy, dx);
+  // Signed progress around the circle, including wraparound. Yaw oscillations
+  // or a turn in the wrong direction cannot falsely complete the movement.
+  impl_->arcProgress += direction * normalizeAngle(bearing - impl_->arcPreviousBearing);
+  impl_->arcPreviousBearing = bearing;
+  const double remaining = (impl_->arcTargetAngle - impl_->arcProgress) * radiusM;
 
-  if (impl_->arcProgress >= impl_->arcTargetAngle) {
+  if (remaining <= kTransitToleranceM) {
     impl_->arcActive = false;
-    stop();
+    if (stopAtGoal)
+      stop();
     return true;
   }
 
-  double angular = kArcLinearSpeedMS / radiusM;
-  if (clockwise)
-    angular = -angular;
-
-  setWheelSpeeds(kArcLinearSpeedMS, angular);
+  const double radialError = std::hypot(dx, dy) - radiusM;
+  const double tangent = bearing + direction * M_PI / 2.0;
+  const double desiredHeading = tangent + direction * std::atan2(radialError, 0.080);
+  const double headingError = normalizeAngle(desiredHeading - impl_->currentPose.theta);
+  double speed = std::min(kArcLinearSpeedMS, 1.5 * radiusM);
+  if (stopAtGoal)
+    speed = std::min(speed, clamp(1.8 * remaining, 0.025, speed));
+  speed *= clamp(1.0 - std::fabs(headingError), 0.25, 1.0);
+  setWheelSpeeds(speed, direction * speed / radiusM + 4.0 * headingError);
   return false;
+}
+
+bool Navigation::moveArc(double radiusM, double angleRad, bool clockwise) {
+  const Pose2D start = impl_->arcActive ? impl_->arcStart : impl_->currentPose;
+  return goToArc(start, radiusM, angleRad, clockwise);
 }
 
 bool Navigation::moveCircle(double radiusM, double angleRad, bool clockwise) {

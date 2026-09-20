@@ -50,14 +50,19 @@ public:
   bool goTo(double x, double y);
   bool goThrough(double x, double y);
   bool goToPose(double x, double y, double theta);
+  // Track the line through the goal in the given robot heading. Reverse keeps
+  // that heading while backing out of a bay. Transit segments need not stop.
+  bool goToLine(double x, double y, double theta, bool stopAtGoal = true, bool reverse = false);
   bool rotateTo(double theta);
   bool rotateClockwiseTo(double theta);
   bool wait(double seconds);
   bool backUp(double seconds);
   bool backTo(double x, double y);
 
-  // Arc helpers are open-loop around the robot's current yaw change. Use them
-  // only in open aisles; tight pockets should use goToPose/backTo instead.
+  // Track a planned circle with position and tangent-heading feedback. The
+  // start pose is the tangent entry, not the robot's drifting measured pose.
+  bool goToArc(Pose2D start, double radiusM, double angleRad, bool clockwise, bool stopAtGoal = true);
+  // Relative arcs use the measured entry pose; both helpers share goToArc.
   bool moveArc(double radiusM, double angleRad, bool clockwise);
   bool moveCircle(double radiusM, double angleRad, bool clockwise);
 
