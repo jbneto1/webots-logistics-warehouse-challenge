@@ -24,7 +24,7 @@
  * tolerances affect final stop-and-align poses. */
 #define WHEEL_RADIUS_M 0.022
 #define AXLE_LENGTH_M 0.128
-#define MAX_WHEEL_SPEED_RAD_S 18.5
+#define MAX_WHEEL_SPEED_RAD_S 16.0
 #define POSITION_TOLERANCE_M 0.025
 #define THROUGH_TOLERANCE_M 0.100
 #define BACK_POSITION_TOLERANCE_M 0.055
@@ -45,10 +45,10 @@ static const Pose2D MAP_P21_WEST_SOUTH = {-0.695, -0.425, FACE_EAST};
 static const Pose2D MAP_P22_CENTER_SOUTH = {0.000, -0.244, FACE_EAST};
 
 static const Pose2D MAP_IN_PICK[MAP_BOX_COUNT] = {
-  {-0.695, 0.395, FACE_NORTH},
-  {-0.545, 0.395, FACE_NORTH},
-  {-0.400, 0.395, FACE_NORTH},
-  {-0.245, 0.395, FACE_NORTH}
+  {-0.695, 0.425, FACE_NORTH},
+  {-0.545, 0.425, FACE_NORTH},
+  {-0.400, 0.425, FACE_NORTH},
+  {-0.245, 0.425, FACE_NORTH}
 };
 
 static const Pose2D MAP_IN_FRONT[MAP_BOX_COUNT] = {
@@ -66,10 +66,10 @@ static const Pose2D MAP_OUT_FRONT[MAP_BOX_COUNT] = {
 };
 
 static const Pose2D MAP_OUT_DROP[MAP_BOX_COUNT] = {
-  {0.245, -0.430, FACE_SOUTH},
-  {0.395, -0.430, FACE_SOUTH},
-  {0.545, -0.430, FACE_SOUTH},
-  {0.695, -0.430, FACE_SOUTH}
+  {0.245, -0.410, FACE_SOUTH},
+  {0.395, -0.410, FACE_SOUTH},
+  {0.545, -0.410, FACE_SOUTH},
+  {0.695, -0.410, FACE_SOUTH}
 };
 
 typedef enum {

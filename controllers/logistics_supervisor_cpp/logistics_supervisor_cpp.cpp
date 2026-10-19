@@ -651,9 +651,9 @@ private:
     const std::string attached = (attachedIndex_ >= 0) ? boxes_[attachedIndex_].boxDef : "none";
 
     char msg[kMessageSize];
-    std::snprintf(msg, sizeof(msg), "POSE %.5f %.5f %.5f %d %s %d %d",
-                  pose.translation[0], pose.translation[1], pose.theta, score_, attached.c_str(),
-                  machineReadyMask('A'), machineReadyMask('B'));
+    std::snprintf(msg, sizeof(msg), "POSE %.5f %.5f %.5f %d %s",
+              pose.translation[0], pose.translation[1],
+              pose.theta, score_, attached.c_str());
     sendText(msg);
   }
 
