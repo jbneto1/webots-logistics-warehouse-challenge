@@ -1,0 +1,2 @@
+# Preserve archived experiment source bytes for the recorded SHA-256 hashes.
+results/technical_validation/**/source_snapshot/** -text

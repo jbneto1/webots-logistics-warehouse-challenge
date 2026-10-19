@@ -1,0 +1,105 @@
+warning: in the working copy of 'controllers/example_student_c/example_student_c.c', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'controllers/example_student_python/example_student_python.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp', LF will be replaced by CRLF the next time Git touches it
+diff --git a/controllers/example_student_c/example_student_c.c b/controllers/example_student_c/example_student_c.c
+index dd85f37..e7c1652 100644
+--- a/controllers/example_student_c/example_student_c.c
++++ b/controllers/example_student_c/example_student_c.c
+@@ -24,7 +24,7 @@
+  * tolerances affect final stop-and-align poses. */
+ #define WHEEL_RADIUS_M 0.022
+ #define AXLE_LENGTH_M 0.128
+-#define MAX_WHEEL_SPEED_RAD_S 18.5
++#define MAX_WHEEL_SPEED_RAD_S 16.0
+ #define POSITION_TOLERANCE_M 0.025
+ #define THROUGH_TOLERANCE_M 0.100
+ #define BACK_POSITION_TOLERANCE_M 0.055
+@@ -45,10 +45,10 @@ static const Pose2D MAP_P21_WEST_SOUTH = {-0.695, -0.425, FACE_EAST};
+ static const Pose2D MAP_P22_CENTER_SOUTH = {0.000, -0.244, FACE_EAST};
+ 
+ static const Pose2D MAP_IN_PICK[MAP_BOX_COUNT] = {
+-  {-0.695, 0.395, FACE_NORTH},
+-  {-0.545, 0.395, FACE_NORTH},
+-  {-0.400, 0.395, FACE_NORTH},
+-  {-0.245, 0.395, FACE_NORTH}
++  {-0.695, 0.425, FACE_NORTH},
++  {-0.545, 0.425, FACE_NORTH},
++  {-0.400, 0.425, FACE_NORTH},
++  {-0.245, 0.425, FACE_NORTH}
+ };
+ 
+ static const Pose2D MAP_IN_FRONT[MAP_BOX_COUNT] = {
+@@ -66,10 +66,10 @@ static const Pose2D MAP_OUT_FRONT[MAP_BOX_COUNT] = {
+ };
+ 
+ static const Pose2D MAP_OUT_DROP[MAP_BOX_COUNT] = {
+-  {0.245, -0.430, FACE_SOUTH},
+-  {0.395, -0.430, FACE_SOUTH},
+-  {0.545, -0.430, FACE_SOUTH},
+-  {0.695, -0.430, FACE_SOUTH}
++  {0.245, -0.410, FACE_SOUTH},
++  {0.395, -0.410, FACE_SOUTH},
++  {0.545, -0.410, FACE_SOUTH},
++  {0.695, -0.410, FACE_SOUTH}
+ };
+ 
+ typedef enum {
+diff --git a/controllers/example_student_python/example_student_python.py b/controllers/example_student_python/example_student_python.py
+index 141b383..0efb049 100644
+--- a/controllers/example_student_python/example_student_python.py
++++ b/controllers/example_student_python/example_student_python.py
+@@ -10,7 +10,7 @@ EXAMPLE_BOX = 0
+ # tolerances affect final stop-and-align poses.
+ WHEEL_RADIUS_M = 0.022
+ AXLE_LENGTH_M = 0.128
+-MAX_WHEEL_SPEED_RAD_S = 18.5
++MAX_WHEEL_SPEED_RAD_S = 16.0
+ POSITION_TOLERANCE_M = 0.025
+ THROUGH_TOLERANCE_M = 0.100
+ ANGLE_TOLERANCE_RAD = 0.055
+@@ -25,10 +25,10 @@ MAP_P21_WEST_SOUTH = (-0.695, -0.425, FACE_EAST)
+ MAP_P22_CENTER_SOUTH = (0.000, -0.244, FACE_EAST)
+ 
+ MAP_IN_PICK = [
+-    (-0.695, 0.395, FACE_NORTH),
+-    (-0.545, 0.395, FACE_NORTH),
+-    (-0.400, 0.395, FACE_NORTH),
+-    (-0.245, 0.395, FACE_NORTH),
++    (-0.695, 0.425, FACE_NORTH),
++    (-0.545, 0.425, FACE_NORTH),
++    (-0.400, 0.425, FACE_NORTH),
++    (-0.245, 0.425, FACE_NORTH),
+ ]
+ 
+ MAP_IN_FRONT = [
+@@ -46,10 +46,10 @@ MAP_OUT_FRONT = [
+ ]
+ 
+ MAP_OUT_DROP = [
+-    (0.245, -0.430, FACE_SOUTH),
+-    (0.395, -0.430, FACE_SOUTH),
+-    (0.545, -0.430, FACE_SOUTH),
+-    (0.695, -0.430, FACE_SOUTH),
++    (0.245, -0.410, FACE_SOUTH),
++    (0.395, -0.410, FACE_SOUTH),
++    (0.545, -0.410, FACE_SOUTH),
++    (0.695, -0.410, FACE_SOUTH),
+ ]
+ 
+ 
+diff --git a/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp b/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp
+index e9fdf20..47b3f77 100644
+--- a/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp
++++ b/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp
+@@ -651,9 +651,9 @@ private:
+     const std::string attached = (attachedIndex_ >= 0) ? boxes_[attachedIndex_].boxDef : "none";
+ 
+     char msg[kMessageSize];
+-    std::snprintf(msg, sizeof(msg), "POSE %.5f %.5f %.5f %d %s %d %d",
+-                  pose.translation[0], pose.translation[1], pose.theta, score_, attached.c_str(),
+-                  machineReadyMask('A'), machineReadyMask('B'));
++    std::snprintf(msg, sizeof(msg), "POSE %.5f %.5f %.5f %d %s",
++              pose.translation[0], pose.translation[1],
++              pose.theta, score_, attached.c_str());
+     sendText(msg);
+   }

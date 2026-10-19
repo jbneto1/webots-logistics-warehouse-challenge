@@ -1,0 +1,138 @@
+[
+  {
+    "case": "blue",
+    "order": "BRRG",
+    "seed": 101,
+    "negative_control": false,
+    "process_wall_s": 3.151795400015544,
+    "webots_exit_code": 0,
+    "trial_directory": "trials\\blue_seed_101",
+    "success": true,
+    "box_0_delivered": true,
+    "box_0_in_outgoing_at_end": true,
+    "controller_finished": true,
+    "supervisor_score": 1,
+    "score_at_delivery": 1,
+    "expected_score": 1,
+    "invalid_drops": 0,
+    "evaluated_drops": 1,
+    "delivery_simulation_s": 20.832,
+    "delivery_wall_s": 1.4945423,
+    "delivery_real_time_factor": 13.938715552,
+    "end_simulation_s": 22.912,
+    "end_wall_s": 1.6784622,
+    "attached_index_at_end": -1,
+    "robot_final_xy_m": [
+      0.245062201,
+      -0.252632869
+    ],
+    "box_final_xyz_m": [
+      0.244282189,
+      -0.520927725,
+      0.026484298
+    ],
+    "validation_check_passed": true
+  },
+  {
+    "case": "green",
+    "order": "GRRB",
+    "seed": 101,
+    "negative_control": false,
+    "process_wall_s": 5.6703037999686785,
+    "webots_exit_code": 0,
+    "trial_directory": "trials\\green_seed_101",
+    "success": true,
+    "box_0_delivered": true,
+    "box_0_in_outgoing_at_end": true,
+    "controller_finished": true,
+    "supervisor_score": 2,
+    "score_at_delivery": 2,
+    "expected_score": 2,
+    "invalid_drops": 0,
+    "evaluated_drops": 2,
+    "delivery_simulation_s": 51.392,
+    "delivery_wall_s": 3.7713963,
+    "delivery_real_time_factor": 13.626783269,
+    "end_simulation_s": 53.472,
+    "end_wall_s": 3.9291385,
+    "attached_index_at_end": -1,
+    "robot_final_xy_m": [
+      0.24500503,
+      -0.252530007
+    ],
+    "box_final_xyz_m": [
+      0.244987318,
+      -0.520369991,
+      0.026484298
+    ],
+    "validation_check_passed": true
+  },
+  {
+    "case": "red",
+    "order": "RRGB",
+    "seed": 101,
+    "negative_control": false,
+    "process_wall_s": 7.642639700032305,
+    "webots_exit_code": 0,
+    "trial_directory": "trials\\red_seed_101",
+    "success": true,
+    "box_0_delivered": true,
+    "box_0_in_outgoing_at_end": true,
+    "controller_finished": true,
+    "supervisor_score": 3,
+    "score_at_delivery": 3,
+    "expected_score": 3,
+    "invalid_drops": 0,
+    "evaluated_drops": 3,
+    "delivery_simulation_s": 82.784,
+    "delivery_wall_s": 5.5735074,
+    "delivery_real_time_factor": 14.853124623,
+    "end_simulation_s": 84.864,
+    "end_wall_s": 5.7348281,
+    "attached_index_at_end": -1,
+    "robot_final_xy_m": [
+      0.245005398,
+      -0.252529709
+    ],
+    "box_final_xyz_m": [
+      0.244987146,
+      -0.520369646,
+      0.026484298
+    ],
+    "validation_check_passed": true
+  },
+  {
+    "case": "blue",
+    "order": "BRRG",
+    "seed": 101,
+    "negative_control": true,
+    "process_wall_s": 1.999025300028734,
+    "webots_exit_code": 1,
+    "trial_directory": "trials\\blue_seed_101_invalid_drop",
+    "success": false,
+    "box_0_delivered": false,
+    "box_0_in_outgoing_at_end": false,
+    "controller_finished": true,
+    "supervisor_score": 0,
+    "score_at_delivery": -1,
+    "expected_score": 1,
+    "invalid_drops": 1,
+    "evaluated_drops": 1,
+    "delivery_simulation_s": -1.0,
+    "delivery_wall_s": -1.0,
+    "delivery_real_time_factor": -1.0,
+    "end_simulation_s": 8.704,
+    "end_wall_s": 0.5603437,
+    "attached_index_at_end": -1,
+    "robot_final_xy_m": [
+      -0.695002536,
+      0.252818076
+    ],
+    "box_final_xyz_m": [
+      -0.694998025,
+      0.370318381,
+      0.02605217
+    ],
+    "validation_check_passed": true
+  }
+]

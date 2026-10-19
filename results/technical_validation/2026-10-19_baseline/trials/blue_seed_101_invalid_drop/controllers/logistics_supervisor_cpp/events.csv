@@ -1,0 +1,5 @@
+simulation_s,event,box,machine,bay,score,assigned_delay_s,wall_s
+0.000000000,start,-1,?,-1,0,-1.000000000,0.000497500
+5.920000000,pickup,0,?,-1,0,-1.000000000,0.385202200
+8.224000000,invalid_drop,0,?,-1,0,-1.000000000,0.533990600
+8.704000000,controller_finished,0,?,-1,0,-1.000000000,0.580655000

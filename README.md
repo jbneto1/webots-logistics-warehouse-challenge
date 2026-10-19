@@ -89,6 +89,11 @@ webots_logistics_pbl/
 │       └── example_student_python.py
 ├── docs/
 │   └── controller_examples.md
+├── tests/
+│   ├── navigation/
+│   └── technical_validation/
+├── results/
+│   └── technical_validation/
 ├── worlds/
 │   └── logistics_pbl_enu.wbt
 ├── LICENSE
@@ -107,6 +112,8 @@ webots_logistics_pbl/
 | `controllers/student_controller_cpp/warehouse_map.hpp` | Named robot-center poses for warehouses, machines, clear points, route nodes, and arc setup points. |
 | `controllers/example_student_c/` | Small self-contained C example using Webots C devices and the challenge message protocol. |
 | `controllers/example_student_python/` | Small Python example using Webots `Robot`, `Motor`, `Emitter`, and `Receiver` APIs directly. |
+
+`tests/navigation/` contains geometry and contact regressions. `tests/technical_validation/` runs the three BOX_0 routes and records performance metrics. Saved batches are in `results/technical_validation/`.
 
 ## Student Controller Examples
 
@@ -142,20 +149,18 @@ The supervisor awards one point when a box is accepted by a valid machine input 
 
 ### Simulation Status Panel
 
-The supervisor's `warehouse_status` Display shows a compact, high-contrast status list. Its normal visible area is **384 × 164 pixels**, about 75% smaller than the previous panel, with 14–16 px status text:
+The supervisor's `warehouse_status` Display shows a **384 × 164 pixel** status list with 14–16 px text:
 
 - **Delivered / 4**, **Score**, and elapsed simulation time share the top row. Score includes machine placements and shows the maximum for the initial order (9 for a permutation of `RRGB`).
 - **Order** shows the initial box types from left to right (`BOX_0` through `BOX_3`), for example `RRBG`; it stays fixed as boxes are processed. **Magnet** shows the reported ON/OFF state. **Carrying** identifies the box associated with the robot's magnet by the supervisor, or `none` when there is no association.
 - Each machine bay has one line: `Idle`, a box with its processing countdown in simulated seconds, a box `ready` to collect, or a `waiting` input alongside the ready output blocking it. `A / Bay 0` means Machine A, bay 0; numbering matches the student API.
 - Rejected drops briefly show a red, two-line notice below the list, for up to eight simulated seconds or until the next event. Only then does the visible panel expand to **384 × 208 pixels**; the footer is otherwise transparent.
 
-The title, progress bar, individual box color labels, machine routing reminders, and routine event feed are omitted to keep the scene clear. Task rules and box routes are documented above; detailed activity remains in the controller console.
-
 The panel updates about five times per simulated second, with task events requesting an immediate refresh. Raw ready masks remain available in the API and detailed controller console logs; each bit identifies a box awaiting output collection, not an available input bay.
 
 The timer shows elapsed simulation time and continues while the simulation runs. The standard demo handles only `BOX_0`, so a successful demo ends with `Delivered 1/4` and a score of 1, 2, or 3 for a blue, green, or red starting box, respectively.
 
-The panel is a native Webots Display overlay: drag it to reposition it, use its lower-right resize handle to change its size, or double-click it to open it in a separate window. If it is hidden, select `CHALLENGE_SUPERVISOR` and enable `warehouse_status` under **Robot > Display Devices**. After updating this project, reload the world as well as rebuilding the supervisor so the new Display device is loaded.
+The panel is a native Webots Display overlay: drag it to reposition it, use its lower-right resize handle to change its size, or double-click it to open it in a separate window. If it is hidden, select `CHALLENGE_SUPERVISOR` and enable `warehouse_status` under **Robot > Display Devices**. Reload the world and rebuild the supervisor after changing the Display device.
 
 The panel drawing code is in `controllers/logistics_supervisor_cpp/warehouse_overlay.hpp`; the supervisor supplies the display state. The preview below uses an illustrative multi-box state rendered from that same drawing code.
 
@@ -170,7 +175,7 @@ Supervisor messages include:
 ```text
 START
 ORDER RRGB
-POSE x y theta score attached_box machine_a_ready_mask machine_b_ready_mask
+POSE x y theta score attached_box
 READY A box_index bay_index robot_x robot_y robot_theta
 READY B box_index bay_index robot_x robot_y robot_theta
 CLEAR A box_index
@@ -196,7 +201,7 @@ The route planner first builds an aisle route, then considers replacing its turn
 
 This allows `rotateTo -> goToArc -> rotateTo` around a machine, or `rotateTo -> goToArc -> rotateTo -> goToLine` when placing a box. The last 10 cm of a shortcut into a bay stay straight, with the existing position and heading tolerances. Arc radii follow the available geometry rather than a fixed 12 cm ceiling; shallow turns can have large radii while remaining entirely within the field.
 
-If no better arc has clearance, the original aisle route remains: it rounds corners with arcs up to 0.12 m, trims at most 40% of adjoining legs, and uses stopped rotations for corners too short for a 0.06 m radius. Lines and tangent arcs hand over in the same simulation tick. The lower-aisle points beneath A remain available as the safe fallback for the blue route.
+If no better arc has clearance, the planner uses the fallback aisle route: it rounds corners with arcs up to 0.12 m, trims at most 40% of adjoining legs, and uses stopped rotations for corners too short for a 0.06 m radius. Lines and tangent arcs hand over in the same simulation tick. The lower-aisle points beneath A provide the fallback for the blue route.
 
 The clearance model describes the supplied fixed warehouse; it does not detect newly placed obstacles. When changing wall geometry, update `warehouse_clearance.hpp` and run the geometry and physics regressions. The geometry check verifies that all 24 modeled static walls match the world.
 
@@ -211,22 +216,22 @@ case ROUTE_TO_OUTGOING:
 
 ## Gripping And Physics
 
-The project now uses Webots `Connector` nodes for pickup:
+The project uses Webots `Connector` nodes for pickup:
 
 - The robot has an active connector named `electromagnet_connector`.
 - Each box has a passive connector on the visible metal plate face.
 - The robot controller calls `enablePresence`, checks `getPresence`, then calls `lock`.
 - On release, the robot controller calls `unlock`.
-- The supervisor still receives `MAGNET_ON` and `MAGNET_OFF`, but only for challenge bookkeeping. It no longer moves a carried box every simulation step.
+- The supervisor receives `MAGNET_ON` and `MAGNET_OFF` for challenge bookkeeping. The Connector link handles carried-box motion.
 
-The boxes are still physical Webots objects:
+Each box is a physical Webots object:
 
 - `Solid` is the object that has a transform in the world and can participate in physics.
 - `Shape` is visual geometry. It controls what you see, but not necessarily what collides.
 - `boundingObject` is collision geometry. The boxes currently use a `Box` bounding object, so they can collide when physics is allowed to handle them normally.
 - `Physics` makes a `Solid` dynamic by giving it mass and physical properties. Without `Physics`, a `Solid` is static.
 
-Because carrying is now handled by a Connector link, the physics engine can keep resolving the box's bounding-object contacts while it is attached. The supervisor still teleports boxes only for non-carrying logistics events: initial reset and machine processing output.
+Connector links allow the physics engine to resolve box contacts while a box is attached. The supervisor repositions boxes during initial reset and machine processing output.
 
 Other possible gripping models:
 
@@ -302,11 +307,19 @@ Main movement tuning constants are in `controllers/student_controller_cpp/robot_
 
 `goToLine(x, y, theta, stopAtGoal, reverse)` follows the line through the goal with the supplied robot heading; reverse motion keeps that heading while backing out. `goToArc(start, radius, angle, clockwise, stopAtGoal)` tracks the planned circle using position and tangent-heading feedback. `moveArc` and `moveCircle` use the same feedback controller with a measured starting pose. Wheel speeds are scaled together at the world's 16 rad/s motor limit to preserve curvature.
 
-Tune these values conservatively and verify that higher speeds do not cause collisions at machine inputs, machine outputs, or warehouse pockets. Reverse clearance now finishes within 1 cm of its goal instead of stopping 5.5 cm early.
+Tune these values conservatively and verify that higher speeds do not cause collisions at machine inputs, machine outputs, or warehouse pockets. Reverse clearance finishes within 1 cm of its goal.
 
 For a repeatable physics regression, run `python tests/navigation/prepare.py red RRGB` (optionally append `1` for the second machine bays), then open the printed temporary world with Webots. Use `GRRB` and `BRRG` for the green and blue routes. The observer checks delivery, reverse clearance, and actual robot/carried-box contacts against static obstacles; it records `evidence.log` and `trajectory.csv` in the temporary `navigation_observer` controller directory and quits with a failing status on contact, timeout, or incorrect score. These tests build isolated copies without changing the main world's order or demo selectors.
 
 Run `python tests/navigation/check_planner.py` for wall-model consistency, circular endpoint geometry, payload clearance, and controller-selection checks. After a physics run, `python tests/navigation/verify_run.py red` (append the bay number when testing bay 1) also verifies the logged pickup, drop, and output-approach poses against 12.5 mm position and 0.065 rad heading limits. The test copy records controller output in `student_controller_cpp/controller.log`.
+
+The [technical-validation harness](tests/technical_validation/README.md) measures delivery, score, simulated delivery time, rejected drops, and real-time factor for the blue (`BRRG`), green (`GRRB`), and red (`RRGB`) BOX_0 routes. It builds isolated project copies and records events, trajectories, and source hashes. Run five seeds per route and an invalid-drop control with:
+
+```bash
+python tests/technical_validation/run.py --output results/technical_validation/my_baseline --seeds 101 102 103 104 105 --negative-control
+```
+
+The [19 October 2026 baseline](results/technical_validation/2026-10-19_baseline/REPORT.md) contains five runs per initial type. These tests cover BOX_0 and machine bay 0.
 
 ### Debug Levels
 

@@ -1,0 +1,47 @@
+{
+  "build": [
+    [
+      "C:\\Program Files\\Webots\\msys64\\mingw64\\bin\\g++.exe",
+      "-std=gnu++17",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-D_GLIBCXX_USE_CXX11_ABI=1",
+      "-IC:\\Program Files\\Webots\\include\\controller\\cpp",
+      "-IC:\\Program Files\\Webots\\include\\controller\\c",
+      "student_controller.cpp",
+      "robot_navigation.cpp",
+      "-LC:\\Program Files\\Webots\\lib\\controller",
+      "-lCppController",
+      "-lController",
+      "-o",
+      "C:\\Users\\jabra\\Repos\\webots_logistics_pbl\\results\\technical_validation\\2026-10-19_baseline\\trials\\blue_seed_103\\controllers\\student_controller_cpp\\student_controller_cpp.exe"
+    ],
+    [
+      "C:\\Program Files\\Webots\\msys64\\mingw64\\bin\\g++.exe",
+      "-std=gnu++17",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-D_GLIBCXX_USE_CXX11_ABI=1",
+      "-IC:\\Program Files\\Webots\\include\\controller\\cpp",
+      "-IC:\\Program Files\\Webots\\include\\controller\\c",
+      "logistics_supervisor_cpp.cpp",
+      "-LC:\\Program Files\\Webots\\lib\\controller",
+      "-lCppController",
+      "-lController",
+      "-o",
+      "C:\\Users\\jabra\\Repos\\webots_logistics_pbl\\results\\technical_validation\\2026-10-19_baseline\\trials\\blue_seed_103\\controllers\\logistics_supervisor_cpp\\logistics_supervisor_cpp.exe"
+    ]
+  ],
+  "run": [
+    "C:\\Program Files\\Webots\\msys64\\mingw64\\bin\\webots.exe",
+    "--batch",
+    "--mode=fast",
+    "--no-rendering",
+    "--minimize",
+    "--stdout",
+    "--stderr",
+    "C:\\Users\\jabra\\Repos\\webots_logistics_pbl\\results\\technical_validation\\2026-10-19_baseline\\trials\\blue_seed_103\\worlds\\validation.wbt"
+  ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "case": "blue",
+    "trials": 1,
+    "successful": 1,
+    "invalid_drops": 0,
+    "delivery_simulation_s": {
+      "mean": 20.832,
+      "sample_sd": null,
+      "min": 20.832,
+      "max": 20.832
+    },
+    "end_simulation_s": {
+      "mean": 22.912,
+      "sample_sd": null,
+      "min": 22.912,
+      "max": 22.912
+    },
+    "delivery_real_time_factor": {
+      "mean": 13.938715552,
+      "sample_sd": null,
+      "min": 13.938715552,
+      "max": 13.938715552
+    }
+  },
+  {
+    "case": "green",
+    "trials": 1,
+    "successful": 1,
+    "invalid_drops": 0,
+    "delivery_simulation_s": {
+      "mean": 51.392,
+      "sample_sd": null,
+      "min": 51.392,
+      "max": 51.392
+    },
+    "end_simulation_s": {
+      "mean": 53.472,
+      "sample_sd": null,
+      "min": 53.472,
+      "max": 53.472
+    },
+    "delivery_real_time_factor": {
+      "mean": 13.626783269,
+      "sample_sd": null,
+      "min": 13.626783269,
+      "max": 13.626783269
+    }
+  },
+  {
+    "case": "red",
+    "trials": 1,
+    "successful": 1,
+    "invalid_drops": 0,
+    "delivery_simulation_s": {
+      "mean": 82.784,
+      "sample_sd": null,
+      "min": 82.784,
+      "max": 82.784
+    },
+    "end_simulation_s": {
+      "mean": 84.864,
+      "sample_sd": null,
+      "min": 84.864,
+      "max": 84.864
+    },
+    "delivery_real_time_factor": {
+      "mean": 14.853124623,
+      "sample_sd": null,
+      "min": 14.853124623,
+      "max": 14.853124623
+    }
+  }
+]

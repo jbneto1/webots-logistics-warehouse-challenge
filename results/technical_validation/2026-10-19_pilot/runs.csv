@@ -1,0 +1,5 @@
+case,order,seed,negative_control,success,box_0_delivered,supervisor_score,expected_score,delivery_simulation_s,end_simulation_s,invalid_drops,evaluated_drops,delivery_wall_s,delivery_real_time_factor,process_wall_s,webots_exit_code
+blue,BRRG,101,False,True,True,1,1,20.832,22.912,0,1,1.4945423,13.938715552,3.151795400015544,0
+green,GRRB,101,False,True,True,2,2,51.392,53.472,0,2,3.7713963,13.626783269,5.6703037999686785,0
+red,RRGB,101,False,True,True,3,3,82.784,84.864,0,3,5.5735074,14.853124623,7.642639700032305,0
+blue,BRRG,101,True,False,False,0,1,-1.0,8.704,1,1,-1.0,-1.0,1.999025300028734,1

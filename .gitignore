@@ -56,3 +56,8 @@ dkms.conf
 worlds/.logistics_pbl_enu.wbproj
 
 tmp/
+
+# Local Webots window settings and Python caches (keep experiment logs).
+*.wbproj
+__pycache__/
+*.pyc
