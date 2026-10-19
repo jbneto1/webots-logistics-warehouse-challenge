@@ -1,6 +1,3 @@
-warning: in the working copy of 'controllers/example_student_c/example_student_c.c', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'controllers/example_student_python/example_student_python.py', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp', LF will be replaced by CRLF the next time Git touches it
 diff --git a/controllers/example_student_c/example_student_c.c b/controllers/example_student_c/example_student_c.c
 index dd85f37..e7c1652 100644
 --- a/controllers/example_student_c/example_student_c.c

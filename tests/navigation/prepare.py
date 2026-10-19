@@ -3,7 +3,7 @@
 Run the printed world with Webots --batch --mode=fast --no-rendering. The
 observer writes evidence.log and trajectory.csv in its controller directory
 and exits Webots with a failing status for collisions, timeout or bad score.
-The user's world, order settings and demo selectors are never rewritten.
+The base world, order settings, and demo selectors are not modified.
 """
 from pathlib import Path
 import os
