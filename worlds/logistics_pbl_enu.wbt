@@ -1174,7 +1174,7 @@ DEF MAP_POINT_MARKERS Group {
       ]
     }
     DEF MAP_POINT_MAP_IN_PICK_0 Pose {
-      translation -0.695 0.445 0.008
+      translation -0.695 0.425 0.008
       children [
         Shape {
           appearance PBRAppearance {
@@ -1192,7 +1192,7 @@ DEF MAP_POINT_MARKERS Group {
       ]
     }
     DEF MAP_POINT_MAP_IN_PICK_1 Pose {
-      translation -0.545 0.445 0.008
+      translation -0.545 0.425 0.008
       children [
         Shape {
           appearance PBRAppearance {
@@ -1210,7 +1210,7 @@ DEF MAP_POINT_MARKERS Group {
       ]
     }
     DEF MAP_POINT_MAP_IN_PICK_2 Pose {
-      translation -0.4 0.445 0.008
+      translation -0.4 0.425 0.008
       children [
         Shape {
           appearance PBRAppearance {
@@ -1228,7 +1228,7 @@ DEF MAP_POINT_MARKERS Group {
       ]
     }
     DEF MAP_POINT_MAP_IN_PICK_3 Pose {
-      translation -0.245 0.445 0.008
+      translation -0.245 0.425 0.008
       children [
         Shape {
           appearance PBRAppearance {
