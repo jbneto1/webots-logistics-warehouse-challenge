@@ -1,0 +1,1727 @@
+{
+  "batch": "2026-10-20_camera_ready_fixed",
+  "file_count": 344,
+  "files": [
+    {
+      "path": "HOST_ENVIRONMENT.json",
+      "bytes": 372,
+      "sha256": "a883c02113b99b31759f67f5062a7090eee00bea9dd04d8d5a41b5eb007e4ef1"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 3779,
+      "sha256": "937ca1696fa43403af6b7046cc0be37e92a7353113b2a3c43beaa34f802bb296"
+    },
+    {
+      "path": "VERIFICATION.md",
+      "bytes": 5757,
+      "sha256": "a89536dca632faed7caf50a99e269e6593b3cca66e9f0acc17fe367d63d5cbe1"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 3695,
+      "sha256": "4f7e3cc9488473d176e725978bb086f99d50ba07fdd074861d2b07f530856ce8"
+    },
+    {
+      "path": "runs.csv",
+      "bytes": 1740,
+      "sha256": "059cffb378baa416a645c2d058fd45b260270fa13ceb6a990fbb0a5fe09d8214"
+    },
+    {
+      "path": "runs.json",
+      "bytes": 14496,
+      "sha256": "984328cfc1c69a9a6a69a38a9db8e48fb5580a515a5de2dd8e2cf8f060fdd0c4"
+    },
+    {
+      "path": "source_snapshot/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 25094,
+      "sha256": "cbff4c7cc1b6bf3b8f3eb8ad4b81db1d3927a5ea5556161425888dc63091b058"
+    },
+    {
+      "path": "source_snapshot/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6563,
+      "sha256": "c5ab45561d49b87fdf261198a35c22f35c84880f952e39a812ca2e9096e28a9f"
+    },
+    {
+      "path": "source_snapshot/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 610,
+      "sha256": "06f0bdb82a4739111f0719b3a33317d9acadbb80f64f4f128dc6afac39e5e24f"
+    },
+    {
+      "path": "source_snapshot/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 22979,
+      "sha256": "ee0eee23c602495770b0f1e0e7358930ebd3460f2d4b1ca746aaa07d93920fd1"
+    },
+    {
+      "path": "source_snapshot/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2642,
+      "sha256": "34da080860dd4320aff082d80653dd9e88e60ab5da39d1c59429d31c4423d94a"
+    },
+    {
+      "path": "source_snapshot/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9767,
+      "sha256": "98750360f8bfcc681a649efee2b0f894d785765f89e2774d67334872bfd1f828"
+    },
+    {
+      "path": "source_snapshot/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15313,
+      "sha256": "c029afd3e9a79da258e21e932a6b2b5c550cde5cc6a1913e96555ca4e789b9f0"
+    },
+    {
+      "path": "source_snapshot/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2668,
+      "sha256": "94dc060b94c1561ff9c88d0d89eeb76f9dcdff64aa7c1831cd13f4929d9c8d9e"
+    },
+    {
+      "path": "source_snapshot/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 8874,
+      "sha256": "2de5a88f13fa52172bba0554eaf8910db6874f7699d23ab877c08a09b92516db"
+    },
+    {
+      "path": "source_snapshot/tests/technical_validation/README.md",
+      "bytes": 6115,
+      "sha256": "877e79de301e99c613af4cabbecb99649e44704b11b76806542b3d9d509f5dcf"
+    },
+    {
+      "path": "source_snapshot/tests/technical_validation/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "source_snapshot/tests/technical_validation/report.py",
+      "bytes": 6620,
+      "sha256": "32ab6d7ff33fb5ed6727d1386e20b670d39438e4d57426136bca1457b8951ad0"
+    },
+    {
+      "path": "source_snapshot/tests/technical_validation/run.py",
+      "bytes": 20989,
+      "sha256": "54a9a1ab3be046600eb22798e59378b6cff81a946db97f965360c6fced1808ce"
+    },
+    {
+      "path": "source_snapshot/worlds/logistics_pbl_enu.wbt",
+      "bytes": 45481,
+      "sha256": "3f0e01cda11cf30bec0954fd3190d6a38b0bdb101718245aa675f41f3619d4c9"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 1634,
+      "sha256": "fc4ed161a8e138f5a860f8c1ef0d1a7bc2682a51cb63577baf67cfef7402e55a"
+    },
+    {
+      "path": "trials/blue_seed_101/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_101/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_101/commands.json",
+      "bytes": 1767,
+      "sha256": "a3f5229a0d54debef4859e58a3d0145178164d0273cf7107c8cb7228e8a1c720"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 299,
+      "sha256": "83b7306a8d5701febe1277a22ce990f5df7987af7e6d410207e68f84fd74a409"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "9af7f903b0e8915927887b51ef581f4bb2131bc759ec77dcd2d150f5cc24992f"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "8693072baa2ff97fbb827cf5d839aca1d764b1afa22c766088d5848365ac6501"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 67802,
+      "sha256": "47fd09d572abb3271e3393f795b5be314c9d3efc547e1c681d6b16c70d52305a"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/student_controller_cpp/controller.log",
+      "bytes": 15400,
+      "sha256": "c2a70bbcf515b34bb72effe00d9b22e3492564ac4ccacf5c2f924c2098d679b2"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/blue_seed_101/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/blue_seed_101/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "aa34150f43e30b40b082d4d914f6b59fda4c1244db4a1c09307c3087a6fb3243"
+    },
+    {
+      "path": "trials/blue_seed_101/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_101/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "ace6e8027131bce90a54824f728ee4c97a11b92d6e8b4840ba3a43da49724024"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/commands.json",
+      "bytes": 1806,
+      "sha256": "db3c94b8270da50fce89cc138779f1e267f4cd1e5e3b6cf8c7b35bc54cdc0fad"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 301,
+      "sha256": "ee256f7f32960d00fc846daeef5671f22eb56306821fb5ede5f5bf808a473086"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "9af7f903b0e8915927887b51ef581f4bb2131bc759ec77dcd2d150f5cc24992f"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 589,
+      "sha256": "375e1dea90472fc4d08957632915d3075b44fbac82c9aa2f14cc5113d3111a6f"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 25683,
+      "sha256": "695fb8d20a617ebf36e26dbf28c7105ec004513335e37c139a7a78dcf4e8af89"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/student_controller_cpp/controller.log",
+      "bytes": 6132,
+      "sha256": "afc5514e87a6e54e6c3df6a0ccb89e7f3844dc16c3cf67f7c26839e613ec6834"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 16069,
+      "sha256": "d4055ca8c2242d580c8cd5405ea019c41749fd7b54cfd4b4c6cdef348458f077"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/instrumentation.diff",
+      "bytes": 5473,
+      "sha256": "8e96a171199823f01e41039e87bf6601b6c34bdafcd6bc9362afa6564788aa73"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_101_invalid_drop/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "ace6e8027131bce90a54824f728ee4c97a11b92d6e8b4840ba3a43da49724024"
+    },
+    {
+      "path": "trials/blue_seed_102/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_102/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_102/commands.json",
+      "bytes": 1767,
+      "sha256": "92cb5b8c80ad024641a3af53922cb611b003c3f4c1e662dbdb6d4d6923aa82a5"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 299,
+      "sha256": "2defdeb264f141a5fe8fa799e74c8470776a3531ab4130d3423348d155d2a50e"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "7e6186a043aaec1c4df9ab2fa89508317699a231e67f884308d743745a35e52b"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "e76cbd170df745249d6172aef411e6288d079204a71383e86ac7628233b9d862"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 67802,
+      "sha256": "47fd09d572abb3271e3393f795b5be314c9d3efc547e1c681d6b16c70d52305a"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/student_controller_cpp/controller.log",
+      "bytes": 15400,
+      "sha256": "c2a70bbcf515b34bb72effe00d9b22e3492564ac4ccacf5c2f924c2098d679b2"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/blue_seed_102/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/blue_seed_102/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "8acdb13f51efcf8580d064f01ba203e2ce397eeb0015e0e13168147c6e6b9aac"
+    },
+    {
+      "path": "trials/blue_seed_102/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_102/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "f4f01b5fe78943b17de7ac12b4ef0048a6458bcc57a0894c8e164b0cb7be56b2"
+    },
+    {
+      "path": "trials/blue_seed_103/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_103/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_103/commands.json",
+      "bytes": 1767,
+      "sha256": "90f04d8ab7f5704f01eda23e11cd9e9baa71670cf5cc187c193ed4a422aeb3e0"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 299,
+      "sha256": "655eb8c51439c5895c048f022250f5e681603eb95ee08c6f748b4664b0408864"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "99793090211548a70f1b37210d9fc2da37d92edbf7e23f16e1bacca740ece28c"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "16854ad37ff96d43f0e2eea0b8f870aa18d3fc65749137e6edd1cbe5ee7945c5"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 67802,
+      "sha256": "47fd09d572abb3271e3393f795b5be314c9d3efc547e1c681d6b16c70d52305a"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/student_controller_cpp/controller.log",
+      "bytes": 15400,
+      "sha256": "c2a70bbcf515b34bb72effe00d9b22e3492564ac4ccacf5c2f924c2098d679b2"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/blue_seed_103/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/blue_seed_103/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "a99f99404f4b0826fbc3e30c0259b4a01e1fec4086fc33b646f1635f8f054046"
+    },
+    {
+      "path": "trials/blue_seed_103/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_103/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "64fa33ba6b1c88c0eb5bb2f7b1489c2b9ba7dbd2808d0df1c20dc73d94205e2a"
+    },
+    {
+      "path": "trials/blue_seed_104/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_104/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_104/commands.json",
+      "bytes": 1767,
+      "sha256": "72fe9672819cb976d7b02bb6f0e8ecdf90cf4626fc64fb0a688eba7ef566bfb5"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 299,
+      "sha256": "fda6b902184fbdec34621d064310055d6b5fec282f425bb09be17e932d0dfc5e"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "56a461682f1ac052e786b689d26b689743fcc204de951087c5500dc6f31a1c7c"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "03899741352256197b510beef3c0505bd41505f2e9795a5b9a6603b8247c8483"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 67802,
+      "sha256": "47fd09d572abb3271e3393f795b5be314c9d3efc547e1c681d6b16c70d52305a"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/student_controller_cpp/controller.log",
+      "bytes": 15400,
+      "sha256": "c2a70bbcf515b34bb72effe00d9b22e3492564ac4ccacf5c2f924c2098d679b2"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/blue_seed_104/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/blue_seed_104/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "71ca1c5db8efbb49dad7ccd4a349861bd1f28c11338ea477c364314a00a648f6"
+    },
+    {
+      "path": "trials/blue_seed_104/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_104/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "7cee0d559ec1511a87404f9ca693016a1f2c9479121bfc8e4e6fd298ccbfae5c"
+    },
+    {
+      "path": "trials/blue_seed_105/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_105/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_105/commands.json",
+      "bytes": 1767,
+      "sha256": "d1f5dde10e3de745e69e7ac620d0ef7144c598125dfba0ec6528708c91c9ed2b"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 299,
+      "sha256": "28ebe9cde79d4eee6c939b93c864048888143cc41369ea9fc48e1d7e77c3ecb8"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "838ac1d7f3bb62dac956457188b6945224d9b48ee9f7615af2913816ebc91e43"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "818a379aac46b60d4e7d89f1fbc4cfdb4d54a38e8e4e30d2673ddec81781cb08"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 67802,
+      "sha256": "47fd09d572abb3271e3393f795b5be314c9d3efc547e1c681d6b16c70d52305a"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/student_controller_cpp/controller.log",
+      "bytes": 15400,
+      "sha256": "c2a70bbcf515b34bb72effe00d9b22e3492564ac4ccacf5c2f924c2098d679b2"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/blue_seed_105/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/blue_seed_105/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "4f38b45609a9e3979b54e33956697aac2ddcd9e9154511ae8dc98dd854afdb0d"
+    },
+    {
+      "path": "trials/blue_seed_105/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/blue_seed_105/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "78e020aa80eb5ffbd4757aadea9694cf14906c1002e63f0e85f603799bc081f3"
+    },
+    {
+      "path": "trials/green_seed_101/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_101/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_101/commands.json",
+      "bytes": 1770,
+      "sha256": "3d39e78fd5781ad9afc91d59547eec61252ed5351f5c13e1d038c1244b161fca"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 546,
+      "sha256": "83bd742a2580c325ff643c78d0400c729037f8bb5a4d962a51976b348c01d39d"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "7fca11087f59d3ff1f47db336e99442ce519f75419fcbf45ca0d6d0605920f18"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "c196935e2f02da4300b96b8153438907ec7bd2808d3f211ad5b6b3bb5718e26c"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 158478,
+      "sha256": "54d9f46b8994d5542499634d1fe0f429649bc61bbb0c21880377be3dc66bbdb8"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/student_controller_cpp/controller.log",
+      "bytes": 34649,
+      "sha256": "7635ce52695a9508b779993f2c35391450f6ef11f29e00426029b85cb8d4788d"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/green_seed_101/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/green_seed_101/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "cc8ccd2150f6fce4859b3411c0769454f6b696537bb1ea48e5b6c3981a4be6da"
+    },
+    {
+      "path": "trials/green_seed_101/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_101/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "ace6e8027131bce90a54824f728ee4c97a11b92d6e8b4840ba3a43da49724024"
+    },
+    {
+      "path": "trials/green_seed_102/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_102/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_102/commands.json",
+      "bytes": 1770,
+      "sha256": "45f964b27f5e13f5338b41937f4378fb906dcf325ff69ec196a468e32a71c614"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 546,
+      "sha256": "521a66c0fd9750524c2c6a4379d3eebd9249a01e63d26333f5b68f12cb77bf77"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "258e81dfdd20ec99fa33e7cf7f50d3bcb3b75f8e851d6b2cd6c579e52140fc3c"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "324050c3efac9a68fae54ef6396c293793ee8044618b4338a3e7cc1018c9b200"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 153823,
+      "sha256": "f35a38d091bfa7b72171e600b8410d5d50fe44f8294ded591a2bfbea44a94230"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/student_controller_cpp/controller.log",
+      "bytes": 33984,
+      "sha256": "f6db1cd58b696223d890e1e2d5e3157764f5026899812d04843d0876aa77c706"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/green_seed_102/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/green_seed_102/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "a98ee8d5c56e3c6d2abaf89efa2179bb2a0f733d14c258c9da8e2a756b6b4d4f"
+    },
+    {
+      "path": "trials/green_seed_102/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_102/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "f4f01b5fe78943b17de7ac12b4ef0048a6458bcc57a0894c8e164b0cb7be56b2"
+    },
+    {
+      "path": "trials/green_seed_103/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_103/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_103/commands.json",
+      "bytes": 1770,
+      "sha256": "1238b9759bb912f253390dad4e6332d59c41d3f2b2f6d11af10aa6c46c92284f"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 546,
+      "sha256": "b2670d43bbc9ce5e229b28cf7c3faf4a693920c0789c799ffa5a3fb7f0a17d15"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "d2d04a52c4ad5f7dc43675202176cbcb74ce18f6b7df85ff174682c45d075ebe"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "b5ed11039b7f45630e1775833da72587c0806a0647dd8a50261334b4c8275a69"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 149738,
+      "sha256": "91098d2e82d121b09b1fb412e153c29757100c28f4d2771b3921e1c1df8da900"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/student_controller_cpp/controller.log",
+      "bytes": 33247,
+      "sha256": "eafb60f4bb1cb69ab3268bfc0e8ea351dabac94afa3c90a8393e8b0de338e645"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/green_seed_103/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/green_seed_103/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "51c329c4a60e4735fe833f998f95358f31c6e9481286dc3651a62891ff18a550"
+    },
+    {
+      "path": "trials/green_seed_103/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_103/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "64fa33ba6b1c88c0eb5bb2f7b1489c2b9ba7dbd2808d0df1c20dc73d94205e2a"
+    },
+    {
+      "path": "trials/green_seed_104/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_104/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_104/commands.json",
+      "bytes": 1770,
+      "sha256": "48e45c3c8b437f736ebd381351a873193d97555cb963867b2a73b7e392283084"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 546,
+      "sha256": "8706ac0d5a95f9047f1ee01e2445eaca859567f00b56ca5bc0b513762efea9a3"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "37cd22efccb0aa5048528ab2fd84f27bca5c541976aa83b145953909e31fe339"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "e745ba1b1b8b0bc99110c0fecda31156419f054aec7b553e0cdc4c409b744a2a"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 145748,
+      "sha256": "742b843430af904a72108d1cfe2a5a5dcccae719fd29092b8577a2cab0f55c90"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/student_controller_cpp/controller.log",
+      "bytes": 32510,
+      "sha256": "36cbd595f06f2dc6d79a9d0b698ddc2f70835bd81b08adf164fd575b1df0006f"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/green_seed_104/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/green_seed_104/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "54b1a077884c965bbd0d03c79a7216a5370faf59a4434892bda4fd90843d939c"
+    },
+    {
+      "path": "trials/green_seed_104/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_104/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "7cee0d559ec1511a87404f9ca693016a1f2c9479121bfc8e4e6fd298ccbfae5c"
+    },
+    {
+      "path": "trials/green_seed_105/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_105/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_105/commands.json",
+      "bytes": 1770,
+      "sha256": "2cbdea7be7354f702099f2a109aa17c469d94326dad0e1c5ab91a5748dae82e9"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 546,
+      "sha256": "04e9fd65528b1896c97e395955a2ebd5240692201aa93f309ba5e5fa75375206"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "7a608b108191307e1ea165759905d78ecca4a98ef9ca81882b6200616e9f1c6b"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "33b608ea3cb3214f2636b17f9f27f66c3a9b59bec43dcf43df6c23d17cea777f"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 151828,
+      "sha256": "a4c6fbf9fe0857b46cc558cb926eea4ac36e49b6c8cd0491de983cc82dc6a6a6"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/student_controller_cpp/controller.log",
+      "bytes": 33615,
+      "sha256": "08f37918f43e585df76e13584fa5fd38d33d1f6c9afc05dbf436c55687ed4370"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/green_seed_105/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/green_seed_105/instrumentation.diff",
+      "bytes": 5168,
+      "sha256": "87d913fca15f685d811aab41b367328f2036b6fb38cd54e839a2ed0d46c2160b"
+    },
+    {
+      "path": "trials/green_seed_105/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/green_seed_105/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "78e020aa80eb5ffbd4757aadea9694cf14906c1002e63f0e85f603799bc081f3"
+    },
+    {
+      "path": "trials/red_seed_101/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_101/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_101/commands.json",
+      "bytes": 1764,
+      "sha256": "dd4f4c8e37206268a2021fea0624d318d78138e5a3eee9074d532ecb463ca877"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 793,
+      "sha256": "5ca1ba7fa12aebd539bd721952b9efec4373cda9174f2d8198925974ebeeec43"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "253972fb11df044b4cc5791f816520efa33be5b196c3e96eeb8e37d9438c7a90"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "b5bfa70efc14209716d00ce8077743f6f1a0f9209e988cf509e4582a5f3556c1"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 252567,
+      "sha256": "6eece0fc13b1fdfa337cea98f2ee34172a8622ee6d9f8f0f311ed76b54ff9e7e"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/student_controller_cpp/controller.log",
+      "bytes": 54495,
+      "sha256": "36a60d01fa1383502e1c2e9c3eadfbbcce05a6004140fb3abba0c4f159c57ea1"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/red_seed_101/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/red_seed_101/instrumentation.diff",
+      "bytes": 5042,
+      "sha256": "33df40c1426764ac015b205358cdeb50b937a7b3f66d9043555b8018e3cd6869"
+    },
+    {
+      "path": "trials/red_seed_101/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_101/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "ace6e8027131bce90a54824f728ee4c97a11b92d6e8b4840ba3a43da49724024"
+    },
+    {
+      "path": "trials/red_seed_102/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_102/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_102/commands.json",
+      "bytes": 1764,
+      "sha256": "aab0f8a3922b4edb7104da1d20257ab90985b846e9482b1d782f5398fc246c33"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 793,
+      "sha256": "f582b92e443911b610be761eda27c2fd00520609f8a2cb89a404b8062c1a50ea"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "d760b72c749abbef84fc8beae7ff7b73e370c84d41d53a9e9fc46d8da88f00ef"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "7ff51526553db65c4a7b48a3ed7885f1f302f76f0580cb9278ef8b93e3cc6680"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 233432,
+      "sha256": "3fa24ec2a66fe7c457ca2dea339430b199cf126d2d8dc26834dc76f6aea9b92d"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/student_controller_cpp/controller.log",
+      "bytes": 51154,
+      "sha256": "957acd163eeb1b421e5fb0022daf146584c6fc17e4bf22586f612e6be047e612"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/red_seed_102/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/red_seed_102/instrumentation.diff",
+      "bytes": 5042,
+      "sha256": "91a19cf00d2c8936127cd974b7d26866af7870a4ef41e471a4d3e7f048e8d305"
+    },
+    {
+      "path": "trials/red_seed_102/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_102/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "f4f01b5fe78943b17de7ac12b4ef0048a6458bcc57a0894c8e164b0cb7be56b2"
+    },
+    {
+      "path": "trials/red_seed_103/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_103/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_103/commands.json",
+      "bytes": 1764,
+      "sha256": "16934608dac226aa36b91f5de904195372b2156fcb937fae690e8bba98934c94"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 793,
+      "sha256": "4f9a993eae51eba3e6b32d586225ebd18c02c24f52fc1b1b8aecaea589eb0274"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "d0856378de513f36718eea6d9d2296ef8d75f5e7bfeda861b68f2a72e724d5d3"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "5acc633d9c8ec95596d2ad6f30b459615d8d2af41178a365125857f0a76b8b18"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 239413,
+      "sha256": "eba148a23f6c358b02c67295e631044b03389774be9033be2149037645f6de3b"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/student_controller_cpp/controller.log",
+      "bytes": 52254,
+      "sha256": "a52e64e6e42800dd1408c50b73c0277d01649fb281984cba68126dc6118aff90"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/red_seed_103/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/red_seed_103/instrumentation.diff",
+      "bytes": 5042,
+      "sha256": "0d3fbffc0ec35b30b91a0c806c58506405d33d1365d9e5aa4f21bc85fec6f7c2"
+    },
+    {
+      "path": "trials/red_seed_103/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_103/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "64fa33ba6b1c88c0eb5bb2f7b1489c2b9ba7dbd2808d0df1c20dc73d94205e2a"
+    },
+    {
+      "path": "trials/red_seed_104/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_104/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_104/commands.json",
+      "bytes": 1764,
+      "sha256": "16f0c07adf05c86f1a7c98fffa94f56f98485c0c2e1a1fdf447e259c76bd2228"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 793,
+      "sha256": "af597e5d695d7d55a8314c34e06089d3a2d16e39e6828b53fd84a809edbf0eea"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "53d6f4541b72b1a866f896b1632c064597c5616aacb37808eca09f264c6653ba"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "875f508ceb206ecab9990f3d20be422121512e20b0f84879b18e439e02744eb2"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 234587,
+      "sha256": "6731803f2bb3bfef630bffc0124363b6f6ecd2a38f3674f486eba7eba4d3e337"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/student_controller_cpp/controller.log",
+      "bytes": 51392,
+      "sha256": "aa7b030f5c6829517a37504b6e953ede7f4787285f022694b9a97199f35afb45"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/red_seed_104/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/red_seed_104/instrumentation.diff",
+      "bytes": 5042,
+      "sha256": "97bbf2854100a449fd6c5bd1a525b7ae4ec5493a598774610002bc7358c5ad11"
+    },
+    {
+      "path": "trials/red_seed_104/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_104/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "7cee0d559ec1511a87404f9ca693016a1f2c9479121bfc8e4e6fd298ccbfae5c"
+    },
+    {
+      "path": "trials/red_seed_105/build_logistics_supervisor_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_105/build_student_controller_cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_105/commands.json",
+      "bytes": 1764,
+      "sha256": "3c7a70b9293b1af43c5d24bc43a49e694f1b31d3df955c6ea24ff16ca44fe98b"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/logistics_supervisor_cpp/events.csv",
+      "bytes": 793,
+      "sha256": "7f04ed1fa1fbe2dfe0d2cfdb1cf0b75125913839a5dc7d29cce767e1ca01641c"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "bytes": 26662,
+      "sha256": "01a0822e43cc6a59f427bea8781f0445535a625601d0997cf19d8e2982c7f41a"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/logistics_supervisor_cpp/measurement.hpp",
+      "bytes": 4585,
+      "sha256": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/logistics_supervisor_cpp/measurement.json",
+      "bytes": 585,
+      "sha256": "77bd05cbc5a22c105a504e88cc4efd99141ef3639f7f257fda9820d6538be154"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/logistics_supervisor_cpp/trajectory.csv",
+      "bytes": 242769,
+      "sha256": "0f1cc66bbf79e1b60d150ca1ccb18fd750b95cd38dcbedb5fe201215760c2d50"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "bytes": 6765,
+      "sha256": "b654bd945578790d4f6441dad1a810f2862804814ce612d07ee873cb94d50ca0"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/student_controller_cpp/controller.log",
+      "bytes": 52808,
+      "sha256": "c21d887b38432668f78b6e8359a67862dcf203e3015a59e366355fdfc2992a5e"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/student_controller_cpp/debug_config.hpp",
+      "bytes": 631,
+      "sha256": "20a767c60fe249efde0182f5594cc08bc6003ca594a599d926150e49bc1e8d5d"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/student_controller_cpp/robot_navigation.cpp",
+      "bytes": 23668,
+      "sha256": "b814ff3c6a2db1fd59dd4b80d12319d66d5b8de34a9f6dd1fb66e8410e13dd0b"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/student_controller_cpp/robot_navigation.hpp",
+      "bytes": 2725,
+      "sha256": "79d9bcb314b167e1cf37f9e349a84e156f12cac1b6094ab997f3b37be7182680"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/student_controller_cpp/route_planner.hpp",
+      "bytes": 9994,
+      "sha256": "fef8196935efb9fc966da0e6b9c4f89606f59217d6c47317c613ba58a9f02a47"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/student_controller_cpp/student_controller.cpp",
+      "bytes": 15971,
+      "sha256": "61d94b31b3b4c9c49464020feee4c147f909eb1d4f54ebe8685629132037c825"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "bytes": 2722,
+      "sha256": "02a30c1fcda1820a5a79aade3f8a67009b7897993227741003add429398606ff"
+    },
+    {
+      "path": "trials/red_seed_105/controllers/student_controller_cpp/warehouse_map.hpp",
+      "bytes": 9089,
+      "sha256": "214649b290e404202a172c4ea77f2ca04d2e50de75c4c02b7e70851554ba9460"
+    },
+    {
+      "path": "trials/red_seed_105/instrumentation.diff",
+      "bytes": 5042,
+      "sha256": "a5292a744dea247ecf28232b1178835b3d3e0734638bdeb44550f3aee29e3253"
+    },
+    {
+      "path": "trials/red_seed_105/webots.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "trials/red_seed_105/worlds/validation.wbt",
+      "bytes": 47596,
+      "sha256": "78e020aa80eb5ffbd4757aadea9694cf14906c1002e63f0e85f603799bc081f3"
+    },
+    {
+      "path": "verification/extra_checks.json",
+      "bytes": 84792,
+      "sha256": "4570c534ab067281a76b276ea828a9a8b9a2f0b09309a92d27cf08f4967e1b96"
+    },
+    {
+      "path": "verification/raw_recomputed.json",
+      "bytes": 24564,
+      "sha256": "25b66904c5a5e9e31bbcf28fec010737de0085f625dc6c99d8933214ef5089bd"
+    },
+    {
+      "path": "working_tree.diff",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "hash_index_scope": "All Git-publishable batch files except this index and SHA256SUMS; the archive SHA256 additionally covers both indices."
+}

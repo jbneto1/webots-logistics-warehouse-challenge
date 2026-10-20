@@ -1,0 +1,725 @@
+{
+  "source": "Raw events.csv, trajectory.csv, measurement.json, runs.json; no REPORT.md or summary.json used in recomputation",
+  "archive_base": "C:\\Users\\jabra\\Repos\\webots_logistics_pbl\\results\\technical_validation\\2026-10-20_camera_ready_fixed",
+  "hash_mismatches": [],
+  "archive_hashes_required": true,
+  "current_match_required": true,
+  "archive_hash_mismatches": [],
+  "current_hash_differences": [],
+  "aggregates": [
+    {
+      "case": "blue",
+      "n": 5,
+      "mean_simulation_s": 20.832,
+      "sample_sd_simulation_s": 0.0,
+      "mean_rtf": 16.149699452785615,
+      "sample_sd_rtf": 0.7681015810855196,
+      "raw_times_s": [
+        20.832,
+        20.832,
+        20.832,
+        20.832,
+        20.832
+      ],
+      "mean_wall_s": 1.2923796,
+      "ratio_of_means_for_comparison": 16.119103087049655
+    },
+    {
+      "case": "green",
+      "n": 5,
+      "mean_simulation_s": 49.184,
+      "sample_sd_simulation_s": 1.5932658284165901,
+      "mean_rtf": 16.085976683968916,
+      "sample_sd_rtf": 0.8197930867806851,
+      "raw_times_s": [
+        51.392,
+        49.824,
+        48.448,
+        47.104,
+        49.152
+      ],
+      "mean_wall_s": 3.0652744,
+      "ratio_of_means_for_comparison": 16.045545547243666
+    },
+    {
+      "case": "red",
+      "n": 5,
+      "mean_simulation_s": 78.7648,
+      "sample_sd_simulation_s": 2.5833534794913415,
+      "mean_rtf": 16.44050022681168,
+      "sample_sd_rtf": 0.7532857219732326,
+      "raw_times_s": [
+        82.784,
+        76.32,
+        78.4,
+        76.8,
+        79.52
+      ],
+      "mean_wall_s": 4.80151032,
+      "ratio_of_means_for_comparison": 16.40417176068883
+    }
+  ],
+  "trials": [
+    {
+      "trial": "blue_seed_101",
+      "case": "blue",
+      "seed": 101,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 20.832,
+      "delivery_wall_s": 1.3029301,
+      "recomputed_rtf": 15.988578358885102,
+      "score_from_events": 1,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 716,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 22.912,
+      "last_trace_simulation_s": 22.912,
+      "measurement_end_simulation_s": 22.912,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 2.9000000000056758e-05,
+      "final_box_xyz_m": [
+        0.244282189,
+        -0.520927725,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.26829598985967135,
+      "processing": [],
+      "errors": []
+    },
+    {
+      "trial": "blue_seed_102",
+      "case": "blue",
+      "seed": 102,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 20.832,
+      "delivery_wall_s": 1.2413513,
+      "recomputed_rtf": 16.78171199401813,
+      "score_from_events": 1,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 716,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 22.912,
+      "last_trace_simulation_s": 22.912,
+      "measurement_end_simulation_s": 22.912,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 3.2000000000032e-05,
+      "final_box_xyz_m": [
+        0.244282189,
+        -0.520927725,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.26829598985967135,
+      "processing": [],
+      "errors": []
+    },
+    {
+      "trial": "blue_seed_103",
+      "case": "blue",
+      "seed": 103,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 20.832,
+      "delivery_wall_s": 1.4000929,
+      "recomputed_rtf": 14.879012671230603,
+      "score_from_events": 1,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 716,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 22.912,
+      "last_trace_simulation_s": 22.912,
+      "measurement_end_simulation_s": 22.912,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 3.109999999995061e-05,
+      "final_box_xyz_m": [
+        0.244282189,
+        -0.520927725,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.26829598985967135,
+      "processing": [],
+      "errors": []
+    },
+    {
+      "trial": "blue_seed_104",
+      "case": "blue",
+      "seed": 104,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 20.832,
+      "delivery_wall_s": 1.2584255,
+      "recomputed_rtf": 16.554019288388545,
+      "score_from_events": 1,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 716,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 22.912,
+      "last_trace_simulation_s": 22.912,
+      "measurement_end_simulation_s": 22.912,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 3.0100000000032878e-05,
+      "final_box_xyz_m": [
+        0.244282189,
+        -0.520927725,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.26829598985967135,
+      "processing": [],
+      "errors": []
+    },
+    {
+      "trial": "blue_seed_105",
+      "case": "blue",
+      "seed": 105,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 20.832,
+      "delivery_wall_s": 1.2590982,
+      "recomputed_rtf": 16.5451749514057,
+      "score_from_events": 1,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 716,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 22.912,
+      "last_trace_simulation_s": 22.912,
+      "measurement_end_simulation_s": 22.912,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 2.9199999999951487e-05,
+      "final_box_xyz_m": [
+        0.244282189,
+        -0.520927725,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.26829598985967135,
+      "processing": [],
+      "errors": []
+    },
+    {
+      "trial": "green_seed_101",
+      "case": "green",
+      "seed": 101,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 51.392,
+      "delivery_wall_s": 3.1783938,
+      "recomputed_rtf": 16.16917324719171,
+      "score_from_events": 2,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 1671,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 53.472,
+      "last_trace_simulation_s": 53.472,
+      "measurement_end_simulation_s": 53.472,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 3.059999999965868e-05,
+      "final_box_xyz_m": [
+        0.244987318,
+        -0.520369991,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399845856388,
+      "processing": [
+        {
+          "machine": "B",
+          "assigned_delay_s": 20.525401857,
+          "observed_delay_s": 20.544,
+          "quantization_overrun_s": 0.018598143000001954
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "green_seed_102",
+      "case": "green",
+      "seed": 102,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 49.824,
+      "delivery_wall_s": 3.3629208,
+      "recomputed_rtf": 14.815692358856623,
+      "score_from_events": 2,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 1622,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 51.904,
+      "last_trace_simulation_s": 51.904,
+      "measurement_end_simulation_s": 51.904,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 3.2699999999774576e-05,
+      "final_box_xyz_m": [
+        0.244987318,
+        -0.520369991,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399845856388,
+      "processing": [
+        {
+          "machine": "B",
+          "assigned_delay_s": 18.975574345,
+          "observed_delay_s": 18.976000000000003,
+          "quantization_overrun_s": 0.00042565500000435463
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "green_seed_103",
+      "case": "green",
+      "seed": 103,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 48.448,
+      "delivery_wall_s": 3.0438299,
+      "recomputed_rtf": 15.916789568300121,
+      "score_from_events": 2,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 1579,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 50.528,
+      "last_trace_simulation_s": 50.528,
+      "measurement_end_simulation_s": 50.528,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 4.109999999979408e-05,
+      "final_box_xyz_m": [
+        0.244987318,
+        -0.520369991,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399845856388,
+      "processing": [
+        {
+          "machine": "B",
+          "assigned_delay_s": 17.59094017,
+          "observed_delay_s": 17.599999999999998,
+          "quantization_overrun_s": 0.009059829999998215
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "green_seed_104",
+      "case": "green",
+      "seed": 104,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 47.104,
+      "delivery_wall_s": 2.8513583,
+      "recomputed_rtf": 16.519845997607526,
+      "score_from_events": 2,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 1537,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 49.184,
+      "last_trace_simulation_s": 49.184,
+      "measurement_end_simulation_s": 49.184,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 2.9300000000009874e-05,
+      "final_box_xyz_m": [
+        0.244987318,
+        -0.520369991,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399845856388,
+      "processing": [
+        {
+          "machine": "B",
+          "assigned_delay_s": 16.243414136,
+          "observed_delay_s": 16.256000000000004,
+          "quantization_overrun_s": 0.012585864000005387
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "green_seed_105",
+      "case": "green",
+      "seed": 105,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 49.152,
+      "delivery_wall_s": 2.8898692,
+      "recomputed_rtf": 17.00838224788859,
+      "score_from_events": 2,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 1601,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 51.232,
+      "last_trace_simulation_s": 51.232,
+      "measurement_end_simulation_s": 51.232,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 2.8300000000314185e-05,
+      "final_box_xyz_m": [
+        0.244987318,
+        -0.520369991,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399845856388,
+      "processing": [
+        {
+          "machine": "B",
+          "assigned_delay_s": 18.282653366,
+          "observed_delay_s": 18.304,
+          "quantization_overrun_s": 0.02134663399999681
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "red_seed_101",
+      "case": "red",
+      "seed": 101,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 82.784,
+      "delivery_wall_s": 5.1720038,
+      "recomputed_rtf": 16.00617540149526,
+      "score_from_events": 3,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 2652,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 84.864,
+      "last_trace_simulation_s": 84.864,
+      "measurement_end_simulation_s": 84.864,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 3.629999999965605e-05,
+      "final_box_xyz_m": [
+        0.244987146,
+        -0.520369646,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399376218929,
+      "processing": [
+        {
+          "machine": "A",
+          "assigned_delay_s": 20.525401857,
+          "observed_delay_s": 20.543999999999997,
+          "quantization_overrun_s": 0.0185981429999984
+        },
+        {
+          "machine": "B",
+          "assigned_delay_s": 24.526843593,
+          "observed_delay_s": 24.543999999999997,
+          "quantization_overrun_s": 0.017156406999998097
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "red_seed_102",
+      "case": "red",
+      "seed": 102,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 76.32,
+      "delivery_wall_s": 4.5652066,
+      "recomputed_rtf": 16.717753803299942,
+      "score_from_events": 3,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 2450,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 78.4,
+      "last_trace_simulation_s": 78.4,
+      "measurement_end_simulation_s": 78.4,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 3.2000000000032e-05,
+      "final_box_xyz_m": [
+        0.244987146,
+        -0.520369646,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399376218929,
+      "processing": [
+        {
+          "machine": "A",
+          "assigned_delay_s": 18.975574345,
+          "observed_delay_s": 18.976,
+          "quantization_overrun_s": 0.0004256550000008019
+        },
+        {
+          "machine": "B",
+          "assigned_delay_s": 19.626012413,
+          "observed_delay_s": 19.647999999999996,
+          "quantization_overrun_s": 0.02198758699999459
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "red_seed_103",
+      "case": "red",
+      "seed": 103,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 78.4,
+      "delivery_wall_s": 5.1045897,
+      "recomputed_rtf": 15.358727068700547,
+      "score_from_events": 3,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 2515,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 80.48,
+      "last_trace_simulation_s": 80.48,
+      "measurement_end_simulation_s": 80.48,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 3.409999999970381e-05,
+      "final_box_xyz_m": [
+        0.244987146,
+        -0.520369646,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399376218929,
+      "processing": [
+        {
+          "machine": "A",
+          "assigned_delay_s": 17.59094017,
+          "observed_delay_s": 17.6,
+          "quantization_overrun_s": 0.009059830000001767
+        },
+        {
+          "machine": "B",
+          "assigned_delay_s": 23.094690654,
+          "observed_delay_s": 23.103999999999992,
+          "quantization_overrun_s": 0.009309345999991336
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "red_seed_104",
+      "case": "red",
+      "seed": 104,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 76.8,
+      "delivery_wall_s": 4.4541176,
+      "recomputed_rtf": 17.242472448414922,
+      "score_from_events": 3,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 2465,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 78.88,
+      "last_trace_simulation_s": 78.88,
+      "measurement_end_simulation_s": 78.88,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 3.279999999961092e-05,
+      "final_box_xyz_m": [
+        0.244987146,
+        -0.520369646,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399376218929,
+      "processing": [
+        {
+          "machine": "A",
+          "assigned_delay_s": 16.243414136,
+          "observed_delay_s": 16.256,
+          "quantization_overrun_s": 0.012585864000001834
+        },
+        {
+          "machine": "B",
+          "assigned_delay_s": 22.826684106,
+          "observed_delay_s": 22.848,
+          "quantization_overrun_s": 0.021315894000000668
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "red_seed_105",
+      "case": "red",
+      "seed": 105,
+      "negative_control": false,
+      "raw_event_delivery_simulation_s": 79.52,
+      "delivery_wall_s": 4.7116339,
+      "recomputed_rtf": 16.877372412147725,
+      "score_from_events": 3,
+      "delivery_count": 1,
+      "rejection_count": 0,
+      "trajectory_rows": 2550,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 81.6,
+      "last_trace_simulation_s": 81.6,
+      "measurement_end_simulation_s": 81.6,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": 2.9999999999752447e-05,
+      "final_box_xyz_m": [
+        0.244987146,
+        -0.520369646,
+        0.026484298
+      ],
+      "final_robot_box_separation_m": 0.2678399376218929,
+      "processing": [
+        {
+          "machine": "A",
+          "assigned_delay_s": 18.282653366,
+          "observed_delay_s": 18.304000000000002,
+          "quantization_overrun_s": 0.021346634000000364
+        },
+        {
+          "machine": "B",
+          "assigned_delay_s": 23.502350024,
+          "observed_delay_s": 23.519999999999996,
+          "quantization_overrun_s": 0.017649975999997736
+        }
+      ],
+      "errors": []
+    },
+    {
+      "trial": "blue_seed_101_invalid_drop",
+      "case": "blue",
+      "seed": 101,
+      "negative_control": true,
+      "raw_event_delivery_simulation_s": null,
+      "delivery_wall_s": null,
+      "recomputed_rtf": null,
+      "score_from_events": 0,
+      "delivery_count": 0,
+      "rejection_count": 1,
+      "trajectory_rows": 272,
+      "trajectory_state_row_mismatches": 0,
+      "finish_event_simulation_s": 8.704,
+      "last_trace_simulation_s": 8.704,
+      "measurement_end_simulation_s": 8.704,
+      "last_trace_to_measurement_offset_s": 0.0,
+      "delivery_wall_event_offset_s": null,
+      "final_box_xyz_m": [
+        -0.694998025,
+        0.370318381,
+        0.02605217
+      ],
+      "final_robot_box_separation_m": 0.11750030508659175,
+      "processing": [],
+      "errors": []
+    }
+  ],
+  "hashes": [
+    {
+      "path": "worlds/logistics_pbl_enu.wbt",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "3f0e01cda11cf30bec0954fd3190d6a38b0bdb101718245aa675f41f3619d4c9",
+      "current_hash": "3f0e01cda11cf30bec0954fd3190d6a38b0bdb101718245aa675f41f3619d4c9"
+    },
+    {
+      "path": "controllers/student_controller_cpp/debug_config.hpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "06f0bdb82a4739111f0719b3a33317d9acadbb80f64f4f128dc6afac39e5e24f",
+      "current_hash": "06f0bdb82a4739111f0719b3a33317d9acadbb80f64f4f128dc6afac39e5e24f"
+    },
+    {
+      "path": "controllers/student_controller_cpp/robot_navigation.cpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "ee0eee23c602495770b0f1e0e7358930ebd3460f2d4b1ca746aaa07d93920fd1",
+      "current_hash": "ee0eee23c602495770b0f1e0e7358930ebd3460f2d4b1ca746aaa07d93920fd1"
+    },
+    {
+      "path": "controllers/student_controller_cpp/robot_navigation.hpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "34da080860dd4320aff082d80653dd9e88e60ab5da39d1c59429d31c4423d94a",
+      "current_hash": "34da080860dd4320aff082d80653dd9e88e60ab5da39d1c59429d31c4423d94a"
+    },
+    {
+      "path": "controllers/student_controller_cpp/route_planner.hpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "98750360f8bfcc681a649efee2b0f894d785765f89e2774d67334872bfd1f828",
+      "current_hash": "98750360f8bfcc681a649efee2b0f894d785765f89e2774d67334872bfd1f828"
+    },
+    {
+      "path": "controllers/student_controller_cpp/student_controller.cpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "c029afd3e9a79da258e21e932a6b2b5c550cde5cc6a1913e96555ca4e789b9f0",
+      "current_hash": "c029afd3e9a79da258e21e932a6b2b5c550cde5cc6a1913e96555ca4e789b9f0"
+    },
+    {
+      "path": "controllers/student_controller_cpp/warehouse_clearance.hpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "94dc060b94c1561ff9c88d0d89eeb76f9dcdff64aa7c1831cd13f4929d9c8d9e",
+      "current_hash": "94dc060b94c1561ff9c88d0d89eeb76f9dcdff64aa7c1831cd13f4929d9c8d9e"
+    },
+    {
+      "path": "controllers/student_controller_cpp/warehouse_map.hpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "2de5a88f13fa52172bba0554eaf8910db6874f7699d23ab877c08a09b92516db",
+      "current_hash": "2de5a88f13fa52172bba0554eaf8910db6874f7699d23ab877c08a09b92516db"
+    },
+    {
+      "path": "controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "cbff4c7cc1b6bf3b8f3eb8ad4b81db1d3927a5ea5556161425888dc63091b058",
+      "current_hash": "cbff4c7cc1b6bf3b8f3eb8ad4b81db1d3927a5ea5556161425888dc63091b058"
+    },
+    {
+      "path": "controllers/logistics_supervisor_cpp/warehouse_overlay.hpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "c5ab45561d49b87fdf261198a35c22f35c84880f952e39a812ca2e9096e28a9f",
+      "current_hash": "c5ab45561d49b87fdf261198a35c22f35c84880f952e39a812ca2e9096e28a9f"
+    },
+    {
+      "path": "tests/technical_validation/measurement.hpp",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf",
+      "current_hash": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf"
+    },
+    {
+      "path": "tests/technical_validation/run.py",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "54a9a1ab3be046600eb22798e59378b6cff81a946db97f965360c6fced1808ce",
+      "current_hash": "54a9a1ab3be046600eb22798e59378b6cff81a946db97f965360c6fced1808ce"
+    },
+    {
+      "path": "tests/technical_validation/report.py",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "32ab6d7ff33fb5ed6727d1386e20b670d39438e4d57426136bca1457b8951ad0",
+      "current_hash": "32ab6d7ff33fb5ed6727d1386e20b670d39438e4d57426136bca1457b8951ad0"
+    },
+    {
+      "path": "tests/technical_validation/README.md",
+      "snapshot_present": true,
+      "current_present": true,
+      "snapshot_matches_manifest": true,
+      "current_matches_manifest": true,
+      "snapshot_hash": "877e79de301e99c613af4cabbecb99649e44704b11b76806542b3d9d509f5dcf",
+      "current_hash": "877e79de301e99c613af4cabbecb99649e44704b11b76806542b3d9d509f5dcf"
+    }
+  ],
+  "errors": []
+}

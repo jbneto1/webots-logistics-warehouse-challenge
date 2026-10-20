@@ -1,0 +1,55 @@
+{
+  "created_utc": "2026-10-20T12:30:10.729016+00:00",
+  "git_head": "92093f083c07619ad1e3cbd48f7c4549bb89d2f4",
+  "working_tree_status": "M README.md\n M results/technical_validation/README.md\n M tests/technical_validation/README.md\n M tests/technical_validation/measurement.hpp\n M tests/technical_validation/report.py\n M tests/technical_validation/run.py\n?? Paper/\n?? output/\n?? results/technical_validation/2026-10-20_camera_ready_fixed/\n?? tests/technical_validation/test_evidence_checks.py",
+  "source_sha256": {
+    "worlds/logistics_pbl_enu.wbt": "3f0e01cda11cf30bec0954fd3190d6a38b0bdb101718245aa675f41f3619d4c9",
+    "controllers/student_controller_cpp/debug_config.hpp": "06f0bdb82a4739111f0719b3a33317d9acadbb80f64f4f128dc6afac39e5e24f",
+    "controllers/student_controller_cpp/robot_navigation.cpp": "ee0eee23c602495770b0f1e0e7358930ebd3460f2d4b1ca746aaa07d93920fd1",
+    "controllers/student_controller_cpp/robot_navigation.hpp": "34da080860dd4320aff082d80653dd9e88e60ab5da39d1c59429d31c4423d94a",
+    "controllers/student_controller_cpp/route_planner.hpp": "98750360f8bfcc681a649efee2b0f894d785765f89e2774d67334872bfd1f828",
+    "controllers/student_controller_cpp/student_controller.cpp": "c029afd3e9a79da258e21e932a6b2b5c550cde5cc6a1913e96555ca4e789b9f0",
+    "controllers/student_controller_cpp/warehouse_clearance.hpp": "94dc060b94c1561ff9c88d0d89eeb76f9dcdff64aa7c1831cd13f4929d9c8d9e",
+    "controllers/student_controller_cpp/warehouse_map.hpp": "2de5a88f13fa52172bba0554eaf8910db6874f7699d23ab877c08a09b92516db",
+    "controllers/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp": "cbff4c7cc1b6bf3b8f3eb8ad4b81db1d3927a5ea5556161425888dc63091b058",
+    "controllers/logistics_supervisor_cpp/warehouse_overlay.hpp": "c5ab45561d49b87fdf261198a35c22f35c84880f952e39a812ca2e9096e28a9f",
+    "tests/technical_validation/measurement.hpp": "d7d8708b77b25ca902b2bff37d2b14a7a05653bf7d83c5537136789fdc1d45cf",
+    "tests/technical_validation/run.py": "54a9a1ab3be046600eb22798e59378b6cff81a946db97f965360c6fced1808ce",
+    "tests/technical_validation/report.py": "32ab6d7ff33fb5ed6727d1386e20b670d39438e4d57426136bca1457b8951ad0",
+    "tests/technical_validation/README.md": "877e79de301e99c613af4cabbecb99649e44704b11b76806542b3d9d509f5dcf"
+  },
+  "source_tree": "C:\\Users\\jabra\\Repos\\webots_logistics_pbl\\results\\technical_validation\\2026-10-19_baseline\\source_snapshot",
+  "snapshot_excluded_files": [],
+  "platform": "Windows-11-10.0.26300-SP0",
+  "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "logical_processors": 32,
+  "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:05:56) [MSC v.1942 64 bit (AMD64)]",
+  "webots_home": "C:\\Program Files\\Webots",
+  "webots_version": "R2025a",
+  "compiler_version": "g++.exe (Rev2, Built by MSYS2 project) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "cases": [
+    "blue",
+    "green",
+    "red"
+  ],
+  "machine_bays": {
+    "A": 0,
+    "B": 0
+  },
+  "debug_level": "unchanged from source snapshot",
+  "sim_timeout_s": 240.0,
+  "wall_timeout_s": 240.0,
+  "prepared_only": false,
+  "measurement": "Supervisor delivery acceptance; steady_clock wall interval from pre-first-step to delivery; startup/build excluded",
+  "terminal_consistency_checked": true,
+  "source_unchanged_after_run": true,
+  "completed_utc": "2026-10-20T12:32:17.128149+00:00",
+  "validation_checks_passed": true
+}

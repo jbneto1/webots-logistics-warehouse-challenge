@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "box_0_delivered": true,
+  "box_0_in_outgoing_at_end": true,
+  "controller_finished": true,
+  "supervisor_score": 1,
+  "score_at_delivery": 1,
+  "expected_score": 1,
+  "invalid_drops": 0,
+  "evaluated_drops": 1,
+  "delivery_simulation_s": 20.832000000,
+  "delivery_wall_s": 1.258425500,
+  "delivery_real_time_factor": 16.554019288,
+  "end_simulation_s": 22.912000000,
+  "end_wall_s": 1.392460500,
+  "attached_index_at_end": -1,
+  "robot_final_xy_m": [0.245062201, -0.252632869],
+  "box_final_xyz_m": [0.244282189, -0.520927725, 0.026484298]
+}

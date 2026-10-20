@@ -1,0 +1,9 @@
+{
+  "cpu_model": "AMD Ryzen 9 7945HX with Radeon Graphics        ",
+  "physical_cores": 16,
+  "logical_processors": 32,
+  "os_reported_physical_memory_bytes": 33487876096,
+  "installed_ram_gb_author_confirmed": 32,
+  "source": "CPU and OS-visible memory read using Win32 CIM; installed RAM confirmed by author",
+  "captured_utc": "2026-10-20T12:23:25.0190286Z"
+}

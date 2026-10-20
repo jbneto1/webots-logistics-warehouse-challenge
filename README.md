@@ -313,13 +313,15 @@ For a repeatable physics regression, run `python tests/navigation/prepare.py red
 
 Run `python tests/navigation/check_planner.py` for wall-model consistency, circular endpoint geometry, payload clearance, and controller-selection checks. After a physics run, `python tests/navigation/verify_run.py red` (append the bay number when testing bay 1) also verifies the logged pickup, drop, and output-approach poses against 12.5 mm position and 0.065 rad heading limits. The test copy records controller output in `student_controller_cpp/controller.log`.
 
-The [technical-validation harness](tests/technical_validation/README.md) measures delivery, score, simulated delivery time, rejected drops, and real-time factor for the blue (`BRRG`), green (`GRRB`), and red (`RRGB`) BOX_0 routes. It builds isolated project copies and records events, trajectories, and source hashes. Run five seeds per route and an invalid-drop control with:
+The [technical-validation harness](tests/technical_validation/README.md) measures delivery, score, simulated delivery time, supervisor-rejected releases, and real-time factor for the blue (`BRRG`), green (`GRRB`), and red (`RRGB`) BOX_0 routes. It builds isolated project copies and records events, trajectories, and source hashes. Success includes logical detachment and the part centre inside the outgoing acceptance region after controller completion; it does not independently measure physical connector linkage or full-footprint containment. The corrected harness finalizes once and checks agreement among terminal JSON, event, and trajectory records. Run five seeds per route and an invalid-drop control into a new directory with:
 
 ```bash
-python tests/technical_validation/run.py --output results/technical_validation/my_baseline --seeds 101 102 103 104 105 --negative-control
+python tests/technical_validation/run.py --output results/technical_validation/my_corrected_baseline --seeds 101 102 103 104 105 --negative-control
 ```
 
-The [19 October 2026 baseline](results/technical_validation/2026-10-19_baseline/REPORT.md) contains five runs per initial type. These tests cover BOX_0 and machine bay 0.
+The [20 October 2026 corrected batch](results/technical_validation/2026-10-20_camera_ready_fixed/REPORT.md) passed all 15 nominal trials and the separate invalid-drop control, including the terminal-evidence checks. It retests the historical controller/world snapshot with the corrected harness; its [manifest](results/technical_validation/2026-10-20_camera_ready_fixed/manifest.json) records unchanged input sources during execution. See the [verification](results/technical_validation/2026-10-20_camera_ready_fixed/VERIFICATION.md) and [batch index](results/technical_validation/README.md) for the retained evidence and exact comparison command. These tests cover BOX_0 and machine bay 0.
+
+The [19 October 2026 baseline](results/technical_validation/2026-10-19_baseline/REPORT.md) is retained unchanged. Its delivery statistics were independently reproduced, but its pre-fix finalization can leave terminal JSON one 32 ms step later than the retained logs; it does not satisfy the corrected terminal-evidence contract. The corrected run is a separate batch, and its host-specific RTF values do not replace the historical measurements.
 
 ### Debug Levels
 

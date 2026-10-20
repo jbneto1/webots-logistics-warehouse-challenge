@@ -24,7 +24,7 @@ def write_report(output):
     lines = ["# BOX_0 validation", "",
              f"Webots {manifest['webots_version']}; base commit `{manifest['git_head']}`. "
              "The snapshot identifies the tested controller and world sources, including local changes.", "",
-             "| Initial type | Order | Deliveries / trials | Score observed (expected) | Delivery time, mean ± sample SD (s) | Range (s) | Invalid drops | RTF, mean ± sample SD |",
+             "| Initial type | Order | Successful trials / trials | Score observed (expected) | Delivery time, mean ± sample SD (s) | Range (s) | Rejected releases, total | RTF, mean ± sample SD |",
              "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
     for case, (label, order, expected) in TYPES.items():
         group = [r for r in nominal if r["case"] == case]
@@ -40,10 +40,14 @@ def write_report(output):
                      f"{describe(times, 3)} | {time_range} | {invalid} | {describe(rtfs, 2)} |")
     lines += ["", "## Metrics", "",
               "- Delivery time: simulation start to supervisor acceptance of blue BOX_0 in the outgoing region, including messaging, motion, handling waits, and processing. Time statistics include successful trials only.",
-              "- Success: accepted delivery, expected score, no rejected drops, a detached box still inside the outgoing region, and controller FINISHED after reverse clearance.",
+              "- Success: supervisor-accepted delivery, expected score, no rejected releases, logical detachment (`attached_index_at_end == -1`), BOX_0 centre inside the outgoing acceptance region at termination, and controller FINISHED after reverse clearance. This does not test full-footprint containment or independent physical connector linkage.",
               "- Invalid drops: associated-box releases rejected by `evaluateDrop`. Empty magnet-off commands and physical slips without a reported release are outside this count.",
-              "- RTF: delivery simulation interval divided by its matching monotonic wall interval. Compilation and simulator startup are excluded; physics, logging, overlay work, and scheduling are included.",
-              "- `end_simulation_s`: termination after controller completion or timeout. Observing FINISHED can lag the controller transition by one 32 ms tick.", "",
+              "- Score lists the observed per-trial values; rejected releases are summed across all nominal trials of each type. Delivery-time and RTF statistics use successful nominal trials only; dispersion is sample standard deviation.",
+              "- RTF: each delivery simulation interval divided by its matching monotonic wall interval; the table reports the arithmetic mean of those per-trial ratios. Compilation and simulator startup are excluded; physics, logging, overlay work, and scheduling are included.",
+              "- `end_simulation_s`: the supervisor's terminal measurement tick after controller completion or timeout. Observing FINISHED can lag the controller transition by one 32 ms tick.",
+              ("- Terminal evidence: this harness enforces equality (within 1e-7 s) between `end_simulation_s`, the final trajectory timestamp, and the single terminal event timestamp, together with matching final-state fields. Finalization exits the supervisor loop and cannot be repeated."
+               if manifest.get("terminal_consistency_checked") else
+               "- Terminal evidence: this archive's manifest does not declare the corrected terminal-consistency check. This summary does not certify equality between terminal JSON, event, and trajectory timestamps; retain any documented historical finalization caveat."), "",
               "## Configuration", "",
               f"Seeds: {', '.join(map(str, manifest['seeds']))}. BOX_0; machine bay 0; 32 ms timestep. "
               "Uniform 15-25 s processing delays. Supervisor and world seeds are fixed per trial; assigned delays are recorded in `events.csv`. "

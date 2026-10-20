@@ -1,0 +1,74 @@
+[
+  {
+    "case": "blue",
+    "trials": 5,
+    "successful": 5,
+    "invalid_drops": 0,
+    "delivery_simulation_s": {
+      "mean": 20.832,
+      "sample_sd": 0.0,
+      "min": 20.832,
+      "max": 20.832
+    },
+    "end_simulation_s": {
+      "mean": 22.912,
+      "sample_sd": 0.0,
+      "min": 22.912,
+      "max": 22.912
+    },
+    "delivery_real_time_factor": {
+      "mean": 16.1496994526,
+      "sample_sd": 0.7681015810677846,
+      "min": 14.879012671,
+      "max": 16.781711994
+    }
+  },
+  {
+    "case": "green",
+    "trials": 5,
+    "successful": 5,
+    "invalid_drops": 0,
+    "delivery_simulation_s": {
+      "mean": 49.184,
+      "sample_sd": 1.5932658284165901,
+      "min": 47.104,
+      "max": 51.392
+    },
+    "end_simulation_s": {
+      "mean": 51.264,
+      "sample_sd": 1.5932658284165908,
+      "min": 49.184,
+      "max": 53.472
+    },
+    "delivery_real_time_factor": {
+      "mean": 16.085976684000002,
+      "sample_sd": 0.8197930868190317,
+      "min": 14.815692359,
+      "max": 17.008382248
+    }
+  },
+  {
+    "case": "red",
+    "trials": 5,
+    "successful": 5,
+    "invalid_drops": 0,
+    "delivery_simulation_s": {
+      "mean": 78.7648,
+      "sample_sd": 2.5833534794913415,
+      "min": 76.32,
+      "max": 82.784
+    },
+    "end_simulation_s": {
+      "mean": 80.8448,
+      "sample_sd": 2.583353479491338,
+      "min": 78.4,
+      "max": 84.864
+    },
+    "delivery_real_time_factor": {
+      "mean": 16.4405002266,
+      "sample_sd": 0.7532857217776596,
+      "min": 15.358727069,
+      "max": 17.242472448
+    }
+  }
+]

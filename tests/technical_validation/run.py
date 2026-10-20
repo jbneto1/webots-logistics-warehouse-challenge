@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 import difflib
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import platform
@@ -70,7 +71,7 @@ def instrument(name, text, order, seed, expected, timeout, negative):
                             '    initializeOrderAndBoxes();\n    validation_.begin(robot_.getTime());')
         text = replace_once(text, '      updateOverlay();',
                             '      updateOverlay();\n'
-                            '      validation_.step(robot_, mobile_, boxes_[0].node, score_, boxes_[0].delivered, attachedIndex_);')
+                            '      if (validation_.step(robot_, mobile_, boxes_[0].node, score_, boxes_[0].delivered, attachedIndex_)) break;')
         text = replace_once(text, '    const double delay = randomProcessingTime();',
                             '    const double delay = randomProcessingTime();\n'
                             '    validation_.event(now, "processing_start", bay.inputBox, bay.machine, bay.bayIndex, score_, delay);')
@@ -131,7 +132,8 @@ def build_project(project, snapshot, webots, compiler, env, order, seed, expecte
 def evidence_checks(folder, result):
     """Cross-check raw events, trajectory, state log and final supervisor state."""
     controller = folder / "controllers/logistics_supervisor_cpp"
-    events = list(csv.DictReader((controller / "events.csv").open(encoding="utf-8")))
+    with (controller / "events.csv").open(encoding="utf-8", newline="") as stream:
+        events = list(csv.DictReader(stream))
     deliveries = [e for e in events if e["event"] == "delivery" and e["box"] == "0"]
     rejections = [e for e in events if e["event"] == "invalid_drop"]
     if result["invalid_drops"] != len(rejections):
@@ -140,9 +142,32 @@ def evidence_checks(folder, result):
         raise ValueError("Delivery flag differs from events")
     if deliveries and (len(deliveries) != 1 or abs(float(deliveries[0]["simulation_s"]) - result["delivery_simulation_s"]) > 1e-7):
         raise ValueError("Delivery timestamp differs from events")
-    trace = list(csv.DictReader((controller / "trajectory.csv").open(encoding="utf-8")))
+    with (controller / "trajectory.csv").open(encoding="utf-8", newline="") as stream:
+        trace = list(csv.DictReader(stream))
+    if trace and abs(float(trace[-1]["simulation_s"]) - result["end_simulation_s"]) > 1e-7:
+        raise ValueError("Final trajectory timestamp differs from measurement JSON")
+    terminal = [e for e in events if e["event"] in ("controller_finished", "simulation_timeout")]
+    expected_terminal = "controller_finished" if result["controller_finished"] else "simulation_timeout"
+    if len(terminal) != 1 or terminal[0] is not events[-1] or terminal[0]["event"] != expected_terminal:
+        raise ValueError("Expected exactly one matching terminal event at the end of the event log")
+    if abs(float(terminal[0]["simulation_s"]) - result["end_simulation_s"]) > 1e-7:
+        raise ValueError("Terminal event timestamp differs from measurement JSON")
     if not trace or int(trace[-1]["score"]) != result["supervisor_score"]:
         raise ValueError("Final trajectory score differs from summary")
+    final = trace[-1]
+    if int(final["attached_index"]) != result["attached_index_at_end"]:
+        raise ValueError("Final trajectory attachment differs from summary")
+    if bool(int(final["box_0_delivered"])) != result["box_0_delivered"]:
+        raise ValueError("Final trajectory delivery flag differs from summary")
+    for key, columns in (("robot_final_xy_m", ("robot_x_m", "robot_y_m")),
+                         ("box_final_xyz_m", ("box_x_m", "box_y_m", "box_z_m"))):
+        if len(result[key]) != len(columns) or any(
+                not math.isclose(float(final[column]), value, rel_tol=0.0, abs_tol=1e-7)
+                for column, value in zip(columns, result[key])):
+            raise ValueError(f"Final trajectory position differs from {key}")
+    x, y, _ = result["box_final_xyz_m"]
+    if result["box_0_in_outgoing_at_end"] != (0.160 <= x <= 0.785 and -0.590 <= y <= -0.420):
+        raise ValueError("Outgoing-region flag differs from final part centre")
     state_log = (folder / "controllers/student_controller_cpp/controller.log").read_text(encoding="utf-8")
     if result["controller_finished"] and "State: FINISHED " not in state_log:
         raise ValueError("Missing controller FINISHED state")
@@ -232,7 +257,8 @@ def main():
                 "seeds": args.seeds, "cases": args.cases, "machine_bays": {"A": 0, "B": 0},
                 "debug_level": "unchanged from source snapshot", "sim_timeout_s": args.sim_timeout,
                 "wall_timeout_s": args.wall_timeout, "prepared_only": args.prepare_only,
-                "measurement": "Supervisor delivery acceptance; steady_clock wall interval from pre-first-step to delivery; startup/build excluded"}
+                "measurement": "Supervisor delivery acceptance; steady_clock wall interval from pre-first-step to delivery; startup/build excluded",
+                "terminal_consistency_checked": True}
     source_diff = []
     for relative, source in inputs.items():
         if not relative.startswith(("controllers/", "worlds/")):

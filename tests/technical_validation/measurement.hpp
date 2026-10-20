@@ -49,8 +49,9 @@ public:
     }
   }
 
-  void step(webots::Supervisor &supervisor, webots::Node *robot,
+  bool step(webots::Supervisor &supervisor, webots::Node *robot,
             webots::Node *box, int score, bool delivered, int attached) {
+    if (finalized_) return true;
     const double sim = supervisor.getTime() - startSim_;
     const double *r = robot->getPosition();
     const double *b = box->getPosition();
@@ -60,7 +61,8 @@ public:
                  sim, r[0], r[1], yaw, b[0], b[1], b[2], score, attached, delivered ? 1 : 0);
     const bool finished = robot->getField("customData")->getSFString() == "technical_validation_finished";
     if (!finished && sim < VALIDATION_TIMEOUT_S)
-      return;
+      return false;
+    finalized_ = true;
     const bool inOutgoing = b[0] >= 0.160 && b[0] <= 0.785 && b[1] >= -0.590 && b[1] <= -0.420;
     const bool success = finished && delivered && deliverySim_ >= 0.0 &&
       score == VALIDATION_EXPECTED_SCORE && invalid_ == 0 && attached == -1 && inOutgoing;
@@ -68,7 +70,7 @@ public:
     FILE *result = std::fopen("measurement.json", "w");
     if (!result) {
       supervisor.simulationQuit(2);
-      return;
+      return true;
     }
     std::fprintf(result,
       "{\n  \"success\": %s,\n  \"box_0_delivered\": %s,\n  \"box_0_in_outgoing_at_end\": %s,\n"
@@ -85,10 +87,14 @@ public:
     std::fclose(result);
     std::fclose(events_);
     std::fclose(trace_);
+    events_ = nullptr;
+    trace_ = nullptr;
     supervisor.simulationQuit(success ? 0 : 1);
+    return true;
   }
 
 private:
+  bool finalized_ = false;
   double wall() const {
     return std::chrono::duration<double>(std::chrono::steady_clock::now() - startWall_).count();
   }

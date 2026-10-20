@@ -1,2 +1,4 @@
 # Preserve archived experiment source bytes for the recorded SHA-256 hashes.
 results/technical_validation/**/source_snapshot/** -text
+# Keep all corrected evidence bytes stable across clones with core.autocrlf.
+results/technical_validation/2026-10-20_camera_ready_fixed/** -text

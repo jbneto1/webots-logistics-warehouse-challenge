@@ -1,0 +1,137 @@
+--- original/student_controller_cpp/student_controller.cpp
++++ instrumented/student_controller_cpp/student_controller.cpp
+@@ -3,6 +3,7 @@
+ #include "route_planner.hpp"
+ 
+ #include <cstdio>
++#include <webots/robot.h>
+ 
+ #define ARRAY_COUNT(a) (static_cast<int>(sizeof(a) / sizeof((a)[0])))
+ 
+@@ -152,6 +153,8 @@
+ 
+ static void changeState(State nextState) {
+   state = nextState;
++  if (state == FINISHED)
++    wb_robot_set_custom_data("technical_validation_finished");
+   routeIndex = 0;
+   plannedRoute.clear();
+   routePlanned = false;
+@@ -238,6 +241,7 @@
+ int main() {
+   Navigation navigation;
+   nav = &navigation;
++  if (!std::freopen("controller.log", "w", stdout)) return 2;
+   nav->init();
+ 
+   while (nav->step()) {
+--- original/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp
++++ instrumented/logistics_supervisor_cpp/logistics_supervisor_cpp.cpp
+@@ -9,6 +9,9 @@
+ 
+ #include "../student_controller_cpp/warehouse_map.hpp"
+ #include "warehouse_overlay.hpp"
++#define VALIDATION_EXPECTED_SCORE 3
++#define VALIDATION_TIMEOUT_S 240.0
++#include "measurement.hpp"
+ 
+ #include <webots/Emitter.hpp>
+ #include <webots/Field.hpp>
+@@ -37,7 +40,7 @@
+ // same box types; random mode is better for normal challenge attempts.
+ constexpr int kOrderModeRandom = 0;
+ constexpr int kOrderModeManual = 1;
+-constexpr int kTaskOrderMode = kOrderModeRandom;
++constexpr int kTaskOrderMode = kOrderModeManual;
+ constexpr const char *kManualOrder = "RRGB";
+ 
+ // Supervisor/gameplay tuning. These values define where the virtual magnet is,
+@@ -210,7 +213,7 @@
+ 
+ class LogisticsSupervisor {
+ public:
+-  LogisticsSupervisor() : rng_(static_cast<unsigned int>(std::time(nullptr))) {}
++  LogisticsSupervisor() : rng_(104u) {}
+ 
+   bool init() {
+     receiver_ = robot_.getReceiver("magnet_rx");
+@@ -261,6 +264,7 @@
+ 
+   void run() {
+     initializeOrderAndBoxes();
++    validation_.begin(robot_.getTime());
+     std::printf("C++ logistics supervisor started.\n");
+     std::fflush(stdout);
+ 
+@@ -274,6 +278,7 @@
+         attachNearestBox();
+       finishProcessingIfNeeded();
+       updateOverlay();
++      if (validation_.step(robot_, mobile_, boxes_[0].node, score_, boxes_[0].delivered, attachedIndex_)) break;
+     }
+   }
+ 
+@@ -417,6 +422,7 @@
+     BoxInfo &box = boxes_[bay.inputBox];
+     const double now = robot_.getTime();
+     const double delay = randomProcessingTime();
++    validation_.event(now, "processing_start", bay.inputBox, bay.machine, bay.bayIndex, score_, delay);
+ 
+     bay.processing = true;
+     box.processingUntil = now + delay;
+@@ -453,6 +459,7 @@
+       std::printf("%s accepted by Machine B bay %d. +1. green -> blue.\n", box.boxDef.c_str(), bay.bayIndex);
+     }
+ 
++    validation_.event(robot_.getTime(), "machine_accepted", index, machine, bay.bayIndex, score_);
+     bay.inputBox = index;
+     box.inMachineInput = true;
+     box.inputMachine = machine;
+@@ -529,6 +536,7 @@
+     if (best >= 0) {
+       clearReadyOutputIfNeeded(best);
+       attachedIndex_ = best;
++      validation_.event(robot_.getTime(), "pickup", best, '?', -1, score_);
+       recordOverlayEvent(boxes_[best].boxDef + " picked up (" + stateName(boxes_[best].state) + ").");
+       std::printf("Attached %s as %s.\n", boxes_[best].boxDef.c_str(), stateName(boxes_[best].state));
+       std::fflush(stdout);
+@@ -536,6 +544,7 @@
+   }
+ 
+   void evaluateDrop(int index) {
++    validation_.dropAttempt();
+     BoxInfo &box = boxes_[index];
+     const double *position = box.translation->getSFVec3f();
+     std::string rejection = "wrong destination for a " + std::string(stateName(box.state)) + " part.";
+@@ -557,6 +566,7 @@
+     } else if (box.state == PartState::Blue && kOutgoingZone.contains(position) && !box.delivered) {
+       box.delivered = true;
+       ++score_;
++      validation_.delivery(robot_.getTime(), index, score_);
+       recordOverlayEvent(box.boxDef + " delivered to outgoing warehouse (+1).");
+       std::printf("%s delivered to outgoing warehouse. +1.\n", box.boxDef.c_str());
+       std::fflush(stdout);
+@@ -568,6 +578,7 @@
+                 box.boxDef.c_str(), stateName(box.state), position[0], position[1],
+                 robotPose.translation[0], robotPose.translation[1], robotPose.theta);
+     std::fflush(stdout);
++    validation_.reject(robot_.getTime(), index, score_);
+     recordOverlayEvent(box.boxDef + " drop rejected: " + rejection, true);
+   }
+ 
+@@ -582,6 +593,7 @@
+       if (!bay)
+         continue;
+ 
++      validation_.event(now, "processing_ready", i, bay->machine, bay->bayIndex, score_);
+       box.state = box.targetState;
+       setBoxColor(box, box.state);
+       setBoxPose(box, box.targetPose.x, box.targetPose.y, box.targetPose.z, box.targetPose.yaw);
+@@ -759,6 +771,7 @@
+     std::fflush(stdout);
+   }
+ 
++  ValidationMeasurement validation_;
+   webots::Supervisor robot_;
+   webots::Receiver *receiver_ = nullptr;
+   webots::Display *overlayDisplay_ = nullptr;
